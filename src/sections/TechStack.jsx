@@ -5,11 +5,12 @@ import { TbBrandFramerMotion } from "react-icons/tb";
 import { SiBlazor, SiDotnet, SiMongodb } from "react-icons/si";
 import { DiMsqlServer, DiPostgresql } from "react-icons/di";
 import { GrMysql } from "react-icons/gr";
+import { SectionTitle } from "../components/SectionTitle";
 
 export function TechStack() {
     return (
         <section className="mb-30">
-            <h2 className="mb-4 py-5 font-bold tracking-wider">MY STACK</h2>
+            <SectionTitle>MY STACK</SectionTitle>
 
             <div>
                 <h3 className="mb-2 text-xl font-semibold">FRONTEND</h3>

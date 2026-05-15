@@ -1,7 +1,9 @@
+import { SectionTitle } from "../components/SectionTitle";
+
 export function Experience() {
     return (
         <section className="mb-16">
-            <h2 className="mb-4 py-5 font-bold tracking-wider">EXPERIENCE</h2>
+            <SectionTitle>EXPERIENCE</SectionTitle>
 
             <header className="mt-4 text-xs font-semibold text-surface/60">
                 2025 — PRESENT
