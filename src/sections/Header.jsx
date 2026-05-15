@@ -1,6 +1,13 @@
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 
+const SOCIAL_LINKS = [
+    { href: "https://linkedin.com/in/allan-rodríguez", icon: FaLinkedin },
+    { href: "https://github.com/TU_USUARIO", icon: FaGithub },
+    { href: "https://instagram.com/TU_USUARIO", icon: FaInstagram },
+    { href: "mailto:allanrod0908@gmail.com", icon: MdEmail },
+]
+
 export function Header() {
     return (
         <header>
@@ -14,18 +21,13 @@ export function Header() {
                 <p className="mt-4 text-sm font-light tracking-wide leading-6">Hi! I'm Allan. A Full-Stack Developer who loves turning  complex problems into simple, well-crafted web experiences.</p>
 
                 <div className="flex gap-5 mt-8">
-                    <a href="https://linkedin.com/in/allan-rodríguez" target="_blank" rel="noreferrer">
-                        <FaLinkedin className="w-6 h-6 hover:text-accent transition-colors" />
-                    </a>
-                    <a href="https://github.com/TU_USUARIO" target="_blank" rel="noreferrer">
-                        <FaGithub className="w-6 h-6 hover:text-accent transition-colors" />
-                    </a>
-                    <a href="https://instagram.com/TU_USUARIO" target="_blank" rel="noreferrer">
-                        <FaInstagram className="w-6 h-6 hover:text-accent transition-colors" />
-                    </a>
-                    <a href="mailto:allanrod0908@gmail.com">
-                        <MdEmail className="w-6 h-6 hover:text-accent transition-colors" />
-                    </a>
+                    {
+                        SOCIAL_LINKS.map((social) => (
+                            <a href={social.href} key={social.icon}>
+                                <social.icon className="w-6 h-6 hover:text-accent transition-colors" />
+                            </a>
+                        ))
+                    }
                 </div>
 
             </div>
