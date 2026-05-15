@@ -6,124 +6,64 @@ import { SiBlazor, SiDotnet, SiMongodb } from "react-icons/si";
 import { DiMsqlServer, DiPostgresql } from "react-icons/di";
 import { GrMysql } from "react-icons/gr";
 import { SectionTitle } from "../components/SectionTitle";
+import { TechItem } from "../components/TechItem";
+
+const FRONTEND_TECHS = [
+    { name: "JavaScript", icon: IoLogoJavascript },
+    { name: "React", icon: FaReact },
+    { name: "Tailwind CSS", icon: RiTailwindCssFill },
+    { name: "Next.js", icon: RiNextjsFill },
+    { name: "Framer Motion", icon: TbBrandFramerMotion },
+    { name: "Blazor", icon: SiBlazor },
+];
+
+const BACKEND_TECHS = [
+    { name: ".Net Core", icon: SiDotnet },
+    { name: "Node.js", icon: FaNodeJs },
+]
+
+const DATABASE_TECHS = [
+    { name: "SQL Server", icon: DiMsqlServer },
+    { name: "PostgreSQL", icon: DiPostgresql },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "MySQL", icon: GrMysql },
+]
+
+const TOOLS_TECHS = [
+    { name: "Git", icon: FaGitAlt },
+];
+
+const STACK = [
+    { title: "FRONTEND", techs: FRONTEND_TECHS },
+    { title: "BACKEND", techs: BACKEND_TECHS },
+    { title: "DATABASE", techs: DATABASE_TECHS },
+    { title: "TOOLS", techs: TOOLS_TECHS },
+]
 
 export function TechStack() {
     return (
         <section className="mb-30">
             <SectionTitle>MY STACK</SectionTitle>
 
-            <div>
-                <h3 className="mb-2 text-xl font-semibold">FRONTEND</h3>
+            {
+                STACK.map(({ title, techs }) => (
+                    <div key={title}>
+                        <h3 className="mb-2 text-xl font-semibold">{title}</h3>
 
-                <div className="mb-8 flex flex-wrap gap-6">
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <IoLogoJavascript className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">JavaScript</span>
+                        <div className="mb-8 flex flex-wrap gap-6">
+                            {
+                                techs.map((tech) => (
+                                    <TechItem
+                                        key={tech.name}
+                                        name={tech.name}
+                                        icon={tech.icon}
+                                    />
+                                ))
+                            }
+                        </div>
                     </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <FaReact className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">React</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <RiTailwindCssFill className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">Tailwind CSS</span>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <RiNextjsFill className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">Next.js</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <TbBrandFramerMotion className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">Framer Motion</span>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <SiBlazor className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">Blazor</span>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 className="mb-2 text-xl font-semibold">BACKEND</h3>
-
-                <div className="mb-8 flex flex-wrap gap-6">
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <SiDotnet className="w-10 h-10 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">.Net Core</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <FaNodeJs className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">Node.js</span>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 className="mb-2 text-xl font-semibold">DATABASE</h3>
-
-                <div className="mb-8 flex flex-wrap gap-6">
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <DiMsqlServer className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">SQL Server</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <DiPostgresql className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">PostgreSQL</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <SiMongodb className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">MongoDB</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <GrMysql className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">MySQL</span>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 className="mb-2 text-xl font-semibold">TOOLS</h3>
-
-                <div className="flex flex-wrap gap-2 items-center">
-                        <p>
-                            <FaGitAlt className="w-8 h-8 hover:text-accent transition-colors" />
-                        </p>
-                        <span className="text-lg font-light">Git</span>
-                    </div>
-            </div>
+                ))
+            }
         </section>
     )
 }

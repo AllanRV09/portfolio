@@ -1,4 +1,5 @@
 import { SectionTitle } from "../components/SectionTitle";
+import { Tag } from "../components/Tag";
 
 export function Experience() {
     return (
@@ -19,21 +20,9 @@ export function Experience() {
                 </p>
 
                 <ul className="mt-4 flex flex-wrap text-xs font-medium leading-5">
-                    <li className="mr-1.5 mt-2">
-                        <div className="px-3 py-1 bg-surface/17 text-accent rounded-full">
-                            Blazor
-                        </div>
-                    </li>
-                    <li className="mr-1.5 mt-2">
-                        <div className="px-3 py-1 bg-surface/17 text-accent rounded-full">
-                            .Net Core
-                        </div>
-                    </li>
-                    <li className="mr-1.5 mt-2">
-                        <div className="px-3 py-1 bg-surface/17 text-accent rounded-full">
-                            Tailwind
-                        </div>
-                    </li>
+                    <Tag>Blazor</Tag>
+                    <Tag>.Net Core</Tag>
+                    <Tag>Tailwind CSS</Tag>
                 </ul>
             </div>
         </section>
