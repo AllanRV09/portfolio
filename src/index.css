@@ -1,1 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-background: #0E3131;
+    --color-surface: #86EFAC;
+    --color-text: #BDE4C1;
+    --color-accent: #07FFCD;
+
+    /* Para que sea la fuente por defecto en todo el proyecto */
+    --font-sans: "Montserrat", sans-serif;
+}
