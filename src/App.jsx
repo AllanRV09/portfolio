@@ -8,7 +8,7 @@ import { Projects } from "./sections/Projects"
 function App() {
   return (
     <div className="min-h-screen bg-background text-text selection:bg-accent
-     selection:text-background mx-auto py-12 px-6">
+     selection:text-background mx-auto py-12 px-6 md:py-18 md:px-12">
       <Header />
 
       <main className="mt-25">
