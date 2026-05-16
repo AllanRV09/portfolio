@@ -42,7 +42,7 @@ const STACK = [
 
 export function TechStack() {
     return (
-        <section className="mb-30">
+        <section className="mb-16">
             <SectionTitle>MY STACK</SectionTitle>
 
             {
