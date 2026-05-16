@@ -22,13 +22,16 @@ export function ProjectItem({ project }) {
                     {project.description}
                 </p>
             </div>
-            <div className="sm:order-1 sm:col-span-2">
+            <div className="w-48 sm:w-full sm:order-1 sm:col-span-2">
                 <div className="aspect-video rounded border-2 border-surface/15 overflow-hidden">
-                <img
-                    src={project.image}
-                    className="w-full h-full object-cover"
-                    alt="Random"
-                />
+                    <img
+                        loading="lazy"
+                        width="200"
+                        height="48"
+                        src={project.image}
+                        className="w-full h-full object-cover"
+                        alt="Random"
+                    />
                 </div>
             </div>
         </li>
