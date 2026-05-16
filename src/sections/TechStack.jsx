@@ -10,10 +10,10 @@ export function TechStack() {
 
             {
                 STACK.map(({ title, techs }) => (
-                    <div key={title}>
-                        <h3 className="mb-2 text-xl font-semibold">{title}</h3>
+                    <div key={title} className="mb-8 grid gap-4 sm:grid-cols-8 sm:gap-8">
+                        <h3 className="text-xs font-semibold text-surface/60 uppercase tracking-wider sm:col-span-2">{title}</h3>
 
-                        <div className="mb-8 flex flex-wrap gap-6">
+                        <div className="mb-8 flex flex-wrap gap-6 sm:col-span-6">
                             {
                                 techs.map((tech) => (
                                     <TechItem
