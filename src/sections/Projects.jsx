@@ -8,14 +8,16 @@ export function Projects() {
             <SectionTitle>PROJECTS</SectionTitle>
 
             <div className="flex flex-col">
-                {
-                    PROJECTS.map((project) => (
-                        <ProjectItem
-                            key={project.title}
-                            project={project}
-                        />
-                    ))
-                }
+                <ul>
+                    {
+                        PROJECTS.map((project) => (
+                            <ProjectItem
+                                key={project.title}
+                                project={project}
+                            />
+                        ))
+                    }
+                </ul>
             </div>
         </section>
     )
