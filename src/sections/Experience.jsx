@@ -7,14 +7,18 @@ export function Experience() {
         <section className="mb-16">
             <SectionTitle>EXPERIENCE</SectionTitle>
 
-            {
-                EXPERIENCES.map((experience) => (
-                    <ExperienceItem
-                        key={experience.title}
-                        experience={experience}
-                    />
-                ))
-            }
+            <div>
+                <ol>
+                    {
+                        EXPERIENCES.map((experience) => (
+                            <ExperienceItem
+                                key={experience.title}
+                                experience={experience}
+                            />
+                        ))
+                    }
+                </ol>
+            </div>
         </section>
     )
 }

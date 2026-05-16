@@ -32,6 +32,16 @@ export const EXPERIENCES = [
             "Tailwind CSS",
         ]
     },
+    {
+        year: "2025 — PRESENT",
+        title: "Full-Stack – Professional Internship • RACSA",
+        description: "Full-stack development of a self-managed e-learning platform using Blazor, .NET Core 9, SQL Server and Tailwind CSS, including database design, backend and frontend. Implementation of a user, course and enrollment management system with role-based access control. Development of an administrative reporting module and audit system. Design and implementation of a complete authentication flow with email verification and credential recovery. The project was adopted as the technological base for a solution launched to the Costa Rican market.",
+        tags: [
+            "Blazor",
+            ".Net Core",
+            "Tailwind CSS",
+        ]
+    },
 ]
 
 const FRONTEND_TECHS = [
