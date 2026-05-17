@@ -18,7 +18,7 @@ export function Header() {
                     </a>
                 </h1>
                 <h2 className="mt-3 font-medium tracking-tight sm:text-lg">Full-Stack Developer</h2>
-                <p className="mt-4 text-sm font-light tracking-wide leading-6">Hi! I'm Allan. A Full-Stack Developer who loves turning  complex problems into simple, well-crafted web experiences.</p>
+                <p className="mt-4 max-w-xs text-sm font-light tracking-wide leading-6">Hi! I'm Allan. A Full-Stack Developer who loves turning  complex problems into simple, well-crafted web experiences.</p>
 
                 <div className="flex gap-5 mt-8">
                     {
