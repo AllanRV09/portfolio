@@ -1,11 +1,11 @@
 export function Footer() {
     return (
         <section className="flex flex-col items-center text-center">
-            <p className="text-lg font-light mb-2">Have a project in mind?</p>
+            <p className="mb-2 font-light sm:text-lg ">Have a project in mind?</p>
 
             <a
                 href="mailto:allanrod0908@gmail.com?subject=Project%20Inquiry"
-                className="mb-14 text-3xl font-bold hover:text-accent transition-colors"
+                className="mb-14 text-xl font-bold hover:text-accent transition-colors sm:text-3xl"
             >
                 allanrod0908@gmail.com
             </a>
