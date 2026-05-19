@@ -1,6 +1,6 @@
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavButton } from '../components/NavButton';
 import { IconLink } from "../components/IconLink";
 import { NAV_LINKS } from "../data";
@@ -53,7 +53,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => (
     <>
         <div 
             onClick={toggleMenu} 
-            className={`fixed inset-0 z-30 bg-black/20 backdrop-blur-xs transition-opacity duration-300 sm:hidden ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            className={`fixed inset-0 h-dvh z-30 bg-black/20 backdrop-blur-xs transition-opacity duration-300 sm:hidden ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             aria-hidden="true"
         />
         <div className={`fixed top-0 left-0 right-0 z-40 pb-5 shadow-lg bg-background/95 backdrop-blur-md transition-transform duration-400 ease-out sm:hidden ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
@@ -74,6 +74,21 @@ export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+
+    // Scroll Lock: Evita que el fondo se mueva cuando el menú está abierto.
+    // Esto soluciona el bug de la capa blur "cortada" en móviles.
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        // Limpieza al desmontar el componente
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMenuOpen]);
 
     return (
         <>
