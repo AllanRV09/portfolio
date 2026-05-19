@@ -1,10 +1,26 @@
 import { IoLogoJavascript } from "react-icons/io5";
-import { FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaGitAlt, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
 import { SiBlazor, SiDotnet, SiMongodb } from "react-icons/si";
 import { DiMsqlServer, DiPostgresql } from "react-icons/di";
 import { GrMysql } from "react-icons/gr";
+import { LuUser, LuBriefcaseBusiness, LuCodeXml, LuFolderCode } from "react-icons/lu";
+import { MdEmail } from 'react-icons/md';
+
+export const NAV_LINKS = [
+    { href: "about", icon: LuUser, name: "About" },
+    { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
+    { href: "mystack", icon: LuCodeXml, name: "My Stack" },
+    { href: "projects", icon: LuFolderCode, name: "Projects" },
+]
+
+export const SOCIAL_LINKS = [
+    { href: "https://linkedin.com/in/allan-rodríguez", icon: FaLinkedin, name: "LinkedIn" },
+    { href: "https://github.com/TU_USUARIO", icon: FaGithub, name: "GitHub" },
+    { href: "https://instagram.com/TU_USUARIO", icon: FaInstagram, name: "Instagram" },
+    { href: "mailto:allanrod0908@gmail.com", icon: MdEmail, name: "Gmail" },
+]
 
 export const PROJECTS = [
     {

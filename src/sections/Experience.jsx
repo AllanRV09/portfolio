@@ -4,7 +4,7 @@ import { EXPERIENCES } from "../data.js"
 
 export function Experience() {
     return (
-        <section className="mb-16">
+        <section id="experience" className="mb-16 px-4 max-w-2xl sm:px-6 lg:px-8 scroll-mt-24">
             <SectionTitle>EXPERIENCE</SectionTitle>
 
             <div>
@@ -12,7 +12,7 @@ export function Experience() {
                     {
                         EXPERIENCES.map((experience) => (
                             <ExperienceItem
-                                key={experience.title}
+                                key={experience.title + experience.year}
                                 experience={experience}
                             />
                         ))
