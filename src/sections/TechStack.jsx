@@ -5,7 +5,7 @@ import { STACK } from "../data.js"
 
 export function TechStack() {
     return (
-        <section className="mb-16">
+        <section id="mystack" className="mb-16 px-4 max-w-2xl sm:px-6 lg:px-8 scroll-mt-24">
             <SectionTitle>MY STACK</SectionTitle>
 
             {

@@ -12,7 +12,8 @@ function App() {
      selection:text-background mx-auto">
       <Header />
 
-      <main className="py-12 px-6 md:py-18 md:px-12">
+      <main className="px-4 sm:px-6 lg:px-8 relative max-w-2xl mx-auto flex flex-col justify-center items-center space-y-20 lg:space-y-24">
+        
         <Hero />
         <About />
         <Experience />

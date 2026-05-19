@@ -4,7 +4,7 @@ import { PROJECTS } from "../data"
 
 export function Projects() {
     return (
-        <section className="mb-32">
+        <section id="projects" className="mb-32 px-4 max-w-2xl sm:px-6 lg:px-8 scroll-mt-24">
             <SectionTitle>PROJECTS</SectionTitle>
 
             <div className="flex flex-col">

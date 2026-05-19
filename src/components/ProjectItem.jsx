@@ -26,11 +26,11 @@ export function ProjectItem({ project }) {
                 <div className="aspect-video rounded border-2 border-surface/15 overflow-hidden">
                     <img
                         loading="lazy"
-                        width="200"
-                        height="48"
+                        width="300"
+                        height="200"
                         src={project.image}
-                        className="w-full h-full object-cover"
-                        alt="Random"
+                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                        alt={`Screenshot of ${project.title}`}
                     />
                 </div>
             </div>
