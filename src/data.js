@@ -91,3 +91,4 @@ export const STACK = [
     { title: "DATABASE", techs: DATABASE_TECHS },
     { title: "TOOLS", techs: TOOLS_TECHS },
 ]
+export const ENTRY_DELAY = 2.2;
