@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { IconLink } from '../components/IconLink'
 import { SOCIAL_LINKS, ENTRY_DELAY } from '../data'
-import { Title } from "../components/Title";
+import { AnimatedTitle } from "../components/Title";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -15,7 +15,7 @@ const containerVariants = {
 }
 
 const revealVariants = {
-    hidden: { y: "100%" },
+    hidden: { y: "120%" },
     visible: {
         y: 0,
         transition: { duration: 0.6, ease: "easeOut" }
@@ -30,50 +30,63 @@ const fadeInVariants = {
     }
 };
 
+// function getCurrentMonthYear() {
+//     const now = new Date();
+//     return now.toLocaleDateString('en-US', { month: 'short', year: '2-digit' })
+//         .replace(' ', "'")
+//         .toUpperCase();
+// }
+
 export function Hero() {
+    // const dateLabel = getCurrentMonthYear();
+
     return (
-        <section className="w-full min-h-screen flex items-center px-4 max-w-2xl sm:px-6 lg:px-8">
+        <section className="w-full min-h-screen flex items-center">
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="max-w-lg"
+                className="full-w"
             >
 
                 <div className="overflow-hidden">
                     <motion.div
-                        variants={fadeInVariants}
-                        className="inline-flex items-center gap-3 px-4 py-1 border border-accent/10 bg-surface/5 rounded-full backdrop-blur-lg"
+                        variants={revealVariants}
+                        className="mr-10 inline-block overflow-hidden border border-accent py-2 px-4"
                     >
-                        <div className="relative inline-flex">
-                            <div className="rounded-full bg-accent h-[6px] w-[6px] inline-block"></div>
-                            <div className="absolute animate-ping rounded-full bg-accent h-[6px] w-[6px] opacity-75"></div>
-                        </div>
-                        <p className="text-sm font-light">AVAILABLE FOR WORK</p>
+
+                        <h2 className="font-medium uppercase tracking-[0.3em] text-sm text-accent">
+                            Full-Stack Developer
+                        </h2>
                     </motion.div>
                 </div>
 
-                <Title />
-
-                <div className="overflow-hidden mt-3">
-                    <motion.h2
-                        variants={revealVariants}
-                        className="font-medium tracking-tight sm:text-lg text-accent"
-                    >
-                        Full-Stack Developer
-                    </motion.h2>
+                <div className="mt-6">
+                    <AnimatedTitle text={`Allan\nRodriguez`} />
                 </div>
 
-                <div className="overflow-hidden mt-4">
+                <div className="overflow-hidden mt-20">
+                    <motion.div
+                        variants={fadeInVariants}
+                        className="inline-flex items-center gap-3 px-4 py-1 text-background bg-accent rounded-full backdrop-blur-lg"
+                    >
+                        <div className="relative inline-flex">
+                            <div className="rounded-full bg-background h-[6px] w-[6px] inline-block"></div>
+                            <div className="absolute animate-ping rounded-full bg-background h-[6px] w-[6px] opacity-75"></div>
+                        </div>
+                        <p className="text-sm medium">AVAILABLE FOR WORK</p>
+                    </motion.div>
+                </div>
+                <div className="overflow-hidden mt-8">
                     <motion.p
                         variants={revealVariants}
-                        className="max-w-sm text-sm font-light tracking-wide leading-6"
+                        className="max-w-xl text-xl leading-relaxed lg:text-2xl font-light tracking-wide"
                     >
                         Hi! I'm Allan. A Full-Stack Developer who loves turning complex problems into simple, well-crafted web experiences.
                     </motion.p>
                 </div>
 
-                <div className="overflow-hidden mt-7">
+                <div className="overflow-hidden mt-12">
                     <motion.div
                         variants={revealVariants}
                         className='space-x-7 flex items-center'
@@ -83,7 +96,6 @@ export function Hero() {
                         ))}
                     </motion.div>
                 </div>
-
             </motion.div>
         </section>
     )
