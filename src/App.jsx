@@ -14,7 +14,7 @@ function App() {
       <div className="min-h-screen bg-background text-text selection:bg-accent selection:text-background mx-auto">
         <Header />
 
-        <main className="px-4 pb-8 sm:px-6 lg:px-8 relative max-w-2xl mx-auto flex flex-col justify-center items-center space-y-20 lg:space-y-24">
+        <main className="px-6 lg:px-24 xl:px-36 relative mx-auto flex flex-col space-y-20 lg:space-y-24">
           <Hero />
           <About />
           <Experience />
