@@ -1,50 +1,66 @@
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
 
-const container = {
-    hidden: {},
-    show: {
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.7
+export function AnimatedTitle({ text }) {
+    const letters = text.split('')
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.03,
+                delayChildren: 1,
+            }
         }
     }
-}
 
-const letter = {
-    hidden: {
-        opacity: 0,
-        y: 0
-    },
-    show: {
-        opacity: 1,
-        y: -5
+    const letterVariants = {
+        hidden: {
+            y: '110%',
+            opacity: 0,
+        },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.5,
+                ease: [0.22, 1, 0.36, 1],
+            },
+        },
     }
-}
-
-export function Title() {
-    const firstName = "ALLAN"
-    const lastName = "RODRIGUEZ"
 
     return (
         <motion.h1
-            variants={container}
+            variants={containerVariants}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            aria-label="ALLAN RODRIGUEZ"
-            className="mt-6 text-left text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl text-center"
+            animate="visible"
+            className="
+                text-left
+                text-[clamp(3rem,9vw,6rem)]
+                font-extrabold
+                tracking-tight
+                uppercase
+                leading-[0.9]
+                flex
+                flex-wrap
+            "
         >
-            {firstName.split("").map((char, i) => (
-                <motion.span key={i} variants={letter} aria-hidden="true" className="inline-block">
-                    {char}
-                </motion.span>
-            ))}
-            <br />
-            {lastName.split("").map((char, i) => (
-                <motion.span key={i + firstName.length} variants={letter} aria-hidden="true" className="inline-block">
-                    {char}
-                </motion.span>
-            ))}
+            {letters.map((letter, i) => {
+                if (letter === '\n') {
+                    return <div key={i} className="w-full" />
+                }
+
+                return (
+                    <span key={i} className="overflow-hidden inline-block">
+                        <motion.span
+                            variants={letterVariants}
+                            className="inline-block"
+                        >
+                            {letter === ' ' ? '\u00A0' : letter}
+                        </motion.span>
+                    </span>
+                )
+            })}
         </motion.h1>
     )
 }
