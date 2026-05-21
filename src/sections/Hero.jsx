@@ -55,7 +55,7 @@ export function Hero() {
                         className="mr-10 inline-block overflow-hidden border border-accent py-2 px-4"
                     >
 
-                        <h2 className="font-medium uppercase tracking-[0.3em] text-sm text-accent">
+                        <h2 className="font-medium uppercase tracking-[0.3em] text-xs sm:text-sm text-accent">
                             Full-Stack Developer
                         </h2>
                     </motion.div>
