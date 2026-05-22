@@ -11,7 +11,7 @@ const DesktopNav = () => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: ENTRY_DELAY }}
-        className='hidden sm:flex fixed top-14 left-1/2 -translate-x-1/2 z-50'
+        className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
     >
         <nav className='flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/10 bg-background/70 backdrop-blur-lg'>
             <a href="#" className='mx-auto pl-2' aria-label="Go to top">
