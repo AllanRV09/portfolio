@@ -41,12 +41,11 @@ export function Hero() {
     // const dateLabel = getCurrentMonthYear();
 
     return (
-        <section className="w-full min-h-dvh flex items-center">
+        <section className="relative z-10 min-h-dvh flex flex-col justify-center pb-32 px-6 lg:px-24 xl:px-36 sm:pt-24">
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="full-w"
             >
 
                 <div className="overflow-hidden">
@@ -65,7 +64,7 @@ export function Hero() {
                     <AnimatedTitle text={`Allan\nRodriguez`} />
                 </div>
 
-                <div className="overflow-hidden mt-20">
+                <div className="overflow-hidden mt-15 sm:mt-20">
                     <motion.div
                         variants={fadeInVariants}
                         className="inline-flex items-center gap-3 px-4 py-1 text-background bg-accent rounded-full backdrop-blur-lg"
