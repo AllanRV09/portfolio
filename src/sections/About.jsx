@@ -2,7 +2,7 @@ import { SectionTitle } from "../components/SectionTitle";
 
 export function About() {
     return (
-        <section id="about" className="px-6 lg:px-24 xl:px-36 my-24">
+        <section id="about" className="px-6 lg:px-24 xl:px-36 my-24 scroll-mt-24">
             <SectionTitle>ABOUT</SectionTitle>
 
             <p className="mt-4 text-sm font-light tracking-wide leading-6">Based in Costa Rica, I'm a Full-Stack Developer with real-world experience building web platforms end to end — from database design to frontend implementation.</p>
