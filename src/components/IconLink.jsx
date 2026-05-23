@@ -1,4 +1,4 @@
-export function IconLink({ href, icon: Icon, onClick, className = "w-5 h-5", name }) {
+export function IconLink({ href, icon: Icon, onClick, className = "w-6 h-6", name }) {
     return (
         <a
             href={href}

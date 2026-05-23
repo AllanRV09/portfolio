@@ -41,7 +41,7 @@ export function Hero() {
     // const dateLabel = getCurrentMonthYear();
 
     return (
-        <section className="relative z-10 min-h-dvh flex flex-col justify-center px-6 lg:px-24 xl:px-36 sm:pt-24">
+        <section className="min-h-dvh flex flex-col justify-center px-6 lg:px-24 xl:px-36 sm:pt-24">
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
