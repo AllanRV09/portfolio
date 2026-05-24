@@ -92,3 +92,14 @@ export const STACK = [
     { title: "TOOLS", techs: TOOLS_TECHS },
 ]
 export const ENTRY_DELAY = 2.2;
+
+// Palabras organizadas por fila para el Hero
+export const ROW_DEFS = [
+    { words: ['Built', 'Shipped', 'Scaled', 'Deployed', 'Launched', 'Owned', 'Engineered', 'Automated', 'Crafted', 'Delivered'], size: 28, height: 52, opacity: [0.5, 0.14], dir: 1, speed: 0.28, weight: 800, upper: true },
+    { words: ['React', 'TypeScript', 'Next.js', 'Tailwind', 'Vite', 'Zustand', 'Framer Motion', 'React Query', 'tRPC', 'Radix UI'], size: 11, height: 34, opacity: [0.22, 0.08], dir: -1, speed: 0.38, weight: 500, upper: true },
+    { words: ['Architected', 'Refactored', 'Debugged', 'Optimized', 'Integrated', 'Migrated', 'Documented', 'Reviewed', 'Profiled', 'Tested'], size: 18, height: 44, opacity: [0.38, 0.11], dir: 1, speed: 0.3, weight: 600, upper: false },
+    { words: ['Node.js', 'PostgreSQL', 'Docker', 'Redis', 'AWS', 'Nginx', 'CI/CD', 'Vercel', 'Prisma', 'GraphQL'], size: 11, height: 32, opacity: [0.18, 0.07], dir: -1, speed: 0.44, weight: 500, upper: true },
+    { words: ['Led', 'Mentored', 'Collaborated', 'Planned', 'Designed', 'Iterated', 'Shipped', 'Presented', 'Contributed', 'Solved'], size: 22, height: 48, opacity: [0.42, 0.1], dir: 1, speed: 0.22, weight: 700, upper: true },
+    { words: ['SOLID', 'Clean Code', 'TDD', 'API Design', 'Code Review', 'DRY', 'KISS', 'Git Flow', 'Microservices', 'REST'], size: 10, height: 30, opacity: [0.16, 0.06], dir: -1, speed: 0.48, weight: 500, upper: true },
+    { words: ['Planned', 'Estimated', 'Groomed', 'Deployed', 'Monitored', 'Debugged', 'Released', 'Hotfixed', 'Rollbacked', 'Merged'], size: 15, height: 40, opacity: [0.3, 0.09], dir: 1, speed: 0.34, weight: 600, upper: false },
+];
