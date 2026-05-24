@@ -7,11 +7,12 @@ const ACCENT_RGB = '7, 255, 205'; // Pre-calculated RGB for #07FFCD
 const PROCESSED_ROWS = [...ROW_DEFS, ...ROW_DEFS].map((def) => ({
     ...def,
     speed: def.speed * (0.8 + Math.random() * 0.4),
+    initialOffset: Math.random() * 1000, // Generate offset here once
 }));
 
 export function ScrollingRows() {
     const rowRefs = useRef([]);
-    const positions = useRef(PROCESSED_ROWS.map(() => Math.random() * 1000));
+    const positions = useRef(PROCESSED_ROWS.map(r => r.initialOffset));
     const animRef = useRef(null);
     const isHovered = useRef(false);
 
