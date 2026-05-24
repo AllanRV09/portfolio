@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 
 export function AnimatedTitle({ text }) {
-    const letters = text.split('')
+    // Split by lines first, then by words to ensure they don't break
+    const lines = text.split('\n');
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -23,7 +24,7 @@ export function AnimatedTitle({ text }) {
             y: 0,
             opacity: 1,
             transition: {
-                duration: 0.5,
+                duration: 0.6,
                 ease: [0.22, 1, 0.36, 1],
             },
         },
@@ -36,31 +37,33 @@ export function AnimatedTitle({ text }) {
             animate="visible"
             className="
                 text-left
-                text-[clamp(3rem,9vw,6rem)]
+                text-[clamp(2.5rem,6vw,5.5rem)]
                 font-extrabold
                 tracking-tight
                 uppercase
-                leading-[0.9]
+                leading-[0.85]
                 flex
-                flex-wrap
+                flex-col
             "
         >
-            {letters.map((letter, i) => {
-                if (letter === '\n') {
-                    return <div key={i} className="w-full" />
-                }
-
-                return (
-                    <span key={i} className="overflow-hidden inline-block">
-                        <motion.span
-                            variants={letterVariants}
-                            className="inline-block"
-                        >
-                            {letter === ' ' ? '\u00A0' : letter}
-                        </motion.span>
-                    </span>
-                )
-            })}
+            {lines.map((line, lineIndex) => (
+                <div key={lineIndex} className="flex flex-wrap">
+                    {line.split(' ').map((word, wordIndex) => (
+                        <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.2em]">
+                            {word.split('').map((letter, charIndex) => (
+                                <span key={charIndex} className="overflow-hidden inline-block">
+                                    <motion.span
+                                        variants={letterVariants}
+                                        className="inline-block"
+                                    >
+                                        {letter}
+                                    </motion.span>
+                                </span>
+                            ))}
+                        </span>
+                    ))}
+                </div>
+            ))}
         </motion.h1>
     )
 }
