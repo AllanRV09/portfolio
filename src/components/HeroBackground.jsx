@@ -50,8 +50,8 @@ export const HeroBackground = memo(function HeroBackground() {
                 className="absolute inset-0 opacity-60"
                 style={{
                     backgroundImage: `
-                        linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)
+                        linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)
                     `,
                     backgroundSize: "80px 80px",
                     maskImage: `

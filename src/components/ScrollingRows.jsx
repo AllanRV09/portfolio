@@ -52,7 +52,7 @@ export function ScrollingRows() {
                             ref={el => rowRefs.current[i] = el}
                             className="flex items-center white-space-nowrap will-change-transform"
                         >
-                            {[...row.words, ...row.words, ...row.words, ...row.words].map((word, wi) => (
+                            {[...row.words, ...row.words].map((word, wi) => (
                                 <span
                                     key={wi}
                                     className="inline-flex items-center gap-3"
@@ -60,7 +60,7 @@ export function ScrollingRows() {
                                         padding: `0 ${row.size > 20 ? 22 : 16}px`,
                                         fontSize: row.size,
                                         fontWeight: row.weight,
-                                        color: `rgba(${ACCENT_RGB}, ${wi % 4 === 0 ? row.opacity[0] : row.opacity[1]})`,
+                                        color: `rgba(${ACCENT_RGB}, ${wi % 2 === 0 ? row.opacity[0] : row.opacity[1]})`,
                                         textTransform: row.upper ? 'uppercase' : 'none',
                                         letterSpacing: row.size > 18 ? '-0.02em' : '0.06em',
                                     }}
