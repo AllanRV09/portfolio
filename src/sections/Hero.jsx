@@ -3,6 +3,7 @@ import { IconLink } from '../components/IconLink'
 import { SOCIAL_LINKS, ENTRY_DELAY } from '../data'
 import { AnimatedTitle } from "../components/Title";
 import { TechTerminal } from "../components/TechTerminal";
+import { HeroBackground } from "../components/HeroBackground";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,9 +35,11 @@ const fadeInVariants = {
 export function Hero() {
     return (
         <section className="relative min-h-dvh flex items-center px-6 lg:px-24 xl:px-36 sm:pt-24 overflow-hidden">
+            <HeroBackground />
+
             <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 relative z-10">
                 
-                {/* Columna Izquierda: Información */}
+                {/* Information Column */}
                 <motion.div
                     className="relative z-20"
                     variants={containerVariants}
@@ -82,14 +85,10 @@ export function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Columna Derecha: Terminal Animada */}
+                {/* Animated Tech Terminal */}
                 <TechTerminal />
 
             </div>
-
-            {/* Hint visual para móviles */}
-            <div className="lg:hidden absolute inset-x-0 bottom-0 h-48 pointer-events-none z-0"
-                 style={{ background: `linear-gradient(to top, var(--color-background), transparent)` }} />
         </section>
     );
 }
