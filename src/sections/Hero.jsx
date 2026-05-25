@@ -34,7 +34,7 @@ const fadeInVariants = {
 
 export function Hero() {
     return (
-        <section className="relative min-h-dvh flex items-center px-6 lg:px-24 xl:px-36 sm:pt-24 overflow-hidden">
+        <section className="relative min-h-dvh flex items-center px-6 pb-20 lg:px-24 xl:px-36 sm:pt-24 overflow-hidden">
             <HeroBackground />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 relative z-10">

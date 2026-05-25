@@ -28,7 +28,7 @@ export const TechTerminal = memo(function TechTerminal() {
             variants={consoleVariants}
             initial="hidden"
             animate="visible"
-            className="hidden lg:flex relative self-stretch w-full z-10 overflow-hidden rounded-2xl border border-white/10 flex-col bg-[#141f1c] shadow-2xl will-change-transform"
+            className="hidden lg:flex relative h-132 w-full z-10 overflow-hidden rounded-2xl border border-white/10 flex-col bg-[#141f1c] shadow-2xl will-change-transform"
         >
             {/* Header - No blur for performance */}
             <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.08] bg-[#1d2d29] relative z-10">
