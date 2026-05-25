@@ -13,7 +13,7 @@ const DesktopNav = () => (
         transition={{ duration: 0.6, delay: ENTRY_DELAY }}
         className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
     >
-        <nav className='flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/10 bg-background/70 backdrop-blur-lg'>
+        <nav className='flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/10 bg-background/10 backdrop-blur-lg'>
             <a href="#" className='mx-auto pl-2' aria-label="Go to top">
                 <FiHome className='w-5 h-5 hover:text-accent transition-colors' />
             </a>
@@ -38,7 +38,7 @@ const MobileNav = ({ toggleMenu, isMenuOpen }) => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: ENTRY_DELAY }}
-        className="sticky top-0 z-50 sm:hidden w-full border-b border-surface/10 bg-background/70 backdrop-blur-lg"
+        className="sticky top-0 z-50 sm:hidden w-full border-b border-surface/10 bg-background/10 backdrop-blur-lg"
     >
         <div className="flex items-center justify-between px-6 py-6">
             <a href="#" aria-label="Go to top">
