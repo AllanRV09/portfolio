@@ -8,7 +8,7 @@ export const HeroBackground = memo(function HeroBackground() {
             <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 2, delay: 0.5 }}
+                transition={{ duration: 2, delay: 2 }}
                 className="absolute inset-0"
             >
                 <motion.div 
@@ -43,7 +43,10 @@ export const HeroBackground = memo(function HeroBackground() {
             </motion.div>
 
             {/* Dashed Grid with Radial Mask */}
-            <div
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 1.8 }}
                 className="absolute inset-0 opacity-60"
                 style={{
                     backgroundImage: `
