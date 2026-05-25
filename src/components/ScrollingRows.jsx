@@ -1,13 +1,12 @@
 import { useEffect, useRef } from "react";
 import { ROW_DEFS } from "../data";
 
-const ACCENT_RGB = '7, 255, 205'; // Pre-calculated RGB for #07FFCD
+const ACCENT_RGB = '7, 255, 205';
 
-// Optimize: Process definitions once outside the component
 const PROCESSED_ROWS = [...ROW_DEFS, ...ROW_DEFS].map((def) => ({
     ...def,
     speed: def.speed * (0.8 + Math.random() * 0.4),
-    initialOffset: Math.random() * 1000, // Generate offset here once
+    initialOffset: Math.random() * 1000,
 }));
 
 export function ScrollingRows() {
@@ -23,7 +22,7 @@ export function ScrollingRows() {
                 if (!el) return;
 
                 const half = el.scrollWidth / 2;
-                // If hovered, slow down significantly (0.1x speed)
+                
                 const currentSpeed = isHovered.current ? row.speed * 0.1 : row.speed;
                 positions.current[i] += row.dir * currentSpeed;
 
@@ -77,10 +76,6 @@ export function ScrollingRows() {
                     </div>
                 ))}
             </div>
-
-            {/* Fade masks */}
-            <div className="absolute inset-y-0 left-0 z-10 w-[100px] pointer-events-none bg-gradient-to-r from-background to-transparent" />
-            <div className="absolute inset-y-0 right-0 z-10 w-[100px] pointer-events-none bg-gradient-to-l from-background to-transparent" />
         </div>
     );
 }
