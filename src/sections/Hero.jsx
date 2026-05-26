@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { IconLink } from '../components/IconLink'
 import { SOCIAL_LINKS, ENTRY_DELAY } from '../data'
 import { AnimatedTitle } from "../components/Title";
@@ -17,10 +17,10 @@ const containerVariants = {
 }
 
 const revealVariants = {
-    hidden: { y: "120%" },
+    hidden: { y: "125%" },
     visible: {
         y: 0,
-        transition: { duration: 0.6, ease: "easeOut" }
+        transition: { duration: 0.5, ease: "easeOut" }
     }
 }
 
@@ -33,12 +33,22 @@ const fadeInVariants = {
 };
 
 export function Hero() {
+    const { scrollY } = useScroll();
+    
+    // Animamos de 0 a 500px de scroll
+    const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+    const scale = useTransform(scrollY, [0, 500], [1, 0.9]);
+    const y = useTransform(scrollY, [0, 500], [0, 25]);
+    // const blur = useTransform(scrollY, [0, 500], ["blur(0px)", "blur(20px)"]);
+
     return (
-        <section className="relative min-h-dvh flex items-center px-6 pb-20 lg:px-24 xl:px-36 sm:pt-24 overflow-hidden">
+        <section className="relative min-h-dvh flex items-center px-6 pb-20 lg:px-24 xl:px-36 sm:pt-24 overflow-hidden sticky top-0 z-0">
             <HeroBackground />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 relative z-10">
-                
+            <motion.div 
+                style={{ opacity, scale, y }}
+                className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 relative z-10"
+            >
                 {/* Information Column */}
                 <motion.div
                     className="relative z-20"
@@ -88,7 +98,7 @@ export function Hero() {
                 {/* Animated Tech Terminal */}
                 <TechTerminal />
 
-            </div>
+            </motion.div>
         </section>
     );
 }
