@@ -14,8 +14,8 @@ export function SectionTitle({ children, className = '' }) {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.04,
-        duration: 0.5,
+        delay: i * 0.07,
+        duration: 0.7,
         ease: 'easeOut',
       },
     }),
