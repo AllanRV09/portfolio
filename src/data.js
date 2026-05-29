@@ -11,7 +11,7 @@ import { MdEmail } from 'react-icons/md';
 export const NAV_LINKS = [
     { href: "about", icon: LuUser, name: "About" },
     { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
-    { href: "mystack", icon: LuCodeXml, name: "My Stack" },
+    { href: "services", icon: LuCodeXml, name: "Services" },
     { href: "projects", icon: LuFolderCode, name: "Projects" },
 ]
 
@@ -91,9 +91,34 @@ export const STACK = [
     { title: "DATABASE", techs: DATABASE_TECHS },
     { title: "TOOLS", techs: TOOLS_TECHS },
 ]
+
+export const ABOUT_DATA = {
+    index: "01",
+    label: "ABOUT ME",
+    title: "WHO I AM?",
+    paragraphs: [
+        "I’m a full-stack developer who builds fast, scalable web applications with technologies like Next.js, TailwindCSS, .NET, and SQL. I enjoy working across the entire stack — from designing databases and APIs to crafting smooth, polished user interfaces.",
+        "I like creating products that don’t just work, but feel intuitive and well thought out. Performance, clean architecture, and attention to detail matter a lot to me, especially the small things users don’t consciously notice but definitely feel.",
+        "Most of the time, I’m building systems, refining UI interactions, or obsessing over spacing, animations, and responsiveness more than I probably should. But that’s part of the fun."
+    ]
+}
+
+export const SERVICES_DATA = {
+    index: "02",
+    label: "SERVICES",
+    title: "MY SERVICES.",
+    description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
+}
+
+export const STACK_DATA = {
+    index: "02",
+    label: "MY STACK",
+    title: "TECH STACK.",
+    description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
+}
+
 export const ENTRY_DELAY = 2.2;
 
-// Palabras organizadas por fila para el Hero
 export const ROW_DEFS = [
     { words: ['Built', 'Shipped', 'Scaled', 'Deployed', 'Launched', 'Owned', 'Engineered', 'Automated', 'Crafted', 'Delivered'], size: 28, height: 52, opacity: [0.5, 0.14], dir: 1, speed: 0.28, weight: 800, upper: true },
     { words: ['React', 'TypeScript', 'Next.js', 'Tailwind', 'Vite', 'Zustand', 'Framer Motion', 'React Query', 'tRPC', 'Radix UI'], size: 11, height: 34, opacity: [0.22, 0.08], dir: -1, speed: 0.38, weight: 500, upper: true },
@@ -102,4 +127,27 @@ export const ROW_DEFS = [
     { words: ['Led', 'Mentored', 'Collaborated', 'Planned', 'Designed', 'Iterated', 'Shipped', 'Presented', 'Contributed', 'Solved'], size: 22, height: 48, opacity: [0.42, 0.1], dir: 1, speed: 0.22, weight: 700, upper: true },
     { words: ['SOLID', 'Clean Code', 'TDD', 'API Design', 'Code Review', 'DRY', 'KISS', 'Git Flow', 'Microservices', 'REST'], size: 10, height: 30, opacity: [0.16, 0.06], dir: -1, speed: 0.48, weight: 500, upper: true },
     { words: ['Planned', 'Estimated', 'Groomed', 'Deployed', 'Monitored', 'Debugged', 'Released', 'Hotfixed', 'Rollbacked', 'Merged'], size: 15, height: 40, opacity: [0.3, 0.09], dir: 1, speed: 0.34, weight: 600, upper: false },
+];
+
+export const SERVICES = [
+    {
+        title: "Full-Stack Development",
+        description: "I build web applications end-to-end, connecting interfaces, APIs, and databases into systems that actually feel complete. I enjoy shaping how data flows through an app just as much as how it looks on screen, making sure everything works as one solid product.",
+        features: [
+            "React, Node.js, .NET Core, Express.js",
+            "REST APIs, SQL Server, PostgreSQL, MongoDB",
+            "Git, GitHub, Postman",
+            "Authentication, Roles & Database Design"
+        ]
+    },
+    {
+        title: "Frontend Development",
+        description: "I turn interfaces into interactive experiences that feel intentional, not just functional. I care about how every detail behaves on different devices, making sure layouts, animations, and interactions feel natural, consistent, and fast.",
+        features: [
+            "NextJs, TailwindCSS",
+            "Figma",
+            "HTML, CSS, JavaScript",
+            "Accessible & Optimized Interfaces"
+        ]
+    }
 ];

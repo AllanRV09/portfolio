@@ -1,13 +1,35 @@
 import { SectionTitle } from "../components/SectionTitle";
+import { SectionLayout } from "../components/SectionLayout";
+import { motion } from "framer-motion";
+import { ABOUT_DATA } from "../data"
 
 export function About() {
-    return (
-        <section id="about" className="relative z-20 bg-background px-6 lg:px-24 xl:px-36 py-24 scroll-mt-24">
-            <SectionTitle>ABOUT</SectionTitle>
+    const { index, label, title, paragraphs } = ABOUT_DATA;
 
-            <p className="mt-8 text-lg font-light tracking-wide leading-relaxed max-w-3xl">Based in Costa Rica, I'm a Full-Stack Developer with real-world experience building web platforms end to end — from database design to frontend implementation.</p>
-            <p className="mt-6 text-lg font-light tracking-wide leading-relaxed max-w-3xl">I'm comfortable jumping between backend logic and UI details, and I take pride in delivering work that's clean, maintainable, and thoughtfully built.</p>
-            <p className="mt-6 text-lg font-light tracking-wide leading-relaxed max-w-3xl">Open to new opportunities and always up for an interesting challenge.</p>
+    return (
+        <section id="about" className="relative z-20 bg-background rounded-t-3xl py-24 md:py-32 scroll-mt-24">
+            <SectionLayout index={index} label={label}>
+                <SectionTitle>{title}</SectionTitle>
+
+                <div className="space-y-6 mt-4">
+                    {paragraphs.map((text, i) => (
+                        <motion.p
+                            key={i}
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 0.6,
+                                ease: "easeOut",
+                                delay: i * 0.08,
+                            }}
+                            viewport={{ once: true, amount: 0.4 }}
+                            className="font-light tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300"
+                        >
+                            {text}
+                        </motion.p>
+                    ))}
+                </div>
+            </SectionLayout>
         </section>
     )
 }
