@@ -10,7 +10,7 @@ export function ProjectItem({ project }) {
     return (
         <li className="mb-16 grid gap-6 sm:grid-cols-8 sm:gap-8">
             <div className="sm:order-2 sm:col-span-6">
-                <a href={project.link} className="inline text-lg font-medium group">
+                <a href={project.link} className="inline text-2xl font-medium group">
                     {words.length > 0 && remainingTitle + " "}
                     <span className="whitespace-nowrap">
                         {lastWord}
@@ -18,7 +18,7 @@ export function ProjectItem({ project }) {
                     </span>
                 </a>
 
-                <p className="my-4 text-sm font-light tracking-wide leading-6">
+                <p className="my-4 font-light text-lg tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300">
                     {project.description}
                 </p>
             </div>
