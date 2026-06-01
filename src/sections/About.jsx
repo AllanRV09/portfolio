@@ -7,7 +7,7 @@ export function About() {
     const { index, label, title, paragraphs } = ABOUT_DATA;
 
     return (
-        <section id="about" className="relative z-20 bg-background rounded-t-3xl py-24 md:py-32 scroll-mt-24">
+        <section id="about" className="relative z-20 bg-background border-b border-surface/10 rounded-t-3xl py-24 md:py-32 scroll-mt-24">
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 
@@ -23,7 +23,7 @@ export function About() {
                                 delay: i * 0.08,
                             }}
                             viewport={{ once: true, amount: 0.4 }}
-                            className="font-light tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300"
+                            className="font-light text-xl tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300"
                         >
                             {text}
                         </motion.p>

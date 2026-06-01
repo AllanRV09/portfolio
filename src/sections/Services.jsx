@@ -10,18 +10,18 @@ export function Services() {
     return (
         <section
             id="services"
-            className="relative z-20 bg-background scroll-mt-24"
+            className="relative z-20 bg-background border-b border-surface/10 py-24 md:py-32 scroll-mt-24"
         >
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 
-                <div className="max-w-2xl mt-4">
+                <div className="max-w-3xl mt-4">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
                         viewport={{ once: true, amount: 0.4 }}
-                        className="text-sm md:text-base font-light text-text/60 leading-relaxed hover:text-text/80 transition-colors duration-300"
+                        className="font-light text-xl tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300"
                     >
                         {description}
                     </motion.p>
