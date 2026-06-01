@@ -10,20 +10,16 @@ export function Experience() {
         <section id="experience" className="relative z-20 bg-background border-b border-surface/10 py-24 md:py-32 scroll-mt-24">
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
-            </SectionLayout>
-
-            <div className="flex flex-col w-full max-w-[76rem] mx-auto px-[clamp(1.25rem,4vw,2.5rem)]">
-                <ol>
-                    {
-                        EXPERIENCES.map((experience) => (
-                            <ExperienceItem
-                                key={experience.title + experience.year}
-                                experience={experience}
-                            />
-                        ))
-                    }
+                <ol className="mt-2">
+                    {EXPERIENCES.map((experience, i) => (
+                        <ExperienceItem
+                            key={experience.title + experience.year}
+                            experience={experience}
+                            index={i}
+                        />
+                    ))}
                 </ol>
-            </div>
+            </SectionLayout>
         </section>
-    )
+    );
 }
