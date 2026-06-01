@@ -110,6 +110,18 @@ export const SERVICES_DATA = {
     description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
 }
 
+export const EXPERIENCE_DATA = {
+    index: "03",
+    label: "EXPERIENCE",
+    title: "EXPERIENCE.",
+}
+
+export const PROJECTS_DATA = {
+    index: "04",
+    label: "PROJECTS",
+    title: "PROJECTS.",
+}
+
 export const STACK_DATA = {
     index: "02",
     label: "MY STACK",
