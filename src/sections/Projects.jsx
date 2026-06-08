@@ -37,17 +37,18 @@ export function Projects() {
     const ref = useRef(null);
 
     const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["center center", "end start"],
-});
+        target: ref,
+        offset: ["center center", "end start"],
+    });
 
-const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
 
     return (
         <motion.section
             ref={ref}
             id="projects"
-            style={{ scale }}
+            style={{ scale, y }}
             className="relative z-20 bg-background rounded-b-3xl py-24 md:py-32 scroll-mt-24 origin-bottom"
         >
             <SectionLayout index={index} label={label}>

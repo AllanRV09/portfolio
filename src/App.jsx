@@ -46,8 +46,10 @@ function App() {
           <About />
           <Stack />
           <Experience />
-          <Projects />
-          <Footer />
+          <div className="relative overflow-hidden">
+            <Projects />
+            <Footer />
+          </div>
         </main>
       </div>
     </>
