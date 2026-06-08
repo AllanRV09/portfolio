@@ -8,11 +8,12 @@ import { GrMysql } from "react-icons/gr";
 import { LuUser, LuBriefcaseBusiness, LuCodeXml, LuFolderCode, LuLayers } from "react-icons/lu";
 import { MdEmail } from 'react-icons/md';
 import { VscVscode } from "react-icons/vsc";
+import racsaProjectImage from "./assets/images/projects/racsa-elearning-platform.webp"
 
 export const NAV_LINKS = [
+    { href: "services", icon: LuCodeXml, name: "Services" },
     { href: "about", icon: LuUser, name: "About" },
     { href: "stack", icon: LuLayers, name: "Stack" },
-    { href: "services", icon: LuCodeXml, name: "Services" },
     { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
     { href: "projects", icon: LuFolderCode, name: "Projects" },
 ]
@@ -26,29 +27,21 @@ export const SOCIAL_LINKS = [
 
 export const PROJECTS = [
     {
-        title: "Lorem ipsum dolor sit amet",
-        description: "Praesent et leo vel ante imperdiet eleifend. Duis luctus nisl id dolor eleifend, in lobortis justo convallis. Vivamus viverra erat ut placerat ornare. Phasellus finibus nunc sed enim faucibus semper. Nulla fermentum, turpis nec sagittis ullamcorper, augue nisl faucibus elit, id luctus nisi lacus sed tellus. Etiam sodales efficitur justo nec volutpat. Nulla lorem mi, dictum quis porttitor a, sollicitudin sed urna. Etiam vehicula eros a pulvinar accumsan.",
-        image: "https://picsum.photos/300/200",
-        link: "#"
-    },
-    {
-        title: "Lorem",
-        description: "Praesent et leo vel ante imperdiet eleifend. Duis luctus nisl id dolor eleifend, in lobortis justo convallis. Vivamus viverra erat ut placerat ornare. Phasellus finibus nunc sed enim faucibus semper. Nulla fermentum, turpis nec sagittis ullamcorper, augue nisl faucibus elit, id luctus nisi lacus sed tellus. Etiam sodales efficitur justo nec volutpat. Nulla lorem mi, dictum quis porttitor a, sollicitudin sed urna. Etiam vehicula eros a pulvinar accumsan.",
-        image: "https://picsum.photos/300/200",
-        link: "#"
+        title: "Self-Managed E-Learning Platform",
+        description: "Full-stack development of a self-managed e-learning platform for RACSA using Blazor, .NET Core 9, SQL Server and Tailwind CSS, including database modeling, backend APIs and frontend interfaces. Implemented authentication and authorization flows with role-based access control, email verification and credential recovery, alongside user, course and enrollment management, reporting and audit modules. The platform was later adopted as the technological foundation for a solution launched to the Costa Rican market.",
+        image: racsaProjectImage,
+        link: "#projects"
     },
 ]
 
 export const EXPERIENCES = [
     {
         year: "2025 — PRESENT",
-        title: "Full-Stack Developer – Professional Internship • RACSA",
-        description: "Built and launched a self-managed e-learning platform, covering backend, frontend and database design. Developed authentication, role-based access control, reporting and audit systems for a solution later adopted for the Costa Rican market.",
-        tags: [
-            "Blazor",
-            ".Net Core",
-            "Tailwind CSS",
-        ]
+        role: "Full-Stack Developer",
+        type: "Professional Internship",
+        company: "RACSA",
+        description: "Developed and launched a self-managed e-learning platform with authentication, RBAC, reporting and audit systems for a solution later adopted for the Costa Rican market.",
+        tags: ["Blazor", ".NET Core", "SQL Server", "Tailwind CSS"]
     },
 ]
 

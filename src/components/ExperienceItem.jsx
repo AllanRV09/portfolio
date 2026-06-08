@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
 
 export function ExperienceItem({ experience, index }) {
-    const [role, company] = experience.title.split("•").map(s => s.trim());
-    const roleLines = role.split(" ");
-    const mid = Math.ceil(roleLines.length / 2);
-    const roleLine1 = roleLines.slice(0, mid).join(" ");
-    const roleLine2 = roleLines.slice(mid).join(" ");
+    const { role, type, company, year, description, tags } = experience;
 
     return (
         <motion.li
@@ -36,7 +32,7 @@ export function ExperienceItem({ experience, index }) {
                         transition={{ delay: (index * 0.15) + 0.3 }}
                         className="text-xs font-semibold uppercase tracking-[0.08em] text-surface/20 whitespace-nowrap pt-2 block"
                     >
-                        {experience.year}
+                        {year}
                     </motion.span>
                 </div>
 
@@ -44,17 +40,17 @@ export function ExperienceItem({ experience, index }) {
                 <div className="md:col-span-9 lg:col-span-10">
                     <div className="flex flex-col">
                         <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface leading-[0.9]">
-                            {roleLine1}<br />{roleLine2}
+                            {role}
                         </h3>
 
-                        {company && (
+                        {(type || company) && (
                             <motion.p 
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ delay: (index * 0.15) + 0.4 }}
                                 className="text-xs text-surface/30 mt-2 font-semibold uppercase tracking-[0.2em]"
                             >
-                                {company}
+                                {[type, company].filter(Boolean).join(" · ")}
                             </motion.p>
                         )}
                     </div>
@@ -65,7 +61,7 @@ export function ExperienceItem({ experience, index }) {
                         transition={{ delay: (index * 0.15) + 0.5 }}
                         className="mt-6 font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300"
                     >
-                        {experience.description}
+                        {description}
                     </motion.p>
 
                     <motion.ul 
@@ -74,7 +70,7 @@ export function ExperienceItem({ experience, index }) {
                         transition={{ delay: (index * 0.15) + 0.6 }}
                         className="flex flex-wrap gap-1.5 mt-8"
                     >
-                        {experience.tags.map((tag, i) => (
+                        {tags.map((tag, i) => (
                             <motion.li
                                 key={tag}
                                 initial={{ opacity: 0, scale: 0.8 }}
