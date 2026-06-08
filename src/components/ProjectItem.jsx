@@ -8,7 +8,7 @@ export function ProjectItem({ project }) {
     const remainingTitle = words.join(" ");
 
     return (
-        <li className="mb-16 grid gap-6 sm:grid-cols-8 sm:gap-8">
+        <li className="my-8 grid gap-6 sm:grid-cols-8 sm:gap-8">
             <div className="sm:order-2 sm:col-span-6">
                 <a href={project.link} className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface group leading-[0.9]">
                     {words.length > 0 && remainingTitle + " "}
