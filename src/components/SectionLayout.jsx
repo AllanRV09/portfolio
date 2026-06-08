@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function SectionLayout({ index, label, children }) {
   return (
-    <div className="w-full max-w-[76rem] mx-auto px-[clamp(1.25rem,4vw,2.5rem)] grid grid-cols-12 md:gap-x-12 last:mb-0">
+    <div className="container-main grid grid-cols-12 md:gap-x-12 last:mb-0">
       
       <div className="col-span-12 md:col-span-3 lg:col-span-2 flex items-start">
         <motion.div
