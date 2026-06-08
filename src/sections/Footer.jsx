@@ -54,7 +54,7 @@ export function Footer() {
             <div className="p-[1.5rem] sm:p-[3rem] rounded-lg h-full w-full bg-[linear-gradient(0deg,_#1A2A25,_#060f0d)] z-30">
                 <h3 className="uppercase m-auto text-4xl max-w-[10ch] font-semibold md:text-5xl lg:text-8xl">Let's Make It Happen</h3>
 
-                <div className="mt-8 border m-auto w-[100%] sm:w-[36rem] px-4 py-8 rounded-xl bg-surface/10">
+                <div className="mt-8 border m-auto w-[100%] md:w-[36rem] px-4 py-8 rounded-xl bg-surface/10">
                     <h4 className="mb-2 font-semibold text-lg tracking-tight sm:text-4xl ">Have a project in mind?</h4>
                     <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-7 text-left">
                         <div>

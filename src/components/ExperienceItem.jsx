@@ -19,7 +19,7 @@ export function ExperienceItem({ experience, index }) {
                 }
             }}
             viewport={{ once: true, amount: 0.2 }}
-            className="py-12 border-t border-surface/10 last:border-b last:border-surface/10 transition-all duration-500"
+            className="py-12 border-t border-surface/10 transition-all duration-500"
         >
             <motion.div 
                 initial={{ opacity: 0.5 }}
@@ -29,7 +29,7 @@ export function ExperienceItem({ experience, index }) {
                 className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 perspective-1000"
             >
                 {/* Year - Left Column (Sticky) */}
-                <div className="md:col-span-3 lg:col-span-2 md:sticky md:top-32 self-start">
+                <div className="md:col-span-3 lg:col-span-2 md:top-32 self-start">
                     <motion.span 
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
