@@ -40,15 +40,20 @@ export function Stack() {
                         {description}
                     </motion.p>
                 </div>
+            </SectionLayout>
+
+            <div className="container-main mt-12 grid grid-cols-12 md:gap-x-12">
+                {/* Spacer to align with SectionLayout content column */}
+                <div className="hidden md:block md:col-span-3 lg:col-span-2" />
 
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid grid-cols-12 gap-3"
+                    className="col-span-12 md:col-span-9 lg:col-span-10 grid grid-cols-12 gap-4 md:gap-6"
                 >
-                    {/* FRONTEND — col-span-7, íconos grandes en grid 3×2 */}
+                    {/* FRONTEND — col-span-7 */}
                     <motion.div
                         variants={itemVariants}
                         className="col-span-12 lg:col-span-7 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500"
@@ -61,10 +66,10 @@ export function Stack() {
                         </div>
                     </motion.div>
 
-                    {/* BACKEND — col-span-5, filas con descripción */}
+                    {/* BACKEND — col-span-5 */}
                     <motion.div
                         variants={itemVariants}
-                        className="col-span-12 lg:col-span-4 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col"
+                        className="col-span-12 lg:col-span-5 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col"
                     >
                         <BlockLabel>Backend</BlockLabel>
                         <div className="flex flex-col gap-3 flex-1">
@@ -74,7 +79,7 @@ export function Stack() {
                         </div>
                     </motion.div>
 
-                    {/* DATABASE — col-span-8, chips en grid 2×2 */}
+                    {/* DATABASE — col-span-6 */}
                     <motion.div
                         variants={itemVariants}
                         className="col-span-12 lg:col-span-6 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500"
@@ -87,10 +92,10 @@ export function Stack() {
                         </div>
                     </motion.div>
 
-                    {/* TOOLS — col-span-4, compacto */}
+                    {/* TOOLS — col-span-6 */}
                     <motion.div
                         variants={itemVariants}
-                        className="col-span-12 lg:col-span-5 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col justify-between"
+                        className="col-span-12 lg:col-span-6 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col justify-between"
                     >
                         <BlockLabel>Tools</BlockLabel>
                         <div className="flex flex-col gap-3">
@@ -100,7 +105,7 @@ export function Stack() {
                         </div>
                     </motion.div>
                 </motion.div>
-            </SectionLayout>
+            </div>
         </section>
     );
 }
@@ -154,9 +159,9 @@ function TechRow({ tech, subtitle }) {
 function TechChip({ tech }) {
     const Icon = tech.icon;
     return (
-        <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-surface/10 bg-background/40 hover:border-accent/30 hover:bg-surface/10 transition-all duration-300 group/item">
-            <Icon className="h-4 w-4 text-text/40 group-hover/item:text-accent transition-colors shrink-0" />
-            <span className="text-sm font-medium text-text/60 group-hover/item:text-text transition-colors">
+        <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:items-center sm:justify-start sm:gap-3 px-4 py-3 rounded-xl border border-surface/10 bg-background/40 hover:border-accent/30 hover:bg-surface/10 transition-all duration-300 group/item">
+            <Icon className="h-5 w-5 text-text/40 group-hover/item:text-accent transition-colors shrink-0" />
+            <span className="text-sm font-medium text-text/60 group-hover/item:text-text transition-colors text-center sm:text-left">
                 {tech.name}
             </span>
         </div>
