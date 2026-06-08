@@ -50,7 +50,7 @@ export function Footer() {
     }
 
     return (
-        <section className="flex flex-col items-center text-center p-[1.5rem] sm:p-[3rem]">
+        <section id="contact" className="flex flex-col items-center text-center p-[1.5rem] sm:p-[3rem]">
             <div className="p-[1.5rem] sm:p-[3rem] rounded-lg h-full w-full bg-[linear-gradient(0deg,_#1A2A25,_#060f0d)] z-30">
                 <h3 className="uppercase m-auto text-[clamp(2rem,8vw,6rem)] max-w-[12ch] font-semibold leading-[0.9] tracking-tighter">Let's Make It Happen</h3>
 
