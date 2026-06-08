@@ -52,10 +52,10 @@ export function Footer() {
     return (
         <section className="flex flex-col items-center text-center p-[1.5rem] sm:p-[3rem]">
             <div className="p-[1.5rem] sm:p-[3rem] rounded-lg h-full w-full bg-[linear-gradient(0deg,_#1A2A25,_#060f0d)] z-30">
-                <h3 className="uppercase m-auto text-4xl max-w-[10ch] font-semibold md:text-5xl lg:text-8xl">Let's Make It Happen</h3>
+                <h3 className="uppercase m-auto text-[clamp(2rem,8vw,6rem)] max-w-[12ch] font-semibold leading-[0.9] tracking-tighter">Let's Make It Happen</h3>
 
                 <div className="mt-8 border m-auto w-[100%] md:w-[36rem] px-4 py-8 rounded-xl bg-surface/10">
-                    <h4 className="mb-2 font-semibold text-lg tracking-tight sm:text-4xl ">Have a project in mind?</h4>
+                    <h4 className="mb-2 font-semibold text-2xl md:text-4xl tracking-tight">Have a project in mind?</h4>
                     <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-7 text-left">
                         <div>
                             <input type="text" placeholder="Your name" name="name" value={formData.name} onChange={handleChange}
@@ -81,7 +81,7 @@ export function Footer() {
                         <button type="submit" className="px-6 py-3.5 text-xs font-semibold leading-4 text-center rounded-xl bg-surface/17 md:whitespace-nowrap lg:text-sm">Get a quote</button>
                     </form>
                 </div>
-                <span className="mt-8 text-xs font-light text-text/60">Design & build by Allan Rodríguez</span>
+                <span className="mt-12 block text-xs font-bold tracking-[0.2em] uppercase text-text/40">Design & build by Allan Rodríguez</span>
             </div>
         </section>
     )

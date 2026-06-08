@@ -27,7 +27,7 @@ export function SectionTitle({ children, className = '' }) {
       initial="hidden"
       animate={isInView ? 'show' : 'hidden'}
       className={
-        "mb-14 text-4xl md:text-5xl lg:text-8xl font-semibold tracking-tight uppercase text-surface " +
+        "mb-8 text-[clamp(2.5rem,7vw,5rem)] font-extrabold tracking-tighter uppercase text-surface leading-[0.9] " +
         className
       }
     >
