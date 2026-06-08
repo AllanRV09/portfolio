@@ -12,7 +12,7 @@ export function SectionLayout({ index, label, children }) {
           viewport={{ once: true, amount: 0.4 }}
           className="group cursor-default"
         >
-          <p className="text-xs tracking-widest uppercase text-surface/40 flex items-center gap-2">
+          <p className="text-xs tracking-[0.2em] font-semibold uppercase text-surface/40 flex items-center gap-2">
             
             <span className="text-surface/20 transition-colors group-hover:text-surface/40">
               {index}

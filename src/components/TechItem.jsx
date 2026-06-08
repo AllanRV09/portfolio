@@ -5,7 +5,7 @@ export function TechItem({ icon: Icon, name }) {
                 <Icon className="w-5 h-5 text-surface/60 group-hover:text-accent transition-colors" />
             </div>
 
-            <span className="text-sm md:text-base font-medium text-surface/80 group-hover:text-surface transition-colors">
+            <span className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-surface/80 group-hover:text-surface transition-colors">
                 {name}
             </span>
         </div>
