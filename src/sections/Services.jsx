@@ -15,13 +15,13 @@ export function Services() {
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 
-                <div className="max-w-3xl mt-4">
+                <div>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
                         viewport={{ once: true, amount: 0.4 }}
-                        className="font-light text-xl tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300"
+                        className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300"
                     >
                         {description}
                     </motion.p>

@@ -11,7 +11,7 @@ export function About() {
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 
-                <div className="space-y-6 mt-4">
+                <div className="space-y-6">
                     {paragraphs.map((text, i) => (
                         <motion.p
                             key={i}
@@ -23,7 +23,7 @@ export function About() {
                                 delay: i * 0.08,
                             }}
                             viewport={{ once: true, amount: 0.4 }}
-                            className="font-light text-xl tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300"
+                            className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300"
                         >
                             {text}
                         </motion.p>

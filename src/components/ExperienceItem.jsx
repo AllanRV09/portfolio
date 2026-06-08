@@ -34,7 +34,7 @@ export function ExperienceItem({ experience, index }) {
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: (index * 0.15) + 0.3 }}
-                        className="text-[11px] font-medium tracking-widest uppercase text-surface/20 whitespace-nowrap pt-2 block"
+                        className="text-xs font-semibold uppercase tracking-[0.08em] text-surface/20 whitespace-nowrap pt-2 block"
                     >
                         {experience.year}
                     </motion.span>
@@ -43,7 +43,7 @@ export function ExperienceItem({ experience, index }) {
                 {/* Content - Right Column */}
                 <div className="md:col-span-9 lg:col-span-10">
                     <div className="flex flex-col">
-                        <h3 className="text-[2rem] font-medium leading-[1.1] tracking-tight text-surface">
+                        <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface leading-[0.9]">
                             {roleLine1}<br />{roleLine2}
                         </h3>
 
@@ -52,7 +52,7 @@ export function ExperienceItem({ experience, index }) {
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ delay: (index * 0.15) + 0.4 }}
-                                className="text-xs text-surface/30 mt-2 tracking-wide font-medium uppercase tracking-widest"
+                                className="text-xs text-surface/30 mt-2 font-semibold uppercase tracking-[0.2em]"
                             >
                                 {company}
                             </motion.p>
@@ -63,7 +63,7 @@ export function ExperienceItem({ experience, index }) {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: (index * 0.15) + 0.5 }}
-                        className="mt-6 text-sm font-light leading-relaxed text-text/60 max-w-[60ch]"
+                        className="mt-6 font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300"
                     >
                         {experience.description}
                     </motion.p>
@@ -80,7 +80,7 @@ export function ExperienceItem({ experience, index }) {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: (index * 0.15) + 0.6 + (i * 0.05) }}
-                                className="text-[10.5px] font-medium uppercase tracking-widest px-2.5 py-1 border border-surface/10 text-surface/20 rounded-none transition-all duration-500"
+                                className="text-xs font-semibold uppercase tracking-[0.2em] px-2.5 py-1 border border-surface/10 text-surface/30 rounded-none transition-all duration-500"
                             >
                                 {tag}
                             </motion.li>

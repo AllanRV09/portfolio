@@ -29,13 +29,13 @@ export function Stack() {
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 
-                <div className="max-w-3xl mt-4 mb-12">
+                <div className="mb-12">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
                         viewport={{ once: true, amount: 0.4 }}
-                        className="font-light text-xl tracking-wide leading-relaxed text-text/70"
+                        className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300"
                     >
                         {description}
                     </motion.p>
@@ -64,7 +64,7 @@ export function Stack() {
                     {/* BACKEND — col-span-5, filas con descripción */}
                     <motion.div
                         variants={itemVariants}
-                        className="col-span-12 lg:col-span-3 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col"
+                        className="col-span-12 lg:col-span-4 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col"
                     >
                         <BlockLabel>Backend</BlockLabel>
                         <div className="flex flex-col gap-3 flex-1">
@@ -90,7 +90,7 @@ export function Stack() {
                     {/* TOOLS — col-span-4, compacto */}
                     <motion.div
                         variants={itemVariants}
-                        className="col-span-12 lg:col-span-4 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col justify-between"
+                        className="col-span-12 lg:col-span-5 group relative overflow-hidden rounded-3xl border border-surface/10 bg-surface/5 p-7 hover:border-accent/30 transition-all duration-500 flex flex-col justify-between"
                     >
                         <BlockLabel>Tools</BlockLabel>
                         <div className="flex flex-col gap-3">
@@ -109,7 +109,7 @@ export function Stack() {
 
 function BlockLabel({ children }) {
     return (
-        <span className="block text-[10px] font-bold tracking-[0.18em] uppercase text-accent mb-6">
+        <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-6">
             {children}
         </span>
     );
@@ -123,7 +123,7 @@ function TechIcon({ tech }) {
             <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-background border border-surface/5 group-hover/item:border-accent/50 group-hover/item:shadow-[0_0_20px_rgba(var(--accent-rgb),0.08)] transition-all duration-400">
                 <Icon className="h-7 w-7 text-text/35 group-hover/item:text-accent transition-all duration-400 group-hover/item:scale-110" />
             </div>
-            <span className="text-[10px] font-medium tracking-wider text-text/35 group-hover/item:text-text/70 transition-colors text-center leading-tight">
+            <span className="text-xs font-medium tracking-wide text-text/35 group-hover/item:text-text/70 transition-colors text-center leading-tight">
                 {tech.name}
             </span>
         </div>
@@ -143,7 +143,7 @@ function TechRow({ tech, subtitle }) {
                     {tech.name}
                 </p>
                 {subtitle && (
-                    <p className="text-[10px] text-text/30 leading-none">{subtitle}</p>
+                    <p className="text-xs text-text/30 leading-none">{subtitle}</p>
                 )}
             </div>
         </div>

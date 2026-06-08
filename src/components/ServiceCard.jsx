@@ -20,11 +20,11 @@ export function ServiceCard({ title, description, features, idx }) {
                     </div>
 
                     <div className="col-span-12 md:col-span-9 lg:col-span-10">
-                        <h3 className="text-xl md:text-4xl lg:text-5xl font-semibold tracking-tighter uppercase text-surface mb-12">
+                        <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface mb-8 leading-[0.9]">
                             {title}
                         </h3>
 
-                        <p className="font-light text-xl tracking-wide leading-relaxed max-w-3xl text-text/70 hover:text-text/90 transition-colors duration-300 mb-8">{description}</p>
+                        <p className="font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300 mb-8">{description}</p>
 
                         <FeatureList features={features} />
                     </div>
