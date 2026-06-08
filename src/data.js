@@ -5,13 +5,15 @@ import { TbBrandFramerMotion } from "react-icons/tb";
 import { SiBlazor, SiDotnet, SiMongodb } from "react-icons/si";
 import { DiMsqlServer, DiPostgresql } from "react-icons/di";
 import { GrMysql } from "react-icons/gr";
-import { LuUser, LuBriefcaseBusiness, LuCodeXml, LuFolderCode } from "react-icons/lu";
+import { LuUser, LuBriefcaseBusiness, LuCodeXml, LuFolderCode, LuLayers } from "react-icons/lu";
 import { MdEmail } from 'react-icons/md';
+import { VscVscode } from "react-icons/vsc";
 
 export const NAV_LINKS = [
     { href: "about", icon: LuUser, name: "About" },
-    { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
+    { href: "stack", icon: LuLayers, name: "Stack" },
     { href: "services", icon: LuCodeXml, name: "Services" },
+    { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
     { href: "projects", icon: LuFolderCode, name: "Projects" },
 ]
 
@@ -41,17 +43,7 @@ export const EXPERIENCES = [
     {
         year: "2025 — PRESENT",
         title: "Full-Stack Developer – Professional Internship • RACSA",
-        description: "Full-stack development of a self-managed e-learning platform using Blazor, .NET Core 9, SQL Server and Tailwind CSS, including database design, backend and frontend. Implementation of a user, course and enrollment management system with role-based access control. Development of an administrative reporting module and audit system. Design and implementation of a complete authentication flow with email verification and credential recovery. The project was adopted as the technological base for a solution launched to the Costa Rican market.",
-        tags: [
-            "Blazor",
-            ".Net Core",
-            "Tailwind CSS",
-        ]
-    },
-    {
-        year: "2025 — PRESENT",
-        title: "Full-Stack – Professional Internship • RACSA",
-        description: "Full-stack development of a self-managed e-learning platform using Blazor, .NET Core 9, SQL Server and Tailwind CSS, including database design, backend and frontend. Implementation of a user, course and enrollment management system with role-based access control. Development of an administrative reporting module and audit system. Design and implementation of a complete authentication flow with email verification and credential recovery. The project was adopted as the technological base for a solution launched to the Costa Rican market.",
+        description: "Built and launched a self-managed e-learning platform, covering backend, frontend and database design. Developed authentication, role-based access control, reporting and audit systems for a solution later adopted for the Costa Rican market.",
         tags: [
             "Blazor",
             ".Net Core",
@@ -83,6 +75,7 @@ const DATABASE_TECHS = [
 
 const TOOLS_TECHS = [
     { name: "Git", icon: FaGitAlt },
+    { name: "VS Code", icon: VscVscode }, // de react-icons/vsc
 ];
 
 export const STACK = [
@@ -93,7 +86,7 @@ export const STACK = [
 ]
 
 export const ABOUT_DATA = {
-    index: "01",
+    index: "02",
     label: "ABOUT ME",
     title: "WHO I AM?",
     paragraphs: [
@@ -104,26 +97,26 @@ export const ABOUT_DATA = {
 }
 
 export const SERVICES_DATA = {
-    index: "02",
+    index: "01",
     label: "SERVICES",
     title: "MY SERVICES.",
     description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
 }
 
 export const EXPERIENCE_DATA = {
-    index: "03",
+    index: "04",
     label: "EXPERIENCE",
     title: "EXPERIENCE.",
 }
 
 export const PROJECTS_DATA = {
-    index: "04",
+    index: "05",
     label: "PROJECTS",
     title: "PROJECTS.",
 }
 
 export const STACK_DATA = {
-    index: "02",
+    index: "03",
     label: "MY STACK",
     title: "TECH STACK.",
     description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."

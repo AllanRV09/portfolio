@@ -1,4 +1,5 @@
 import { About } from "./sections/About"
+import { Stack } from "./sections/Stack"
 import { Header } from "./sections/Header"
 import { Hero } from "./sections/Hero"
 import { Experience } from "./sections/Experience"
@@ -40,8 +41,9 @@ function App() {
 
         <main>
           <Hero />
-          <About />
           <Services />
+          <About />
+          <Stack />
           <Experience />
           <Projects />
           <Footer />
