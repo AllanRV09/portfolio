@@ -20,11 +20,11 @@ export function Projects() {
 
     return (
         <motion.section
-    ref={ref}
-    id="projects"
-    style={{ scale, y, willChange: "transform" }}
-    className="relative z-20 bg-background rounded-b-3xl py-24 md:py-32 scroll-mt-24 origin-bottom"
->
+            ref={ref}
+            id="projects"
+            style={{ scale, y, willChange: "transform" }}
+            className="relative z-20 bg-background rounded-b-3xl py-24 md:py-32 scroll-mt-24 origin-bottom"
+        >
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
             </SectionLayout>
