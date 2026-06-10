@@ -38,7 +38,7 @@ const MobileNav = ({ toggleMenu, isMenuOpen }) => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: ENTRY_DELAY }}
-        className="sticky top-0 z-50 sm:hidden w-full border-b border-surface/10 bg-background/10 backdrop-blur-lg"
+        className="fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b border-surface/10 bg-background/10 backdrop-blur-lg"
     >
         <div className="flex items-center justify-between px-6 py-6">
             <a href="#" aria-label="Go to top">
@@ -69,7 +69,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => (
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={toggleMenu}
-                    className="fixed inset-0 h-dvh z-30 bg-black/40 backdrop-blur-sm sm:hidden"
+                    className="fixed inset-0 h-svh z-30 bg-black/40 backdrop-blur-sm sm:hidden"
                     aria-hidden="true"
                 />
 

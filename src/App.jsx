@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       <PageIntro />
-      <div className="min-h-screen bg-background text-text selection:bg-accent selection:text-background mx-auto">
+      <div className="min-h-svh bg-background text-text selection:bg-accent selection:text-background mx-auto">
         <Header />
 
         <main>

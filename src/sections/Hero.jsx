@@ -42,7 +42,7 @@ export function Hero() {
     // const blur = useTransform(scrollY, [0, 500], ["blur(0px)", "blur(20px)"]);
 
     return (
-        <section className="relative min-h-dvh flex items-center px-6 pb-20 lg:px-24 xl:px-36 sm:pt-24 overflow-hidden sticky top-0 z-0">
+        <section className="relative h-svh flex items-center px-6 pb-20 pt-36 lg:px-24 xl:px-36 sm:pt-40 overflow-hidden sticky top-0 z-0">
             <HeroBackground />
 
             <motion.div 
