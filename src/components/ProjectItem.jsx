@@ -1,14 +1,19 @@
 import { GoArrowUpRight } from "react-icons/go";
+import { motion } from "framer-motion";
 
 export function ProjectItem({ project }) {
     const words = project.title.split(" ");
-
     const lastWord = words.pop();
-
     const remainingTitle = words.join(" ");
 
     return (
-        <li className="my-8 grid gap-6 sm:grid-cols-8 sm:gap-8">
+        <motion.li
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="my-8 grid gap-6 sm:grid-cols-8 sm:gap-8"
+        >
             <div className="sm:order-2 sm:col-span-6">
                 <a href={project.link} className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface group leading-[0.9]">
                     {words.length > 0 && remainingTitle + " "}
@@ -18,11 +23,24 @@ export function ProjectItem({ project }) {
                     </span>
                 </a>
 
-                <p className="mt-6 font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300 mb-8">
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    className="mt-6 font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 mb-8"
+                >
                     {project.description}
-                </p>
+                </motion.p>
             </div>
-            <div className="w-48 sm:w-full sm:order-1 sm:col-span-2">
+
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                className="w-48 sm:w-full sm:order-1 sm:col-span-2"
+            >
                 <div className="aspect-video rounded border-2 border-surface/15 overflow-hidden">
                     <img
                         loading="lazy"
@@ -33,7 +51,7 @@ export function ProjectItem({ project }) {
                         alt={`Screenshot of ${project.title}`}
                     />
                 </div>
-            </div>
-        </li>
-    )
+            </motion.div>
+        </motion.li>
+    );
 }
