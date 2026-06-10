@@ -3,7 +3,6 @@ import { SectionLayout } from "../components/SectionLayout";
 import { SectionDescription } from "../components/SectionDescription";
 import { SERVICES, SERVICES_DATA } from "../data.js";
 import { ServiceCard } from "../components/ServiceCard.jsx";
-import { motion } from "framer-motion";
 
 export function Services() {
     const { index, label, title, description } = SERVICES_DATA;

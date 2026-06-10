@@ -1,7 +1,6 @@
 import { SectionTitle } from "../components/SectionTitle";
 import { SectionLayout } from "../components/SectionLayout";
 import { SectionDescription } from "../components/SectionDescription";
-import { motion } from "framer-motion";
 import { ABOUT_DATA } from "../data"
 
 export function About() {
