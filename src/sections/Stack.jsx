@@ -1,5 +1,6 @@
 import { SectionTitle } from "../components/SectionTitle";
 import { SectionLayout } from "../components/SectionLayout";
+import { SectionDescription } from "../components/SectionDescription";
 import { STACK, STACK_DATA } from "../data";
 import { motion } from "framer-motion";
 
@@ -17,15 +18,9 @@ export function Stack() {
                 <SectionTitle>{title}</SectionTitle>
 
                 <div className="mb-12">
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}  // era sin delay y duration 0.7
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70"
-                    >
+                    <SectionDescription className="text-lg md:text-xl">
                         {description}
-                    </motion.p>
+                    </SectionDescription>
                 </div>
             </SectionLayout>
 

@@ -1,5 +1,6 @@
 import { SectionTitle } from "../components/SectionTitle";
 import { SectionLayout } from "../components/SectionLayout";
+import { SectionDescription } from "../components/SectionDescription";
 import { SERVICES, SERVICES_DATA } from "../data.js";
 import { ServiceCard } from "../components/ServiceCard.jsx";
 import { motion } from "framer-motion";
@@ -16,15 +17,9 @@ export function Services() {
                 <SectionTitle>{title}</SectionTitle>
 
                 <div>
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}  // espera el título
-                        viewport={{ once: true, amount: 0.2 }}   // era 0.4 — más confiable en móvil
-                        className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70"
-                    >
+                    <SectionDescription className="text-lg md:text-xl">
                         {description}
-                    </motion.p>
+                    </SectionDescription>
                 </div>
             </SectionLayout>
 

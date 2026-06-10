@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { SectionDescription } from "./SectionDescription";
 
 export function ExperienceItem({ experience }) {
     const { role, type, company, year, description, tags } = experience;
@@ -34,15 +35,13 @@ export function ExperienceItem({ experience }) {
                         )}
                     </div>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        className="mt-6 font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70"
+                    <SectionDescription
+                        delay={0.15}
+                        amount={0.15}
+                        className="mt-6 text-base md:text-lg"
                     >
                         {description}
-                    </motion.p>
+                    </SectionDescription>
 
                     <motion.ul
                         initial={{ opacity: 0 }}
