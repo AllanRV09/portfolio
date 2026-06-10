@@ -78,10 +78,17 @@ export const STACK = [
     { title: "TOOLS", techs: TOOLS_TECHS },
 ]
 
+export const SERVICES_DATA = {
+    index: "01",
+    label: "SERVICES",
+    title: "WHAT I DO",
+    description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
+}
+
 export const ABOUT_DATA = {
     index: "02",
-    label: "ABOUT ME",
-    title: "WHO I AM?",
+    label: "ABOUT",
+    title: "WHO I AM",
     paragraphs: [
         "I’m a full-stack developer who builds fast, scalable web applications with technologies like Next.js, TailwindCSS, .NET, and SQL. I enjoy working across the entire stack — from designing databases and APIs to crafting smooth, polished user interfaces.",
         "I like creating products that don’t just work, but feel intuitive and well thought out. Performance, clean architecture, and attention to detail matter a lot to me, especially the small things users don’t consciously notice but definitely feel.",
@@ -89,30 +96,23 @@ export const ABOUT_DATA = {
     ]
 }
 
-export const SERVICES_DATA = {
-    index: "01",
-    label: "SERVICES",
-    title: "MY SERVICES.",
+export const STACK_DATA = {
+    index: "03",
+    label: "STACK",
+    title: "TOOLS I USE",
     description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
 }
 
 export const EXPERIENCE_DATA = {
     index: "04",
     label: "EXPERIENCE",
-    title: "EXPERIENCE.",
+    title: "MY JOURNEY",
 }
 
 export const PROJECTS_DATA = {
     index: "05",
     label: "PROJECTS",
-    title: "PROJECTS.",
-}
-
-export const STACK_DATA = {
-    index: "03",
-    label: "MY STACK",
-    title: "TECH STACK.",
-    description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
+    title: "MY WORK",
 }
 
 export const ENTRY_DELAY = 2.2;

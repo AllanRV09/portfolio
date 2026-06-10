@@ -19,9 +19,9 @@ export function Services() {
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300"
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}  // espera el título
+                        viewport={{ once: true, amount: 0.2 }}   // era 0.4 — más confiable en móvil
+                        className="font-light text-lg md:text-xl tracking-wide leading-relaxed max-w-[65ch] text-text/70"
                     >
                         {description}
                     </motion.p>

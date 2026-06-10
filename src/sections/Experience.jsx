@@ -13,7 +13,7 @@ export function Experience() {
                 <ol className="mt-2">
                     {EXPERIENCES.map((experience, i) => (
                         <ExperienceItem
-                            key={experience.title + experience.year}
+                            key={experience.role + experience.year}
                             experience={experience}
                             index={i}
                         />
