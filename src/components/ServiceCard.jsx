@@ -24,7 +24,7 @@ export function ServiceCard({ title, description, features, idx }) {
                             {title}
                         </h3>
 
-                        <p className="font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 hover:text-text transition-colors duration-300 mb-8">{description}</p>
+                        <p className="font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 mb-8">{description}</p>
 
                         <FeatureList features={features} />
                     </div>

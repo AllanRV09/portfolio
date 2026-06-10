@@ -14,9 +14,9 @@ export function SectionTitle({ children, className = '' }) {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.07,
-        duration: 0.7,
-        ease: 'easeOut',
+        delay: i * 0.05,
+        duration: 0.6,
+        ease: "easeOut",
       },
     }),
   };
