@@ -1,88 +1,150 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
+import { FiArrowUp } from "react-icons/fi";
+import { NAV_LINKS, SOCIAL_LINKS } from "../data";
+
+const STACK_ITEMS = ["React", "Tailwind CSS", "Framer Motion", "Lenis Scroll", "Figma"];
+
+const FooterColumn = ({ title, children }) => (
+    <div className="flex flex-col gap-4">
+        <h4 className="text-sm sm:text-lg font-semibold text-background pb-3 border-b border-background/15">
+            {title}
+        </h4>
+        <div className="flex flex-col gap-2.5">{children}</div>
+    </div>
+);
+
+const FooterLink = ({ href, children, ...props }) => (
+    <a
+        href={href}
+        className="group inline-flex items-center gap-1.5 text-sm sm:text-lg text-text hover:text-background transition-colors w-fit"
+        {...props}
+    >
+        <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-accent">
+            →
+        </span>
+        {children}
+    </a>
+);
+
+const useLocalTime = () => {
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return time.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+        timeZoneName: "short",
+    });
+};
+
+const scrollToTop = () => {
+    // Si Lenis está expuesto globalmente, usamos su API para
+    // que la animación sea consistente con el resto del scroll.
+    if (window.lenis) {
+        window.lenis.scrollTo(0, { duration: 1.5 });
+        return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
 export function Footer() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    })
-
-    const [errors, setErrors] = useState({})
-
-    const handleChange = (e) => {
-        const { name, value } = e.target
-
-        setFormData({
-            ...formData,
-            [name]: value
-        })
-
-        setErrors({
-            ...errors,
-            [name]: ''
-        })
-    }
-
-    const validateForm = () => {
-        let newErrors = {}
-
-        if (!formData.name.trim()) newErrors.name = "The name is required"
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!formData.email) {
-            newErrors.email = "The email is required"
-        } else if (!emailRegex.test(formData.email)) {
-            newErrors.email = "The email format is invalid"
-        }
-
-        if (!formData.message.trim()) newErrors.message = "Tell me a little about your project"
-
-        setErrors(newErrors)
-        return Object.keys(newErrors).length === 0
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (validateForm()) {
-            console.log("Formulario enviado con éxito:", formData)
-            alert("¡Gracias! Me pondré en contacto contigo pronto.")
-        }
-    }
+    const localTime = useLocalTime();
 
     return (
-        <section id="contact" data-theme="dark" className="relative z-10 -mt-30 flex flex-col items-center text-center p-[1.5rem] sm:p-[3rem] text-surface">
-            <div className="p-[1.5rem] sm:p-[3rem] pb-16 sm:pb-24 rounded-lg h-full w-full bg-[linear-gradient(0deg,_#4E4A44,_#0E0E0E)] z-30">
-                <h3 className="uppercase m-auto text-[clamp(3.3rem,8vw,6rem)] max-w-[12ch] font-semibold leading-[0.9] tracking-tighter text-surface">Let's Make It Happen</h3>
+        <footer
+            data-theme="light"
+            className="relative z-10 text-background bg-gradient-to-b from-surface/0 to-surface"
+        >
+            <div className="px-6 lg:px-24 xl:px-36 py-16 sm:py-24">
+                {/* Menu / Socials / Local time */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12">
+                    <FooterColumn title="Menu">
+                        {NAV_LINKS.map((link) => (
+                            <FooterLink key={link.name} href={`#${link.href}`}>
+                                {link.name}
+                            </FooterLink>
+                        ))}
+                    </FooterColumn>
 
-                <div className="mt-12 border border-surface/10 m-auto w-[100%] md:w-[36rem] px-4 py-12 rounded-xl bg-surface/5">
-                    <h4 className="mb-2 font-semibold text-2xl md:text-4xl tracking-tight text-surface">Have a project in mind?</h4>
-                    <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-7 text-left">
-                        <div>
-                            <input type="text" placeholder="Your name" name="name" value={formData.name} onChange={handleChange}
-                                className={`w-full sm:text-xl rounded-xl px-4 py-3 bg-surface/5 text-surface placeholder:text-text transition-colors border focus:outline-none focus:border-accent ${errors.name ? 'border-red-400' : 'border-surface/20'}`}
-                            />
-                            {errors.name && <p className="mt-4 text-red-400 text-xs">{errors.name}</p>}
+                    <FooterColumn title="Socials">
+                        {SOCIAL_LINKS.map((link) => (
+                            <FooterLink
+                                key={link.name}
+                                href={link.href}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                {link.name}
+                            </FooterLink>
+                        ))}
+                    </FooterColumn>
+
+                    {/* Local time como bloque de status */}
+                    <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
+                        <h4 className="text-sm lg:text-lg font-semibold text-background pb-3 border-b border-background/15">
+                            Local time
+                        </h4>
+
+                        <div className="flex items-center gap-2">
+                            <span className="relative inline-flex h-2 w-2">
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                            </span>
+                            <span className="text-sm lg:text-lg text-text font-mono tabular-nums">
+                                {localTime}
+                            </span>
                         </div>
 
-                        <div>
-                            <input type="text" placeholder="Your email address" name="email" value={formData.email} onChange={handleChange}
-                                className={`w-full sm:text-xl rounded-xl px-4 py-3 bg-surface/5 text-surface placeholder:text-text transition-colors border focus:outline-none focus:border-accent ${errors.email ? 'border-red-400' : 'border-surface/20'}`}
-                            />
-                            {errors.email && <p className="mt-4 text-red-400 text-xs">{errors.email}</p>}
-                        </div>
-
-                        <div>
-                            <textarea type="text" placeholder="Tell me about your business or project" name="message" value={formData.message} onChange={handleChange}
-                                className={`w-full sm:text-xl min-h-30 border rounded-xl px-4 py-3 bg-surface/5 text-surface placeholder:text-text resize-none transition-colors focus:outline-none focus:border-accent ${errors.message ? 'border-red-400' : 'border-surface/20'}`}
-                            />
-                            {errors.message && <p className="text-red-400 text-xs">{errors.message}</p>}
-                        </div>
-
-                        <button type="submit" className="px-6 py-4 text-xs sm:text-base font-semibold leading-4 text-center rounded-xl bg-surface text-background hover:bg-accent/90 transition-colors md:whitespace-nowrap">Get a quote</button>
-                    </form>
+                        <span className="text-sm lg:text-lg text-text">
+                            Costa Rica
+                        </span>
+                    </div>
                 </div>
-                {/* <span className="mt-12 block text-xs font-bold tracking-[0.2em] uppercase text-text/40">Design & build by Allan Rodríguez</span> */}
+
+                {/* Stack — distinto a los links, formato badges */}
+                <div className="mt-16 pt-8 border-t border-background/15">
+                    <h4 className="text-xs lg:text-base uppercase tracking-[0.2em] text-text font-semibold mb-4">
+                        Built with
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                        {STACK_ITEMS.map((item) => (
+                            <span
+                                key={item}
+                                className="text-xs lg:text-base font-medium px-3 py-1.5 rounded-full border border-background/15 text-text hover:border-accent hover:text-background transition-colors"
+                            >
+                                {item}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Derechos reservados + back to top */}
+                <div className="mt-12 pt-6 border-t border-background/15 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+                    <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
+                        <p className="text-xs sm:text-base text-text">
+                            © {new Date().getFullYear()} Allan Rodriguez. All rights reserved.
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={scrollToTop}
+                        aria-label="Back to top"
+                        className="group flex items-center gap-2 text-xs sm:text-base font-medium uppercase tracking-[0.15em] text-text hover:text-accent transition-colors"
+                    >
+                        Back to top
+                        <span className="flex items-center justify-center w-9 h-9 rounded-full border border-background/15 group-hover:border-accent transition-colors">
+                            <FiArrowUp className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                        </span>
+                    </button>
+                </div>
             </div>
-        </section>
-    )
+        </footer>
+    );
 }
