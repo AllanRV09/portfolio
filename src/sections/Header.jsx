@@ -7,7 +7,7 @@ import { NAV_LINKS, ENTRY_DELAY } from "../data";
 import { useSectionTheme } from "../hooks/useSectionTheme";
 import { motion, AnimatePresence } from "framer-motion"
 
-const DesktopNav = ({ theme }) => {
+const DesktopNav = ({ theme, scrollToTop }) => {
     const isLight = theme === "light";
 
     return (
@@ -24,9 +24,9 @@ const DesktopNav = ({ theme }) => {
                         : 'border-surface/10 bg-background/10 text-surface'
                     }`}
             >
-                <a href="#" className='mx-auto pl-2' aria-label="Go to top">
+                <button onClick={scrollToTop} className='mx-auto pl-2' aria-label="Go to top">
                     <FiHome className='w-5 h-5 hover:text-accent transition-colors' />
-                </a>
+                </button>
                 <div className={`w-px h-5 sm:mx-3 md:mx-6 transition-colors duration-300 ${isLight ? 'bg-background/30' : 'bg-surface/60'}`}></div>
                 <div className='flex items-center sm:gap-4 md:gap-8'>
                     {
@@ -44,7 +44,7 @@ const DesktopNav = ({ theme }) => {
     );
 }
 
-const MobileNav = ({ toggleMenu, isMenuOpen, theme }) => {
+const MobileNav = ({ toggleMenu, isMenuOpen, theme, scrollToTop }) => {
     const isLight = theme === "light";
 
     return (
@@ -59,9 +59,9 @@ const MobileNav = ({ toggleMenu, isMenuOpen, theme }) => {
                 }`}
         >
             <div className="flex items-center justify-between px-6 py-6">
-                <a href="#" aria-label="Go to top">
+                <button onClick={scrollToTop} aria-label="Go to top">
                     <FiHome className="w-6 h-6 hover:text-accent transition-colors" />
-                </a>
+                </button>
 
                 <button
                     onClick={toggleMenu}
@@ -131,6 +131,15 @@ export function Header() {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
+    const scrollToTop = () => {
+        if (window.lenis) {
+            window.lenis.scrollTo(0, { duration: 1.5 });
+            return;
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -145,8 +154,8 @@ export function Header() {
 
     return (
         <>
-            <DesktopNav theme={theme} />
-            <MobileNav toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} theme={theme} />
+            <DesktopNav theme={theme} scrollToTop={scrollToTop} />
+            <MobileNav toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} theme={theme} scrollToTop={scrollToTop} />
             <MobileMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} theme={theme} />
         </>
     )
