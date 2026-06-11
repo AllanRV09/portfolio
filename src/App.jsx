@@ -3,12 +3,13 @@ import { Stack } from "./sections/Stack"
 import { Header } from "./sections/Header"
 import { Hero } from "./sections/Hero"
 import { Experience } from "./sections/Experience"
-import { Footer } from "./sections/Footer"
 import { Projects } from "./sections/Projects"
 import { PageIntro } from "./sections/PageIntro"
 import Lenis from 'lenis'
 import { useEffect } from "react"
 import { Services } from "./sections/Services"
+import { ContactSection } from "./sections/ContactSection"
+import { Footer } from "./sections/Footer"
 
 function App() {
   useEffect(() => {
@@ -18,6 +19,8 @@ function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
+
+    window.lenis = lenis
 
     let rafId;
 
@@ -48,6 +51,7 @@ function App() {
           <Experience />
           <div className="relative overflow-hidden">
             <Projects />
+            <ContactSection />
             <Footer />
           </div>
         </main>
