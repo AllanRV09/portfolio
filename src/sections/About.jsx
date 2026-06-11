@@ -7,7 +7,7 @@ export function About() {
     const { index, label, title, paragraphs } = ABOUT_DATA;
 
     return (
-        <section id="about" className="relative z-20 bg-background border-b border-surface/10 py-24 md:py-32 scroll-mt-24">
+        <section id="about" data-theme="dark" className="relative z-20 bg-background border-b border-surface/10 py-24 md:py-32 scroll-mt-24">
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 

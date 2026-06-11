@@ -34,7 +34,7 @@ const fadeInVariants = {
 
 export function Hero() {
     const { scrollY } = useScroll();
-    
+
     // Animamos de 0 a 500px de scroll
     const opacity = useTransform(scrollY, [0, 600], [1, 0]);
     const scale = useTransform(scrollY, [0, 500], [1, 0.9]);
@@ -42,10 +42,10 @@ export function Hero() {
     // const blur = useTransform(scrollY, [0, 500], ["blur(0px)", "blur(20px)"]);
 
     return (
-        <section className="relative h-svh flex items-center px-6 pb-20 pt-36 lg:px-24 xl:px-36 sm:pt-40 overflow-hidden sticky top-0 z-0">
+        <section id="hero" data-theme="light" className="relative h-svh flex items-center px-6 pb-20 pt-36 lg:px-24 xl:px-36 sm:pt-40 overflow-hidden sticky top-0 z-0 bg-surface text-background">
             <HeroBackground />
 
-            <motion.div 
+            <motion.div
                 style={{ opacity, scale, y }}
                 className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 relative z-10"
             >
@@ -79,8 +79,7 @@ export function Hero() {
                     </div>
 
                     <div className="overflow-hidden mt-8">
-                        <motion.p variants={revealVariants} className="max-w-xl text-xl leading-relaxed lg:text-2xl font-light tracking-wide"
-                        >
+                        <motion.p variants={revealVariants} className="max-w-xl text-xl leading-relaxed lg:text-2xl font-light tracking-wide text-background/70">
                             Hi! I'm Allan. A Full-Stack Developer who loves turning complex problems into simple, well-crafted web experiences.
                         </motion.p>
                     </div>

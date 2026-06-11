@@ -2,12 +2,21 @@
 @import "tailwindcss";
 
 @theme {
-    --color-background: #060f0d;
-    --color-surface: #86EFAC;
-    --color-text: #BDE4C1;
-    --color-accent: #07FFCD;
+    /* Main background */
+    --color-background: #0E0E0E;
 
-    /* Para que sea la fuente por defecto en todo el proyecto */
+    /* Main titles / strong text */
+    --color-surface: #E8E3D9;
+
+    /* Paragraphs / secondary text */
+    --color-text: #8E8A84;
+
+    /* Accent color */
+    --color-accent: #B8925E;
+
+    /* Cards / subtle surfaces */
+    --color-muted: #171717;
+
     --font-sans: "Montserrat", sans-serif;
 }
 

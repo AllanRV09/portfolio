@@ -10,6 +10,7 @@ export function Services() {
     return (
         <section
             id="services"
+            data-theme="dark"
             className="relative z-20 bg-background border-b border-surface/10 rounded-t-3xl py-24 md:py-32 scroll-mt-24"
         >
             <SectionLayout index={index} label={label}>

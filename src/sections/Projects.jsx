@@ -22,6 +22,7 @@ export function Projects() {
         <motion.section
             ref={ref}
             id="projects"
+            data-theme="dark"
             style={{ scale, y, willChange: "transform" }}
             className="relative z-20 bg-background rounded-b-3xl py-24 md:py-32 scroll-mt-24 origin-bottom"
         >

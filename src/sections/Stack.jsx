@@ -13,7 +13,7 @@ export function Stack() {
     const tools = STACK.find(s => s.title === "TOOLS");
 
     return (
-        <section id="stack" className="relative z-20 bg-background border-b border-surface/10 py-24 md:py-32 scroll-mt-24">
+        <section id="stack" data-theme="dark" className="relative z-20 bg-background border-b border-surface/10 py-24 md:py-32 scroll-mt-24">
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
 
