@@ -2,8 +2,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { IconLink } from '../components/IconLink'
 import { SOCIAL_LINKS, ENTRY_DELAY } from '../data'
 import { AnimatedTitle } from "../components/Title";
-import { TechTerminal } from "../components/TechTerminal";
 import { HeroBackground } from "../components/HeroBackground";
+import { Globe } from "../components/Globe";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -95,7 +95,8 @@ export function Hero() {
                 </motion.div>
 
                 {/* Animated Tech Terminal */}
-                <TechTerminal />
+                {/* <TechTerminal /> */}
+                <Globe/>
 
             </motion.div>
         </section>
