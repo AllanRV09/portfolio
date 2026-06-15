@@ -17,6 +17,10 @@ const GLOBE_VARIANTS = {
   },
 };
 
+const MARKERS = [
+  { id: "cr", location: [9.9281, -84.0907], label: "Costa Rica" },
+];
+
 export function Globe() {
   const wrapperRef = useRef();
   const canvasRef = useRef();
@@ -41,6 +45,7 @@ export function Globe() {
 
     let globe;
     let rafId;
+    let resizeTimeout;
     let isVisible = true;
     let isPageVisible = document.visibilityState === "visible";
 
@@ -50,10 +55,13 @@ export function Globe() {
     };
 
     const onResize = () => {
-      if (globe && canvasRef.current) {
-        const size = getSize();
-        globe.update({ width: size, height: size });
-      }
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (globe && canvasRef.current) {
+          const size = getSize();
+          globe.update({ width: size, height: size });
+        }
+      }, 150);
     };
 
     if (canvasRef.current) {
@@ -73,9 +81,11 @@ export function Globe() {
         baseColor: [0.6, 0.4, 0.2],
         markerColor: [0.6, 0.4, 0.2],
         glowColor: [0.6, 0.4, 0.2],
-        markers: [
-          { location: [9.9281, -84.0907], size: 0.06 },
-        ],
+        markers: MARKERS.map((m) => ({
+          location: m.location,
+          size: 0.03,
+          id: m.id,
+        })),
       });
     }
 
@@ -120,6 +130,7 @@ export function Globe() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (observer) observer.disconnect();
       cancelAnimationFrame(rafId);
+      clearTimeout(resizeTimeout);
     };
   }, [r, t]);
 
@@ -178,13 +189,55 @@ export function Globe() {
             cursor: 'grab',
             touchAction: 'none'
           }}
-          width={1200}
-          height={1200}
         />
+
+        {MARKERS.map((m) => (
+          <div
+            key={m.id}
+            className="marker-label"
+            style={{
+              positionAnchor: `--cobe-${m.id}`,
+              opacity: `var(--cobe-visible-${m.id}, 0)`,
+            }}
+          >
+            {m.label}
+          </div>
+        ))}
       </div>
+
+      <style>{`
+        .marker-label {
+          position: absolute;
+          bottom: anchor(top);
+          left: anchor(center);
+          translate: -50% 0;
+          margin-bottom: 12px;
+          padding: 4px 12px;
+          background: rgb(153, 102, 51);
+          color: #f5e6d3;
+          font-size: 12px;
+          font-weight: 600;
+          white-space: nowrap;
+          pointer-events: none;
+          transition: opacity 0.2s ease;
+          z-index: 10;
+        }
+
+        .marker-label::after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          translate: -50% 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 5px solid rgb(153, 102, 51);
+        }
+      `}</style>
+
       <div className="flex items-center gap-2 -mt-8 opacity-70">
         <span className="w-2 h-2 bg-[#996633] rounded-full animate-pulse shadow-[0_0_8px_rgba(153,102,51,0.8)]" />
-        <p className="text-sm font-medium tracking-widest uppercase">
+        <p className="text-xs xl:text-sm font-medium tracking-widest uppercase">
           Based in Costa Rica
           <span className="mx-2 opacity-40">·</span>
           <span className="opacity-60 font-normal">Open to remote work</span>
