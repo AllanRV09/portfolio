@@ -9,6 +9,9 @@ export function ContactSection() {
 
     const [errors, setErrors] = useState({})
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+
     const handleChange = (e) => {
         const { name, value } = e.target
 
@@ -17,10 +20,8 @@ export function ContactSection() {
             [name]: value
         })
 
-        setErrors({
-            ...errors,
-            [name]: ''
-        })
+        setErrors({ ...errors, [name]: '' })
+        setSubmitStatus(null)
     }
 
     const validateForm = () => {
@@ -41,13 +42,34 @@ export function ContactSection() {
         return Object.keys(newErrors).length === 0
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
         if (validateForm()) {
-            console.log("Formulario enviado con éxito:", formData)
-            alert("¡Gracias! Me pondré en contacto contigo pronto.")
+            setIsSubmitting(true);
+            setSubmitStatus(null);
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    setSubmitStatus('success');
+                    setFormData({ name: '', email: '', message: '' });
+                } else {
+                    setSubmitStatus('error');
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                setSubmitStatus('error');
+            } finally {
+                setIsSubmitting(false);
+            }
         }
-    }
+    };
 
     return (
         <section id="contact" data-theme="light" className="relative z-10 -mt-30 flex flex-col items-center text-center p-[1.5rem] sm:p-[3rem] text-surface">
@@ -78,10 +100,22 @@ export function ContactSection() {
                             {errors.message && <p className="text-red-400 text-xs">{errors.message}</p>}
                         </div>
 
-                        <button type="submit" className="px-6 py-4 text-xs sm:text-base font-semibold leading-4 text-center rounded-xl bg-surface text-background hover:bg-accent/90 transition-colors md:whitespace-nowrap">Get a quote</button>
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`px-6 py-4 text-xs sm:text-base font-semibold leading-4 text-center rounded-xl bg-surface text-background hover:bg-accent/90 transition-all md:whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed`}
+                        >
+                            {isSubmitting ? 'Sending...' : 'Get a quote'}
+                        </button>
+
+                        {submitStatus === 'success' && (
+                            <p className="text-accent text-center font-medium">¡Gracias! Me pondré en contacto contigo pronto.</p>
+                        )}
+                        {submitStatus === 'error' && (
+                            <p className="text-red-400 text-center font-medium">Hubo un error al enviar. Por favor, inténtalo de nuevo.</p>
+                        )}
                     </form>
                 </div>
-                {/* <span className="mt-12 block text-xs font-bold tracking-[0.2em] uppercase text-text/40">Design & build by Allan Rodríguez</span> */}
             </div>
         </section>
     )
