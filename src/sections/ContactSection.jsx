@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useToast } from "../hooks/useToast"
+import { Toast } from "../components/Toast"
 
 export function ContactSection() {
     const [formData, setFormData] = useState({
@@ -8,9 +10,8 @@ export function ContactSection() {
     })
 
     const [errors, setErrors] = useState({})
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const { toast, leaving, showToast, closeToast } = useToast()
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -21,7 +22,6 @@ export function ContactSection() {
         })
 
         setErrors({ ...errors, [name]: '' })
-        setSubmitStatus(null)
     }
 
     const validateForm = () => {
@@ -47,7 +47,6 @@ export function ContactSection() {
 
         if (validateForm()) {
             setIsSubmitting(true);
-            setSubmitStatus(null);
 
             try {
                 const response = await fetch('/api/contact', {
@@ -57,14 +56,14 @@ export function ContactSection() {
                 });
 
                 if (response.ok) {
-                    setSubmitStatus('success');
+                    showToast('success', '¡Gracias! Me pondré en contacto contigo pronto.')
                     setFormData({ name: '', email: '', message: '' });
                 } else {
-                    setSubmitStatus('error');
+                    showToast('error', 'Hubo un error al enviar. Por favor, inténtalo de nuevo.')
                 }
             } catch (error) {
                 console.error("Error:", error);
-                setSubmitStatus('error');
+                showToast('error', 'Hubo un error al enviar. Por favor, inténtalo de nuevo.')
             } finally {
                 setIsSubmitting(false);
             }
@@ -107,16 +106,11 @@ export function ContactSection() {
                         >
                             {isSubmitting ? 'Sending...' : 'Get a quote'}
                         </button>
-
-                        {submitStatus === 'success' && (
-                            <p className="text-accent text-center font-medium">¡Gracias! Me pondré en contacto contigo pronto.</p>
-                        )}
-                        {submitStatus === 'error' && (
-                            <p className="text-red-400 text-center font-medium">Hubo un error al enviar. Por favor, inténtalo de nuevo.</p>
-                        )}
                     </form>
                 </div>
             </div>
+
+            <Toast toast={toast} leaving={leaving} onClose={closeToast} />
         </section>
     )
 }
