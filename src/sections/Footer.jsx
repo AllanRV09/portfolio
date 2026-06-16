@@ -44,8 +44,6 @@ const useLocalTime = () => {
 };
 
 const scrollToTop = () => {
-    // Si Lenis está expuesto globalmente, usamos su API para
-    // que la animación sea consistente con el resto del scroll.
     if (window.lenis) {
         window.lenis.scrollTo(0, { duration: 1.5 });
         return;
@@ -60,10 +58,9 @@ export function Footer() {
     return (
         <footer
             data-theme="light"
-            className="relative z-10 text-background bg-gradient-to-b from-surface/0 to-surface"
+            className="relative z-10 text-background bg-surface"
         >
             <div className="px-6 lg:px-24 xl:px-36 py-16 sm:py-24">
-                {/* Menu / Socials / Local time */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12">
                     <FooterColumn title="Menu">
                         {NAV_LINKS.map((link) => (
@@ -86,7 +83,6 @@ export function Footer() {
                         ))}
                     </FooterColumn>
 
-                    {/* Local time como bloque de status */}
                     <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
                         <h4 className="text-sm lg:text-lg font-semibold text-background pb-3 border-b border-background/15">
                             Local time
@@ -108,7 +104,6 @@ export function Footer() {
                     </div>
                 </div>
 
-                {/* Stack — distinto a los links, formato badges */}
                 <div className="mt-16 pt-8 border-t border-background/15">
                     <h4 className="text-xs lg:text-base uppercase tracking-[0.2em] text-text font-semibold mb-4">
                         Built with
@@ -125,7 +120,6 @@ export function Footer() {
                     </div>
                 </div>
 
-                {/* Derechos reservados + back to top */}
                 <div className="mt-12 pt-6 border-t border-background/15 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
                     <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
                         <p className="text-xs sm:text-base text-text">
