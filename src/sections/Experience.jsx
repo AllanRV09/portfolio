@@ -11,11 +11,10 @@ export function Experience() {
             <SectionLayout index={index} label={label}>
                 <SectionTitle>{title}</SectionTitle>
                 <ol className="mt-2">
-                    {EXPERIENCES.map((experience, i) => (
+                    {EXPERIENCES.map((experience) => (
                         <ExperienceItem
                             key={experience.role + experience.year}
                             experience={experience}
-                            index={i}
                         />
                     ))}
                 </ol>

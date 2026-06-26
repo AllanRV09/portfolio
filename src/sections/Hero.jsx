@@ -1,5 +1,4 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { IconLink } from '../components/IconLink'
 import { SOCIAL_LINKS, ENTRY_DELAY } from '../data'
 import { AnimatedTitle } from "../components/Title";
 import { HeroBackground } from "../components/HeroBackground";
@@ -88,15 +87,22 @@ export function Hero() {
                         <motion.div variants={revealVariants} className='space-x-7 flex items-center'
                         >
                             {SOCIAL_LINKS.map((link) => (
-                                <IconLink key={link.name} {...link} />
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={link.name}
+                                    className="hover:text-accent transition-colors"
+                                >
+                                    <link.icon className="w-6 h-6" aria-hidden="true" />
+                                </a>
                             ))}
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Animated Tech Terminal */}
-                {/* <TechTerminal /> */}
-                <Globe/>
+                <Globe />
 
             </motion.div>
         </section>
