@@ -2,10 +2,11 @@ import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import { NavButton } from '../components/NavButton';
-import { IconLink } from "../components/IconLink";
 import { NAV_LINKS, ENTRY_DELAY } from "../data";
 import { useSectionTheme } from "../hooks/useSectionTheme";
 import { motion, AnimatePresence } from "framer-motion"
+import { useLenis } from "../hooks/useLenis";
+import { useScrollToTop } from "../hooks/useScrollToTop";
 
 const DesktopNav = ({ theme, scrollToTop }) => {
     const isLight = theme === "light";
@@ -109,10 +110,15 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
                     >
                         <nav className="flex flex-col pt-26 space-y-8 px-6">
                             {NAV_LINKS.map((link) => (
-                                <div className='flex items-center gap-5' key={link.name}>
-                                    <IconLink {...link} onClick={toggleMenu} isLight={isLight} />
-                                    <a href={`#${link.href}`} onClick={toggleMenu} className="text-lg font-medium hover:text-accent transition-colors">{link.name}</a>
-                                </div>
+                                <a
+                                    key={link.name}
+                                    href={`#${link.href}`}
+                                    onClick={toggleMenu}
+                                    className="flex items-center gap-5 text-lg font-medium hover:text-accent transition-colors"
+                                >
+                                    <link.icon className="w-6 h-6" aria-hidden="true" />
+                                    {link.name}
+                                </a>
                             ))}
                             <div className="pt-4">
                                 <NavButton isLight={isLight} />
@@ -128,29 +134,24 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const theme = useSectionTheme();
+    const lenisRef = useLenis();
+    const scrollToTop = useScrollToTop();
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-
-    const scrollToTop = () => {
-        if (window.lenis) {
-            window.lenis.scrollTo(0, { duration: 1.5 });
-            return;
-        }
-
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+    const toggleMenu = () => setIsMenuOpen(prev => !prev)
 
     useEffect(() => {
+        const lenis = lenisRef?.current; //
+
         if (isMenuOpen) {
-            document.body.style.overflow = 'hidden';
+            lenis?.stop();
         } else {
-            document.body.style.overflow = '';
+            lenis?.start();
         }
 
         return () => {
-            document.body.style.overflow = '';
+            lenis?.start();
         };
-    }, [isMenuOpen]);
+    }, [isMenuOpen, lenisRef]);
 
     return (
         <>

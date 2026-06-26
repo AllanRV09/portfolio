@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FiArrowUp } from "react-icons/fi";
 import { NAV_LINKS, SOCIAL_LINKS } from "../data";
+import { useScrollToTop } from "../hooks/useScrollToTop";
 
 const STACK_ITEMS = ["React", "Tailwind CSS", "Framer Motion", "Lenis Scroll", "Figma"];
 
@@ -43,17 +44,9 @@ const useLocalTime = () => {
     });
 };
 
-const scrollToTop = () => {
-    if (window.lenis) {
-        window.lenis.scrollTo(0, { duration: 1.5 });
-        return;
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
 export function Footer() {
     const localTime = useLocalTime();
+    const scrollToTop = useScrollToTop();
 
     return (
         <footer
