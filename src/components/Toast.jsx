@@ -24,7 +24,7 @@ export function Toast({ toast, leaving, onClose }) {
             <p className="flex-1 text-sm leading-relaxed text-surface">{toast.message}</p>
             <button
                 onClick={onClose}
-                aria-label="Cerrar notificación"
+                aria-label="Close notification"
                 className="shrink-0 text-surface/40 transition-colors hover:text-surface"
             >
                 ✕

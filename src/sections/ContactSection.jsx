@@ -56,14 +56,14 @@ export function ContactSection() {
                 });
 
                 if (response.ok) {
-                    showToast('success', '¡Gracias! Me pondré en contacto contigo pronto.')
+                    showToast('success', 'Thank you! I’ll get back to you as soon as possible.');
                     setFormData({ name: '', email: '', message: '' });
                 } else {
-                    showToast('error', 'Hubo un error al enviar. Por favor, inténtalo de nuevo.')
+                    showToast('error', 'Something went wrong. Please try again.');
                 }
             } catch (error) {
                 console.error("Error:", error);
-                showToast('error', 'Hubo un error al enviar. Por favor, inténtalo de nuevo.')
+                showToast('error', 'Something went wrong. Please try again.');
             } finally {
                 setIsSubmitting(false);
             }
@@ -86,14 +86,14 @@ export function ContactSection() {
                         </div>
 
                         <div>
-                            <input type="text" placeholder="Your email address" name="email" value={formData.email} onChange={handleChange}
+                            <input type="email" placeholder="Your email address" name="email" value={formData.email} onChange={handleChange}
                                 className={`w-full sm:text-xl rounded-xl px-4 py-3 bg-surface/5 text-surface placeholder:text-text transition-colors border focus:outline-none focus:border-accent ${errors.email ? 'border-red-400' : 'border-surface/20'}`}
                             />
                             {errors.email && <p className="mt-4 text-red-400 text-xs">{errors.email}</p>}
                         </div>
 
                         <div>
-                            <textarea type="text" placeholder="Tell me about your business or project" name="message" value={formData.message} onChange={handleChange}
+                            <textarea placeholder="Tell me about your business or project" name="message" value={formData.message} onChange={handleChange}
                                 className={`w-full sm:text-xl min-h-30 border rounded-xl px-4 py-3 bg-surface/5 text-surface placeholder:text-text resize-none transition-colors focus:outline-none focus:border-accent ${errors.message ? 'border-red-400' : 'border-surface/20'}`}
                             />
                             {errors.message && <p className="text-red-400 text-xs">{errors.message}</p>}
@@ -104,7 +104,7 @@ export function ContactSection() {
                             disabled={isSubmitting}
                             className={`px-6 py-4 text-xs sm:text-base font-semibold leading-4 text-center rounded-xl bg-surface text-background hover:bg-accent/90 transition-all md:whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed`}
                         >
-                            {isSubmitting ? 'Sending...' : 'Get a quote'}
+                            {isSubmitting ? 'Sending...' : 'Get in Touch'}
                         </button>
                     </form>
                 </div>
