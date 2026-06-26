@@ -19,10 +19,10 @@ export const NAV_LINKS = [
 ]
 
 export const SOCIAL_LINKS = [
-    { href: "https://linkedin.com/in/allan-rodríguez", icon: FaLinkedin, name: "LinkedIn" },
-    { href: "https://github.com/TU_USUARIO", icon: FaGithub, name: "GitHub" },
-    { href: "https://instagram.com/TU_USUARIO", icon: FaInstagram, name: "Instagram" },
-    { href: "mailto:allanrod0908@gmail.com", icon: MdEmail, name: "Gmail" },
+    { href: "https://www.linkedin.com/in/allanrodriguezv", icon: FaLinkedin, name: "LinkedIn" },
+    { href: "https://github.com/AllanRV09", icon: FaGithub, name: "GitHub" },
+    { href: "mailto:allanrod0908@gmail.com", icon: MdEmail, name: "Email" },
+    { href: "https://www.instagram.com/allanrodv_", icon: FaInstagram, name: "Instagram" },
 ]
 
 export const PROJECTS = [
