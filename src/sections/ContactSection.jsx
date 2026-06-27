@@ -6,7 +6,8 @@ export function ContactSection() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        message: ''
+        message: '',
+        website: "",
     })
 
     const [errors, setErrors] = useState({})
@@ -16,12 +17,15 @@ export function ContactSection() {
     const handleChange = (e) => {
         const { name, value } = e.target
 
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [name]: value
-        })
+        }))
 
-        setErrors({ ...errors, [name]: '' })
+        setErrors(prev => ({
+            ...prev,
+            [name]: ''
+        }))
     }
 
     const validateForm = () => {
@@ -56,8 +60,8 @@ export function ContactSection() {
                 });
 
                 if (response.ok) {
-                    showToast('success', 'Thank you! I’ll get back to you as soon as possible.');
-                    setFormData({ name: '', email: '', message: '' });
+                    showToast('success', "Thank you! I'll get back to you as soon as possible.");
+                    setFormData({ name: '', email: '', message: '', website: '' });
                 } else {
                     showToast('error', 'Something went wrong. Please try again.');
                 }
@@ -98,6 +102,23 @@ export function ContactSection() {
                             />
                             {errors.message && <p className="text-red-400 text-xs">{errors.message}</p>}
                         </div>
+
+                        <input
+                            type="text"
+                            name="website"
+                            value={formData.website}
+                            onChange={handleChange}
+                            tabIndex={-1}
+                            aria-hidden="true"
+                            autoComplete="off"
+                            style={{
+                                position: "absolute",
+                                left: "-9999px",
+                                opacity: 0,
+                                height: 0,
+                                width: 0,
+                            }}
+                        />
 
                         <button
                             type="submit"
