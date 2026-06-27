@@ -30,7 +30,7 @@ export function Projects() {
                 <SectionTitle>{title}</SectionTitle>
             </SectionLayout>
 
-            <div className="flex flex-col w-full max-w-[76rem] mx-auto px-[clamp(1.25rem,4vw,2.5rem)]">
+            <div className="container-main flex flex-col">
                 <ul>
                     {PROJECTS.map((project) => (
                         <ProjectItem key={project.title} project={project} />

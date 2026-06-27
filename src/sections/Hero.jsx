@@ -34,11 +34,9 @@ const fadeInVariants = {
 export function Hero() {
     const { scrollY } = useScroll();
 
-    // Animamos de 0 a 500px de scroll
     const opacity = useTransform(scrollY, [0, 600], [1, 0]);
     const scale = useTransform(scrollY, [0, 500], [1, 0.9]);
     const y = useTransform(scrollY, [0, 500], [0, 25]);
-    // const blur = useTransform(scrollY, [0, 500], ["blur(0px)", "blur(20px)"]);
 
     return (
         <section id="hero" data-theme="light" className="relative h-svh flex items-center px-6 pb-20 pt-36 lg:px-24 xl:px-36 sm:pt-40 overflow-hidden sticky top-0 z-0 bg-surface text-background">
