@@ -15,7 +15,7 @@ const FooterColumn = ({ title, children }) => (
 const FooterLink = ({ href, children, ...props }) => (
     <a
         href={href}
-        className="group inline-flex items-center gap-1.5 text-sm sm:text-lg text-text hover:text-background transition-colors w-fit"
+        className="group inline-flex items-center gap-1.5 text-sm sm:text-lg text-background/60 hover:text-background transition-colors w-fit"
         {...props}
     >
         <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-accent">
@@ -67,26 +67,26 @@ export function Footer() {
                                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                             </span>
-                            <span className="text-sm lg:text-lg text-text font-mono tabular-nums">
+                            <span className="text-sm lg:text-lg text-background/60 font-mono tabular-nums">
                                 {localTime}
                             </span>
                         </div>
 
-                        <span className="text-sm lg:text-lg text-text">
+                        <span className="text-sm lg:text-lg text-background/60">
                             Costa Rica
                         </span>
                     </div>
                 </div>
 
                 <div className="mt-16 pt-8 border-t border-background/15">
-                    <h4 className="text-xs lg:text-base uppercase tracking-[0.2em] text-text font-semibold mb-4">
+                    <h4 className="text-xs lg:text-base uppercase tracking-[0.2em] text-background/60 font-semibold mb-4">
                         Built with
                     </h4>
                     <div className="flex flex-wrap gap-2">
                         {STACK_ITEMS.map((item) => (
                             <span
                                 key={item}
-                                className="text-xs lg:text-base font-medium px-3 py-1.5 rounded-full border border-background/15 text-text hover:border-accent hover:text-background transition-colors"
+                                className="text-xs lg:text-base font-medium px-3 py-1.5 rounded-full border border-background/15 text-background/60 hover:border-accent hover:text-background transition-colors"
                             >
                                 {item}
                             </span>
@@ -96,7 +96,7 @@ export function Footer() {
 
                 <div className="mt-12 pt-6 border-t border-background/15 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
                     <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
-                        <p className="text-xs sm:text-base text-text">
+                        <p className="text-xs sm:text-base text-background/60">
                             © {new Date().getFullYear()} Allan Rodriguez. All rights reserved.
                         </p>
                     </div>
@@ -104,7 +104,7 @@ export function Footer() {
                     <button
                         onClick={scrollToTop}
                         aria-label="Back to top"
-                        className="group flex items-center gap-2 text-xs sm:text-base font-medium uppercase tracking-[0.15em] text-text hover:text-accent transition-colors"
+                        className="group flex items-center gap-2 text-xs sm:text-base font-medium uppercase tracking-[0.15em] text-background/60 hover:text-accent transition-colors"
                     >
                         Back to top
                         <span className="flex items-center justify-center w-9 h-9 rounded-full border border-background/15 group-hover:border-accent transition-colors">
