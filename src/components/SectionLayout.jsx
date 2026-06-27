@@ -8,19 +8,19 @@ export function SectionLayout({ index, label, children }) {
         <motion.div
           initial={{ opacity: 0, x: -15 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0 }}  // primero
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           className="group cursor-default"
         >
-          <p className="text-xs tracking-[0.2em] font-semibold uppercase text-surface/40 flex items-center gap-2">
+          <p className="text-xs tracking-[0.2em] font-semibold uppercase text-surface/70 flex items-center gap-2">
 
-            <span className="text-surface/20 transition-colors group-hover:text-surface/40">
+            <span className="text-surface/60 transition-colors group-hover:text-surface/80">
               {index}
             </span>
 
-            <span className="text-surface/10">/</span>
+            <span className="text-surface/30">/</span>
 
-            <span className="text-surface/60 group-hover:text-surface/80 transition-colors">
+            <span className="text-surface/80 group-hover:text-surface transition-colors">
               {label}
             </span>
           </p>

@@ -14,7 +14,7 @@ export function ServiceCard({ title, description, features, idx }) {
                 <div className="grid grid-cols-12 lg:gap-x-20 pt-5">
 
                     <div className="col-span-12 md:col-span-3 lg:col-span-2">
-                        <span className="text-base md:text-3xl font-light text-surface/20 italic block md:pt-2" aria-hidden="true">
+                        <span className="text-base md:text-3xl font-light text-surface/40 italic block md:pt-2" aria-hidden="true">
                             ({String(idx + 1).padStart(2, "0")})
                         </span>
                     </div>
@@ -24,7 +24,7 @@ export function ServiceCard({ title, description, features, idx }) {
                             {title}
                         </h3>
 
-                        <p className="font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/70 mb-8">{description}</p>
+                        <p className="font-light text-base md:text-lg tracking-wide leading-relaxed max-w-[65ch] text-text/90 mb-8">{description}</p>
 
                         <FeatureList features={features} />
                     </div>
