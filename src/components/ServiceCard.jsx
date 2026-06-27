@@ -14,7 +14,7 @@ export function ServiceCard({ title, description, features, idx }) {
                 <div className="grid grid-cols-12 lg:gap-x-20 pt-5">
 
                     <div className="col-span-12 md:col-span-3 lg:col-span-2">
-                        <span className="text-base md:text-3xl font-light text-surface/40 italic block md:pt-2" aria-hidden="true">
+                        <span className="text-base md:text-3xl font-light text-surface/65 italic block md:pt-2" aria-hidden="true">
                             ({String(idx + 1).padStart(2, "0")})
                         </span>
                     </div>
