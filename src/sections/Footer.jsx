@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
 import { FiArrowUp } from "react-icons/fi";
-import { NAV_LINKS, SOCIAL_LINKS } from "../data";
+import { NAV_LINKS, SOCIAL_LINKS, STACK_ITEMS } from "../data";
 import { useScrollToTop } from "../hooks/useScrollToTop";
-
-const STACK_ITEMS = ["React", "Tailwind CSS", "Framer Motion", "Lenis Scroll", "Figma"];
+import { useLocalTime } from "../hooks/useLocalTime";
 
 const FooterColumn = ({ title, children }) => (
     <div className="flex flex-col gap-4">
@@ -26,23 +24,6 @@ const FooterLink = ({ href, children, ...props }) => (
         {children}
     </a>
 );
-
-const useLocalTime = () => {
-    const [time, setTime] = useState(new Date());
-
-    useEffect(() => {
-        const interval = setInterval(() => setTime(new Date()), 1000);
-        return () => clearInterval(interval);
-    }, []);
-
-    return time.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-        timeZoneName: "short",
-    });
-};
 
 export function Footer() {
     const localTime = useLocalTime();

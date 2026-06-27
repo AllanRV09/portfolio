@@ -68,7 +68,7 @@ const DATABASE_TECHS = [
 
 const TOOLS_TECHS = [
     { name: "Git", icon: FaGitAlt },
-    { name: "VS Code", icon: VscVscode }, // de react-icons/vsc
+    { name: "VS Code", icon: VscVscode },
 ];
 
 export const STACK = [
@@ -82,7 +82,7 @@ export const SERVICES_DATA = {
     index: "01",
     label: "SERVICES",
     title: "WHAT I DO",
-    description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
+    description: "I build modern, high-performance web applications with a focus on clean architecture, scalability, and seamless user experiences. Working across the entire stack, I deliver solutions that are reliable, maintainable, and built to last."
 }
 
 export const ABOUT_DATA = {
@@ -100,7 +100,7 @@ export const STACK_DATA = {
     index: "03",
     label: "STACK",
     title: "TOOLS I USE",
-    description: "I focus on building modern, high-performance applications using a curated set of tools. My approach is centered on clean code, scalability, and creating seamless user experiences across the entire development lifecycle."
+    description: "My toolkit is built around technologies I trust to develop modern web applications. Each one has been carefully chosen to help me create fast, scalable, and maintainable solutions while keeping the development process efficient."
 }
 
 export const EXPERIENCE_DATA = {
@@ -149,3 +149,5 @@ export const SERVICES = [
         ]
     }
 ];
+
+export const STACK_ITEMS = ["React", "Tailwind CSS", "Framer Motion", "Lenis Scroll", "Figma"];
