@@ -46,8 +46,44 @@ export function Globe() {
     let globe;
     let rafId;
     let resizeTimeout;
-    let isVisible = true;
+    let isVisible = false;
     let isPageVisible = document.visibilityState === "visible";
+    let loopRunning = false;
+
+    const startLoop = () => {
+      if (loopRunning) return;
+      loopRunning = true;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const stopLoop = () => {
+      loopRunning = false;
+      cancelAnimationFrame(rafId);
+    };
+
+    const checkShouldRun = () => {
+      if (isVisible && isPageVisible) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    };
+
+    const animate = () => {
+      if (!loopRunning) return;
+
+      if (!pointerInteracting.current) {
+        phiRef.current += 0.0045;
+      }
+      if (globe) {
+        globe.update({
+          phi: phiRef.current + r.get(),
+          theta: thetaRef.current + t.get(),
+        });
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
 
     const getSize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -93,6 +129,7 @@ export function Globe() {
 
     const handleVisibilityChange = () => {
       isPageVisible = document.visibilityState === "visible";
+      checkShouldRun();
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -101,35 +138,19 @@ export function Globe() {
       observer = new IntersectionObserver(
         ([entry]) => {
           isVisible = entry.isIntersecting;
+          checkShouldRun();
         },
         { threshold: 0 }
       );
       observer.observe(wrapperRef.current);
     }
 
-    const animate = () => {
-      if (isVisible && isPageVisible) {
-        if (!pointerInteracting.current) {
-          phiRef.current += 0.0045;
-        }
-        if (globe) {
-          globe.update({
-            phi: phiRef.current + r.get(),
-            theta: thetaRef.current + t.get(),
-          });
-        }
-      }
-      rafId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
     return () => {
+      stopLoop();
       if (globe) globe.destroy();
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (observer) observer.disconnect();
-      cancelAnimationFrame(rafId);
       clearTimeout(resizeTimeout);
     };
   }, [r, t]);
