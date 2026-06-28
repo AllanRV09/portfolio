@@ -16,7 +16,7 @@ const DesktopNav = ({ scrollToTop }) => {
             className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
         >
             <nav
-                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/15 bg-background/45 backdrop-blur-[3vw] text-white shadow-lg"
+                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/15 bg-background/45 backdrop-blur-xl text-white shadow-lg"
             >
                 <button onClick={scrollToTop} className='mx-auto pl-2' aria-label="Go to top">
                     <FiHome className='w-5 h-5 hover:text-accent transition-colors' />
@@ -44,7 +44,7 @@ const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: ENTRY_DELAY }}
-            className="fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b border-surface/15 bg-background/45 backdrop-blur-[3vw] text-white shadow-lg"
+            className="fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b border-surface/15 bg-background/45 backdrop-blur-xl text-white shadow-lg"
         >
             <div className="flex items-center justify-between px-6 py-6">
                 <button onClick={scrollToTop} aria-label="Go to top">
@@ -71,45 +71,60 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
     return (
         <AnimatePresence>
             {isMenuOpen && (
-                <>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                <motion.div
+                    initial={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+                    animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
+                    exit={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+                    transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+                    className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-background text-white"
+                >
+                    <button
                         onClick={toggleMenu}
-                        className="fixed inset-0 h-svh z-30 backdrop-blur-sm bg-black/40"
-                        aria-hidden="true"
-                    />
-
-                    <motion.div
-                        initial={{ y: "-100%" }}
-                        animate={{ y: 0 }}
-                        exit={{ y: "-100%" }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed top-0 left-0 right-0 z-40 pb-10 shadow-2xl backdrop-blur-[3vw] sm:hidden border-b border-surface/15 bg-background/55 text-white"
+                        className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white hover:text-accent transition-colors"
+                        aria-label="Close menu"
                     >
-                        <nav className="flex flex-col pt-26 space-y-8 px-6">
-                            {NAV_LINKS.map((link) => (
-                                <a
-                                    key={link.name}
-                                    href={`#${link.href}`}
-                                    onClick={toggleMenu}
-                                    className="flex items-center gap-5 text-lg font-medium hover:text-accent transition-colors text-white/90"
-                                >
-                                    <link.icon className="w-6 h-6" aria-hidden="true" />
-                                    {link.name}
-                                </a>
-                            ))}
-                            <div className="pt-4">
-                                <NavButton />
-                            </div>
-                        </nav>
-                    </motion.div>
-                </>
+                        <RxCross2 className="w-7 h-7" />
+                    </button>
+
+                    <nav className="flex flex-col items-center gap-8">
+                        {NAV_LINKS.map((link, index) => (
+                            <motion.a
+                                key={link.name}
+                                href={`#${link.href}`}
+                                onClick={toggleMenu}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 30 }}
+                                transition={{
+                                    duration: 0.4,
+                                    delay: 0.1 + index * 0.1,
+                                    ease: [0.33, 1, 0.68, 1],
+                                }}
+                                className="text-3xl font-medium hover:text-accent transition-colors"
+                            >
+                                {link.name}
+                            </motion.a>
+                        ))}
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 30 }}
+                            transition={{
+                                duration: 0.4,
+                                delay: 0.1 + NAV_LINKS.length * 0.1,
+                                ease: [0.33, 1, 0.68, 1],
+                            }}
+                            className="mt-10"
+                        >
+                            <NavButton />
+                        </motion.div>
+                    </nav>
+                </motion.div>
             )}
         </AnimatePresence>
     );
-}
+};
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
