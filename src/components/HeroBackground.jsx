@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
+import { HERO_TIMING } from "../data";
 
 export const HeroBackground = memo(function HeroBackground() {
     return (
@@ -7,7 +8,7 @@ export const HeroBackground = memo(function HeroBackground() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1.5, delay: 1.8 }}
+                transition={{ duration: 1, delay: HERO_TIMING.background }}
                 className="absolute inset-0 opacity-60"
                 style={{
                     backgroundImage: `

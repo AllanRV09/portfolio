@@ -2,21 +2,20 @@ import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 import { useSpring } from "@react-spring/web";
 import { motion } from "framer-motion";
-import { ENTRY_DELAY } from "../data";
+import { HERO_TIMING, EASE_OUT } from "../data";
 
 const GLOBE_VARIANTS = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      delay: ENTRY_DELAY,
+      delay: HERO_TIMING.globe,
       duration: 0.8,
-      ease: "easeOut",
+      ease: EASE_OUT,
     },
   },
 };
-
 const MARKERS = [
   { id: "cr", location: [9.9281, -84.0907], label: "Costa Rica" },
 ];
@@ -214,11 +213,8 @@ export function Globe() {
       </div>
 
       <div className="flex items-center gap-2 -mt-8 opacity-70">
-        <span className="w-2 h-2 bg-[#996633] rounded-full animate-pulse shadow-[0_0_8px_rgba(153,102,51,0.8)]" />
-        <p className="text-xs xl:text-sm font-medium tracking-widest uppercase">
-          Based in Costa Rica
-          <span className="mx-2 opacity-40">·</span>
-          <span className="opacity-60 font-normal">Open to remote work</span>
+        <p className="text-xs text-background/80 xl:text-sm font-medium tracking-widest uppercase border rounded-full px-3 py-1 border-accent">
+          San Carlos, Costa Rica
         </p>
       </div>
     </motion.div>

@@ -2,7 +2,7 @@ import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import { NavButton } from '../components/NavButton';
-import { NAV_LINKS, ENTRY_DELAY } from "../data";
+import { NAV_LINKS, HERO_TIMING, EASE_OUT } from "../data";
 import { useSectionTheme } from "../hooks/useSectionTheme";
 import { motion, AnimatePresence } from "framer-motion"
 import { useLenis } from "../hooks/useLenis";
@@ -15,7 +15,7 @@ const DesktopNav = ({ theme, scrollToTop }) => {
         <motion.header
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: ENTRY_DELAY }}
+            transition={{ duration: 0.9, delay: HERO_TIMING.nav, ease: EASE_OUT }}
             className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
         >
             <nav
@@ -52,7 +52,7 @@ const MobileNav = ({ toggleMenu, isMenuOpen, theme, scrollToTop }) => {
         <motion.header
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: ENTRY_DELAY }}
+            transition={{ duration: 0.9, delay: HERO_TIMING.nav, ease: EASE_OUT }}
             className={`fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b backdrop-blur-lg transition-colors duration-300
                 ${isLight
                     ? 'border-background/10 bg-surface/40 text-background'
