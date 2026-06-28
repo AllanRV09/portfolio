@@ -2,62 +2,49 @@ import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import { NavButton } from '../components/NavButton';
-import { NAV_LINKS, HERO_TIMING, EASE_OUT } from "../data";
-import { useSectionTheme } from "../hooks/useSectionTheme";
+import { NAV_LINKS, ENTRY_DELAY } from "../data";
 import { motion, AnimatePresence } from "framer-motion"
 import { useLenis } from "../hooks/useLenis";
 import { useScrollToTop } from "../hooks/useScrollToTop";
 
-const DesktopNav = ({ theme, scrollToTop }) => {
-    const isLight = theme === "light";
-
+const DesktopNav = ({ scrollToTop }) => {
     return (
         <motion.header
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: HERO_TIMING.nav, ease: EASE_OUT }}
+            transition={{ duration: 0.6, delay: ENTRY_DELAY }}
             className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
         >
             <nav
-                className={`flex items-center gap-3 pl-4 p-2 rounded-2xl border backdrop-blur-lg transition-colors duration-300
-                    ${isLight
-                        ? 'border-background/10 bg-surface/40 text-background'
-                        : 'border-surface/10 bg-background/10 text-surface'
-                    }`}
+                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/15 bg-background/45 backdrop-blur-[3vw] text-white shadow-lg"
             >
                 <button onClick={scrollToTop} className='mx-auto pl-2' aria-label="Go to top">
                     <FiHome className='w-5 h-5 hover:text-accent transition-colors' />
                 </button>
-                <div className={`w-px h-5 sm:mx-3 md:mx-6 transition-colors duration-300 ${isLight ? 'bg-background/30' : 'bg-surface/60'}`}></div>
+                <div className="w-px h-5 sm:mx-3 md:mx-6 bg-white/30"></div>
                 <div className='flex items-center sm:gap-4 md:gap-8'>
                     {
                         NAV_LINKS.map((link) => (
-                            <a href={`#${link.href}`} key={link.name} className="whitespace-nowrap hover:text-accent transition-colors text-sm font-medium tracking-wide">
+                            <a href={`#${link.href}`} key={link.name} className="whitespace-nowrap text-sm hover:text-accent transition-colors tracking-wide text-white">
                                 {link.name}
                             </a>
                         ))
                     }
                 </div>
-                <div className={`w-px h-5 sm:mx-3 md:mx-6 transition-colors duration-300 ${isLight ? 'bg-background/30' : 'bg-surface/60'}`}></div>
-                <NavButton isLight={isLight} />
+                <div className="w-px h-5 sm:mx-3 md:mx-6 bg-white/30"></div>
+                <NavButton />
             </nav>
         </motion.header>
     );
 }
 
-const MobileNav = ({ toggleMenu, isMenuOpen, theme, scrollToTop }) => {
-    const isLight = theme === "light";
-
+const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
     return (
         <motion.header
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: HERO_TIMING.nav, ease: EASE_OUT }}
-            className={`fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b backdrop-blur-lg transition-colors duration-300
-                ${isLight
-                    ? 'border-background/10 bg-surface/40 text-background'
-                    : 'border-surface/10 bg-background/10 text-surface'
-                }`}
+            transition={{ duration: 0.6, delay: ENTRY_DELAY }}
+            className="fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b border-surface/15 bg-background/45 backdrop-blur-[3vw] text-white shadow-lg"
         >
             <div className="flex items-center justify-between px-6 py-6">
                 <button onClick={scrollToTop} aria-label="Go to top">
@@ -80,9 +67,7 @@ const MobileNav = ({ toggleMenu, isMenuOpen, theme, scrollToTop }) => {
     );
 }
 
-const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
-    const isLight = theme === "light";
-
+const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
     return (
         <AnimatePresence>
             {isMenuOpen && (
@@ -92,8 +77,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={toggleMenu}
-                        className={`fixed inset-0 h-svh z-30 backdrop-blur-sm sm:hidden ${isLight ? 'bg-background/20' : 'bg-black/40'
-                            }`}
+                        className="fixed inset-0 h-svh z-30 backdrop-blur-sm bg-black/40"
                         aria-hidden="true"
                     />
 
@@ -102,11 +86,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
                         animate={{ y: 0 }}
                         exit={{ y: "-100%" }}
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className={`fixed top-0 left-0 right-0 z-40 pb-10 shadow-2xl backdrop-blur-xl sm:hidden border-b transition-colors duration-300
-                            ${isLight
-                                ? 'bg-surface/98 border-background/10 text-background'
-                                : 'bg-background/98 border-surface/10 text-surface'
-                            }`}
+                        className="fixed top-0 left-0 right-0 z-40 pb-10 shadow-2xl backdrop-blur-[3vw] sm:hidden border-b border-surface/15 bg-background/55 text-white"
                     >
                         <nav className="flex flex-col pt-26 space-y-8 px-6">
                             {NAV_LINKS.map((link) => (
@@ -114,14 +94,14 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
                                     key={link.name}
                                     href={`#${link.href}`}
                                     onClick={toggleMenu}
-                                    className="flex items-center gap-5 text-lg font-medium hover:text-accent transition-colors"
+                                    className="flex items-center gap-5 text-lg font-medium hover:text-accent transition-colors text-white/90"
                                 >
                                     <link.icon className="w-6 h-6" aria-hidden="true" />
                                     {link.name}
                                 </a>
                             ))}
                             <div className="pt-4">
-                                <NavButton isLight={isLight} />
+                                <NavButton />
                             </div>
                         </nav>
                     </motion.div>
@@ -133,14 +113,13 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, theme }) => {
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const theme = useSectionTheme();
     const lenisRef = useLenis();
     const scrollToTop = useScrollToTop();
 
     const toggleMenu = () => setIsMenuOpen(prev => !prev)
 
     useEffect(() => {
-        const lenis = lenisRef?.current; //
+        const lenis = lenisRef?.current;
 
         if (isMenuOpen) {
             lenis?.stop();
@@ -155,9 +134,9 @@ export function Header() {
 
     return (
         <>
-            <DesktopNav theme={theme} scrollToTop={scrollToTop} />
-            <MobileNav toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} theme={theme} scrollToTop={scrollToTop} />
-            <MobileMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} theme={theme} />
+            <DesktopNav scrollToTop={scrollToTop} />
+            <MobileNav toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} scrollToTop={scrollToTop} />
+            <MobileMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
         </>
     )
 }
