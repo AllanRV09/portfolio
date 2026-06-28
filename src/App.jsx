@@ -4,7 +4,6 @@ import { Header } from "./sections/Header"
 import { Hero } from "./sections/Hero"
 import { Experience } from "./sections/Experience"
 import { Projects } from "./sections/Projects"
-import { PageIntro } from "./sections/PageIntro"
 import { Services } from "./sections/Services"
 import { ContactSection } from "./sections/ContactSection"
 import { Footer } from "./sections/Footer"
@@ -13,7 +12,6 @@ import { LenisProvider } from "./context/LenisProvider"
 function App() {
   return (
     <>
-      <PageIntro />
       <LenisProvider>
         <div className="min-h-svh bg-surface text-text selection:bg-accent selection:text-background mx-auto">
           <Header />
