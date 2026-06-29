@@ -16,7 +16,7 @@ const DesktopNav = ({ scrollToTop }) => {
             className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
         >
             <nav
-                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/15 bg-background/45 backdrop-blur-xl text-white shadow-lg"
+                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-accent/20 bg-background/82 backdrop-blur-xl text-white shadow-lg"
             >
                 <button onClick={scrollToTop} className='mx-auto pl-2' aria-label="Go to top">
                     <FiHome className='w-5 h-5 hover:text-accent transition-colors' />
@@ -44,9 +44,9 @@ const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: ENTRY_DELAY }}
-            className="fixed top-0 left-0 right-0 z-50 sm:hidden w-full border-b border-surface/15 bg-background/45 backdrop-blur-xl text-white shadow-lg"
+            className="fixed top-4 left-5 right-5 z-50 sm:hidden "
         >
-            <div className="flex items-center justify-between px-6 py-6">
+            <div className="flex items-center justify-between px-5 py-5 rounded-2xl border border-accent/20 bg-background/82 backdrop-blur-xl text-white shadow-lg">
                 <button onClick={scrollToTop} aria-label="Go to top">
                     <FiHome className="w-6 h-6 hover:text-accent transition-colors" />
                 </button>
@@ -65,22 +65,22 @@ const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
             </div>
         </motion.header>
     );
-}
+};
 
 const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
     return (
         <AnimatePresence>
             {isMenuOpen && (
                 <motion.div
-                    initial={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
-                    animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
-                    exit={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+                    initial={{ clipPath: `circle(0% at calc(100% - 3.25rem) 2.75rem)` }}
+                    animate={{ clipPath: "circle(150% at 50% 50%)" }}
+                    exit={{ clipPath: `circle(0% at calc(100% - 3.25rem) 2.75rem)` }}
                     transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                     className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-background text-white"
                 >
                     <button
                         onClick={toggleMenu}
-                        className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white hover:text-accent transition-colors"
+                        className="absolute top-7 right-8 w-10 h-10 flex items-center justify-center text-white hover:text-accent transition-colors"
                         aria-label="Close menu"
                     >
                         <RxCross2 className="w-7 h-7" />
