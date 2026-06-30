@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SOCIAL_LINKS, HERO_TIMING, EASE_OUT } from '../data';
 import { AnimatedTitle } from "../components/Title";
@@ -24,6 +24,21 @@ export function Hero() {
     const y = useTransform(scrollY, [0, 500], [0, 25]);
 
     const isDesktop = useMediaQuery(GLOBE_BREAKPOINT);
+    const [readyForGlobe, setReadyForGlobe] = useState(false);
+
+    useEffect(() => {
+        if (!isDesktop) return;
+
+        const trigger = () => setReadyForGlobe(true);
+
+        if ("requestIdleCallback" in window) {
+            const id = window.requestIdleCallback(trigger, { timeout: 1500 });
+            return () => window.cancelIdleCallback(id);
+        }
+
+        const id = setTimeout(trigger, 300);
+        return () => clearTimeout(id);
+    }, [isDesktop]);
 
     return (
         <section
@@ -106,7 +121,7 @@ export function Hero() {
                     </div>
                 </div>
 
-                {isDesktop && (
+                {isDesktop && readyForGlobe && (
                     <Suspense fallback={<GlobeFallback />}>
                         <Globe />
                     </Suspense>
