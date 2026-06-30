@@ -1,7 +1,7 @@
 import { FiArrowUp } from "react-icons/fi";
 import { NAV_LINKS, SOCIAL_LINKS, STACK_ITEMS } from "../data";
 import { useScrollToTop } from "../hooks/useScrollToTop";
-import { useLocalTime } from "../hooks/useLocalTime";
+import { LocalTimeDisplay } from "../components/LocalTimeDisplay";
 
 const FooterColumn = ({ title, children }) => (
     <div className="flex flex-col gap-4">
@@ -26,7 +26,6 @@ const FooterLink = ({ href, children, ...props }) => (
 );
 
 export function Footer() {
-    const localTime = useLocalTime();
     const scrollToTop = useScrollToTop();
 
     return (
@@ -67,9 +66,7 @@ export function Footer() {
                                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                             </span>
-                            <span className="text-sm lg:text-lg text-background/60 font-mono tabular-nums">
-                                {localTime}
-                            </span>
+                            <LocalTimeDisplay />
                         </div>
 
                         <span className="text-sm lg:text-lg text-background/60">
