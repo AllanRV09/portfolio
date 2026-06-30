@@ -119,13 +119,13 @@ export const ENTRY_DELAY = 0.1;
 
 export const HERO_TIMING = {
     background: 0,
-    nav: 0.05,
-    badge: 0.15,
-    title: 0.35,
-    globe: 0.5,
-    status: 0.85,
-    description: 1.0,
-    socials: 1.2,
+    nav: 0.02,
+    badge: 0.05,
+    title: 0.12,
+    globe: 0.2,
+    status: 0.3,
+    description: 0.35,
+    socials: 0.45,
 };
 
 export const EASE_OUT = [0.33, 1, 0.68, 1];
