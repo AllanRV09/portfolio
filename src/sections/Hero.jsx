@@ -1,14 +1,29 @@
+import { lazy, Suspense } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SOCIAL_LINKS, HERO_TIMING, EASE_OUT } from '../data';
 import { AnimatedTitle } from "../components/Title";
 import { HeroBackground } from "../components/HeroBackground";
-import { Globe } from "../components/Globe";
+import { useMediaQuery } from "../hooks/useMediaQuery";
+
+const Globe = lazy(() => import("../components/Globe").then((m) => ({ default: m.Globe })));
+
+const GLOBE_BREAKPOINT = "(min-width: 1024px)";
+
+function GlobeFallback() {
+    return (
+        <div className="flex flex-col items-center justify-center">
+            <div style={{ width: '100%', maxWidth: 700, aspectRatio: 1, margin: '0 auto' }} />
+        </div>
+    );
+}
 
 export function Hero() {
     const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 600], [1, 0]);
     const scale = useTransform(scrollY, [0, 500], [1, 0.9]);
     const y = useTransform(scrollY, [0, 500], [0, 25]);
+
+    const isDesktop = useMediaQuery(GLOBE_BREAKPOINT);
 
     return (
         <section
@@ -91,7 +106,11 @@ export function Hero() {
                     </div>
                 </div>
 
-                <Globe />
+                {isDesktop && (
+                    <Suspense fallback={<GlobeFallback />}>
+                        <Globe />
+                    </Suspense>
+                )}
             </motion.div>
         </section>
     );
