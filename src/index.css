@@ -20,7 +20,7 @@
 }
 
 @utility container-main {
-    @apply w-full max-w-[76rem] mx-auto px-[clamp(1.25rem, 4vw, 2.5rem)];
+    @apply w-full max-w-[76rem] mx-auto px-[clamp(1.25rem,4vw,2.5rem)];
 }
 
 html.lenis,
