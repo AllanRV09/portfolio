@@ -111,7 +111,7 @@ export function Globe() {
         theta: 0.2,
         dark: 1,
         diffuse: 1.2,
-        mapSamples: 12000,
+        mapSamples: 8000,
         mapBrightness: 6,
         baseColor: [0.6, 0.4, 0.2],
         markerColor: [0.85, 0.55, 0.25],
@@ -160,7 +160,7 @@ export function Globe() {
       variants={GLOBE_VARIANTS}
       initial="hidden"
       animate="visible"
-      className="hidden lg:flex flex-col items-center justify-center will-change-transform"
+      className="hidden lg:flex flex-col items-center justify-center"
     >
       <div style={{
         width: '100%',
