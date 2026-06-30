@@ -61,13 +61,7 @@ export function Footer() {
                             Local time
                         </h4>
 
-                        <div className="flex items-center gap-2">
-                            <span className="relative inline-flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-                            </span>
-                            <LocalTimeDisplay />
-                        </div>
+                        <LocalTimeDisplay />
 
                         <span className="text-sm lg:text-lg text-background/60">
                             Costa Rica
