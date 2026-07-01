@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 import { useSpring } from "@react-spring/web";
 import { motion } from "framer-motion";
-import { HERO_TIMING, EASE_OUT } from "../data";
+import { HERO_TIMING, EASE_OUT } from "../data/data";
 
 const GLOBE_VARIANTS = {
   hidden: { opacity: 0, y: 40 },
@@ -44,7 +44,6 @@ export function Globe() {
 
     let globe;
     let rafId;
-    let resizeTimeout;
     let isVisible = false;
     let isPageVisible = document.visibilityState === "visible";
     let loopRunning = false;
@@ -54,77 +53,51 @@ export function Globe() {
       loopRunning = true;
       rafId = requestAnimationFrame(animate);
     };
-
     const stopLoop = () => {
       loopRunning = false;
       cancelAnimationFrame(rafId);
     };
-
     const checkShouldRun = () => {
-      if (isVisible && isPageVisible) {
-        startLoop();
-      } else {
-        stopLoop();
-      }
+      if (isVisible && isPageVisible) startLoop();
+      else stopLoop();
     };
-
     const animate = () => {
       if (!loopRunning) return;
-
-      if (!pointerInteracting.current) {
-        phiRef.current += 0.0045;
-      }
+      if (!pointerInteracting.current) phiRef.current += 0.0045;
       if (globe) {
-        globe.update({
-          phi: phiRef.current + r.get(),
-          theta: thetaRef.current + t.get(),
-        });
+        globe.update({ phi: phiRef.current + r.get(), theta: thetaRef.current + t.get() });
       }
-
       rafId = requestAnimationFrame(animate);
     };
 
-    const getSize = () => {
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      return canvasRef.current.offsetWidth * dpr;
-    };
+      const size = Math.round(entry.contentRect.width * dpr);
 
-    const onResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        if (globe && canvasRef.current) {
-          const size = getSize();
-          globe.update({ width: size, height: size });
-        }
-      }, 150);
-    };
+      if (!globe) {
+        globe = createGlobe(canvasRef.current, {
+          devicePixelRatio: dpr,
+          width: size,
+          height: size,
+          phi: 0,
+          theta: 0.2,
+          dark: 1,
+          diffuse: 1.2,
+          mapSamples: 6000,
+          mapBrightness: 6,
+          baseColor: [0.6, 0.4, 0.2],
+          markerColor: [0.85, 0.55, 0.25],
+          glowColor: [0.6, 0.4, 0.2],
+          markers: MARKERS.map((m) => ({ location: m.location, size: 0.06, id: m.id })),
+        });
+      } else {
+        globe.update({ width: size, height: size });
+      }
+    });
 
-    if (canvasRef.current) {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const initialSize = getSize();
-
-      globe = createGlobe(canvasRef.current, {
-        devicePixelRatio: dpr,
-        width: initialSize,
-        height: initialSize,
-        phi: 0,
-        theta: 0.2,
-        dark: 1,
-        diffuse: 1.2,
-        mapSamples: 6000,
-        mapBrightness: 6,
-        baseColor: [0.6, 0.4, 0.2],
-        markerColor: [0.85, 0.55, 0.25],
-        glowColor: [0.6, 0.4, 0.2],
-        markers: MARKERS.map((m) => ({
-          location: m.location,
-          size: 0.06,
-          id: m.id,
-        })),
-      });
-    }
-
-    window.addEventListener("resize", onResize);
+    if (canvasRef.current) resizeObserver.observe(canvasRef.current);
 
     const handleVisibilityChange = () => {
       isPageVisible = document.visibilityState === "visible";
@@ -134,23 +107,19 @@ export function Globe() {
 
     let observer;
     if (wrapperRef.current && "IntersectionObserver" in window) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          isVisible = entry.isIntersecting;
-          checkShouldRun();
-        },
-        { threshold: 0 }
-      );
+      observer = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        checkShouldRun();
+      }, { threshold: 0 });
       observer.observe(wrapperRef.current);
     }
 
     return () => {
       stopLoop();
       if (globe) globe.destroy();
-      window.removeEventListener("resize", onResize);
+      resizeObserver.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (observer) observer.disconnect();
-      clearTimeout(resizeTimeout);
     };
   }, [r, t]);
 
