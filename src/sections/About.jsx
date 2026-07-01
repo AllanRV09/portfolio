@@ -1,7 +1,7 @@
 import { SectionTitle } from "../components/SectionTitle";
 import { SectionLayout } from "../components/SectionLayout";
 import { SectionDescription } from "../components/SectionDescription";
-import { ABOUT_DATA } from "../data"
+import { ABOUT_DATA } from "../data/data"
 
 export function About() {
     const { index, label, title, paragraphs } = ABOUT_DATA;

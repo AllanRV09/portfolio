@@ -1,7 +1,7 @@
 import { ExperienceItem } from "../components/ExperienceItem";
 import { SectionLayout } from "../components/SectionLayout.jsx";
 import { SectionTitle } from "../components/SectionTitle";
-import { EXPERIENCES, EXPERIENCE_DATA } from "../data.js"
+import { EXPERIENCES, EXPERIENCE_DATA } from "../data/experience-data.js"
 
 export function Experience() {
     const { index, label, title } = EXPERIENCE_DATA;

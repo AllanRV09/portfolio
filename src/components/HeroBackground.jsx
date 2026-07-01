@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { HERO_TIMING } from "../data";
+import { HERO_TIMING } from "../data/data";
 
 export const HeroBackground = memo(function HeroBackground() {
     return (

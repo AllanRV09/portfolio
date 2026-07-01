@@ -2,7 +2,7 @@ import { ProjectItem } from "../components/ProjectItem";
 import { SectionLayout } from "../components/SectionLayout";
 import { SectionTitle } from "../components/SectionTitle";
 import { ProjectCTA } from "../components/ProjectCTA";
-import { PROJECTS, PROJECTS_DATA } from "../data";
+import { PROJECTS, PROJECTS_DATA } from "../data/projects-data";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 

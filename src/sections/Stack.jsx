@@ -1,7 +1,7 @@
 import { SectionTitle } from "../components/SectionTitle";
 import { SectionLayout } from "../components/SectionLayout";
 import { SectionDescription } from "../components/SectionDescription";
-import { STACK, STACK_DATA } from "../data";
+import { STACK, STACK_DATA } from "../data/stack-data";
 import { motion } from "framer-motion";
 
 export function Stack() {

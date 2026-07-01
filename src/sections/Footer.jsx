@@ -1,5 +1,5 @@
 import { FiArrowUp } from "react-icons/fi";
-import { NAV_LINKS, SOCIAL_LINKS, STACK_ITEMS } from "../data";
+import { NAV_LINKS, SOCIAL_LINKS, STACK_ITEMS } from "../data/data";
 import { useScrollToTop } from "../hooks/useScrollToTop";
 import { LocalTimeDisplay } from "../components/LocalTimeDisplay";
 

@@ -1,7 +1,7 @@
 import { SectionTitle } from "../components/SectionTitle";
 import { SectionLayout } from "../components/SectionLayout";
 import { SectionDescription } from "../components/SectionDescription";
-import { SERVICES, SERVICES_DATA } from "../data.js";
+import { SERVICES, SERVICES_DATA } from "../data/data.js";
 import { ServiceCard } from "../components/ServiceCard.jsx";
 
 export function Services() {

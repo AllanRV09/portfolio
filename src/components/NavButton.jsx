@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from "../data";
+import { SOCIAL_LINKS } from "../data/data";
 
 export function NavButton() {
     const email = SOCIAL_LINKS.find(link => link.name === "Email")?.href.replace('mailto:', '') || '';

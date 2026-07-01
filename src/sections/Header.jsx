@@ -2,7 +2,7 @@ import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from 'react';
 import { NavButton } from '../components/NavButton';
-import { NAV_LINKS, ENTRY_DELAY } from "../data";
+import { NAV_LINKS, ENTRY_DELAY } from "../data/data";
 import { motion, AnimatePresence } from "framer-motion"
 import { useLenis } from "../hooks/useLenis";
 import { useScrollToTop } from "../hooks/useScrollToTop";
