@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { SOCIAL_LINKS, HERO_TIMING, EASE_OUT } from '../data';
+import { SOCIAL_LINKS, HERO_TIMING, EASE_OUT } from '../data/data';
 import { AnimatedTitle } from "../components/Title";
 import { HeroBackground } from "../components/HeroBackground";
 import { useMediaQuery } from "../hooks/useMediaQuery";
@@ -29,14 +29,7 @@ export function Hero() {
     useEffect(() => {
         if (!isDesktop) return;
 
-        const trigger = () => setReadyForGlobe(true);
-
-        if ("requestIdleCallback" in window) {
-            const id = window.requestIdleCallback(trigger, { timeout: 1500 });
-            return () => window.cancelIdleCallback(id);
-        }
-
-        const id = setTimeout(trigger, 300);
+        const id = setTimeout(() => setReadyForGlobe(true), 750);
         return () => clearTimeout(id);
     }, [isDesktop]);
 
