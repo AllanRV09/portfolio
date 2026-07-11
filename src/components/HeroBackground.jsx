@@ -12,20 +12,10 @@ export const HeroBackground = memo(function HeroBackground() {
                 className="absolute inset-0 opacity-60"
                 style={{
                     backgroundImage: `
-                        linear-gradient(to right, rgba(14, 14, 14, 0.08) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(14,14,14,0.08) 1px, transparent 1px)
+                        linear-gradient(to right, rgba(14, 14, 14, 0.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(14,14,14,0.04) 1px, transparent 1px)
                     `,
                     backgroundSize: "80px 80px",
-                    maskImage: `
-                        repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 8px),
-                        repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 8px)
-                    `,
-                    WebkitMaskImage: `
-                        repeating-linear-gradient(to right, black 0px, black 2px, transparent 2px, transparent 8px),
-                        repeating-linear-gradient(to bottom, black 0px, black 2px, transparent 2px, transparent 8px)
-                    `,
-                    maskComposite: "intersect",
-                    WebkitMaskComposite: "source-in",
                 }}
             />
         </div>
