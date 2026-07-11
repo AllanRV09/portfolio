@@ -1,37 +1,12 @@
-import { lazy, Suspense, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SOCIAL_LINKS, HERO_TIMING, EASE_OUT } from '../data/data';
-import { AnimatedTitle } from "../components/Title";
 import { HeroBackground } from "../components/HeroBackground";
-import { useMediaQuery } from "../hooks/useMediaQuery";
-
-const Globe = lazy(() => import("../components/Globe").then((m) => ({ default: m.Globe })));
-
-const GLOBE_BREAKPOINT = "(min-width: 1024px)";
-
-function GlobeFallback() {
-    return (
-        <div className="flex flex-col items-center justify-center">
-            <div style={{ width: '100%', maxWidth: 700, aspectRatio: 1, margin: '0 auto' }} />
-        </div>
-    );
-}
 
 export function Hero() {
     const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 600], [1, 0]);
     const scale = useTransform(scrollY, [0, 500], [1, 0.9]);
     const y = useTransform(scrollY, [0, 500], [0, 25]);
-
-    const isDesktop = useMediaQuery(GLOBE_BREAKPOINT);
-    const [readyForGlobe, setReadyForGlobe] = useState(false);
-
-    useEffect(() => {
-        if (!isDesktop) return;
-
-        const id = setTimeout(() => setReadyForGlobe(true), 750);
-        return () => clearTimeout(id);
-    }, [isDesktop]);
 
     return (
         <section
@@ -43,7 +18,7 @@ export function Hero() {
 
             <motion.div
                 style={{ opacity, scale, y }}
-                className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 relative z-10"
+                className="grid w-full items-center gap-12 relative z-10"
             >
                 <div className="relative z-20">
 
@@ -59,7 +34,19 @@ export function Hero() {
                     </motion.div>
 
                     <div className="mt-6">
-                        <AnimatedTitle text={`Allan\nRodriguez`} delay={HERO_TIMING.title} />
+                        <motion.h1
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: HERO_TIMING.title, ease: EASE_OUT }}
+                            className="font-display font-bold leading-[0.85] mb-8 text-[clamp(2.5rem,6vw,8em)]">
+                            <span className="block">
+                                <span>ALLAN</span>
+                            </span>
+
+                            <span className="block">
+                                <span>RODRIGUEZ</span>
+                            </span>
+                        </motion.h1>
                     </div>
 
                     <div className="mt-10 sm:mt-12">
@@ -107,18 +94,12 @@ export function Hero() {
                                         ease: EASE_OUT,
                                     }}
                                 >
-                                    <link.icon className="w-6 h-6" aria-hidden="true" />
+                                    <link.icon className="w-7 h-7" aria-hidden="true" />
                                 </motion.a>
                             ))}
                         </div>
                     </div>
                 </div>
-
-                {isDesktop && readyForGlobe && (
-                    <Suspense fallback={<GlobeFallback />}>
-                        <Globe />
-                    </Suspense>
-                )}
             </motion.div>
         </section>
     );
