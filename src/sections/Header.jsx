@@ -16,7 +16,7 @@ const DesktopNav = ({ scrollToTop }) => {
             className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
         >
             <nav
-                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/15 bg-background/82 backdrop-blur-xl text-white shadow-lg"
+                className="flex items-center gap-3 pl-4 p-2 rounded-2xl border border-surface/15 bg-background text-surface shadow-lg"
             >
                 <button onClick={scrollToTop} className='mx-auto pl-2' aria-label="Go to top">
                     <FiHome className='w-5 h-5 hover:text-accent transition-colors' />
@@ -25,7 +25,7 @@ const DesktopNav = ({ scrollToTop }) => {
                 <div className='flex items-center sm:gap-4 md:gap-8'>
                     {
                         NAV_LINKS.map((link) => (
-                            <a href={`#${link.href}`} key={link.name} className="whitespace-nowrap text-sm hover:text-accent transition-colors tracking-wide text-white">
+                            <a href={`#${link.href}`} key={link.name} className="whitespace-nowrap text-sm hover:text-accent transition-colors tracking-wide text-surface">
                                 {link.name}
                             </a>
                         ))
@@ -46,7 +46,7 @@ const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
             transition={{ duration: 0.6, delay: ENTRY_DELAY }}
             className="fixed top-4 left-5 right-5 z-50 sm:hidden "
         >
-            <div className="flex items-center justify-between px-5 py-5 rounded-2xl border border-surface/15 bg-background/82 backdrop-blur-xl text-white shadow-lg">
+            <div className="flex items-center justify-between px-5 py-5 rounded-2xl border border-surface/15 bg-background text-surface shadow-lg">
                 <button onClick={scrollToTop} aria-label="Go to top">
                     <FiHome className="w-6 h-6 hover:text-accent transition-colors" />
                 </button>
@@ -76,11 +76,11 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
                     animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
                     exit={{ clipPath: `circle(0% at calc(100% - 3.25rem) 2.75rem)` }}
                     transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-                    className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-background text-white"
+                    className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-background text-surface"
                 >
                     <button
                         onClick={toggleMenu}
-                        className="absolute top-7 right-8 w-10 h-10 flex items-center justify-center text-white hover:text-accent transition-colors"
+                        className="absolute top-7 right-8 w-10 h-10 flex items-center justify-center text-surface hover:text-accent transition-colors"
                         aria-label="Close menu"
                     >
                         <RxCross2 className="w-7 h-7" />
