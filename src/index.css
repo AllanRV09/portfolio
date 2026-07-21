@@ -9,9 +9,9 @@
 }
 
 @font-face {
-    font-family: "ClashDisplay";
-    src: url("../public/fonts/ClashDisplay-Variable.woff2") format("woff2");
-    font-weight: 100 900;
+    font-family: "MangoGrotesque";
+    src: url("../public/fonts/MangoGrotesque-ExtraBold.woff2") format("woff2");
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
@@ -33,7 +33,7 @@
     --color-muted: #171717;
 
     --font-sans: "Montserrat", sans-serif;
-    --font-display: "ClashDisplay", sans-serif;
+    --font-hero: "MangoGrotesque", "Arial Narrow", sans-serif;
 }
 
 @utility container-main {
