@@ -1,7 +1,4 @@
-import {
-    motion,
-    useReducedMotion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 import {
     LuArrowDownRight,
@@ -91,8 +88,6 @@ function ScrollHint({ className = "" }) {
 }
 
 export function Hero() {
-    const shouldReduceMotion = useReducedMotion();
-
     return (
         <section
             id="hero"
@@ -115,7 +110,7 @@ export function Hero() {
             <HeroBackground />
 
             <motion.div
-                initial={shouldReduceMotion ? false : "hidden"}
+                initial="hidden"
                 animate="visible"
                 variants={containerVariants}
                 className="relative z-10 w-full min-w-0"
