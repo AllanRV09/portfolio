@@ -105,7 +105,10 @@ export function HeroTitle() {
                             text-[100px]
                         "
                     >
-                        {HERO_NAME}
+                        <RollingText
+                            text={HERO_NAME}
+                            disabled
+                        />
                     </span>
                 </h1>
             </motion.div>

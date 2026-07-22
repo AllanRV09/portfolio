@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
     animate,
     motion,
@@ -13,10 +13,19 @@ const ROLLING_DURATION = 0.9;
 function RollingLetter({ character, disabled = false }) {
     const letterRef = useRef(null);
     const animationRunRef = useRef(0);
+    const animationControlsRef = useRef(null);
 
     const x = useMotionValue(0);
 
-    const startAnimation = async () => {
+    useEffect(() => {
+        return () => {
+            animationRunRef.current += 1;
+            animationControlsRef.current?.stop();
+            animationControlsRef.current = null;
+        };
+    }, []);
+
+    const startAnimation = () => {
         const letter = letterRef.current;
 
         if (disabled || !letter) return;
@@ -24,6 +33,8 @@ function RollingLetter({ character, disabled = false }) {
         animationRunRef.current += 1;
         const currentRun = animationRunRef.current;
 
+        animationControlsRef.current?.stop();
+        animationControlsRef.current = null;
         x.jump(0);
 
         const letterWidth =
@@ -44,14 +55,16 @@ function RollingLetter({ character, disabled = false }) {
         const rollingDistance =
             letterWidth + fontSize * ROLLING_GAP;
 
-        await animate(x, -rollingDistance, {
+        animationControlsRef.current = animate(x, -rollingDistance, {
             duration: ROLLING_DURATION,
             ease: EASE_OUT,
+            onComplete: () => {
+                if (currentRun !== animationRunRef.current) return;
+
+                animationControlsRef.current = null;
+                x.jump(0);
+            },
         });
-
-        if (currentRun !== animationRunRef.current) return;
-
-        x.jump(0);
     };
 
     return (

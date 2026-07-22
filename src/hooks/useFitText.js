@@ -38,6 +38,8 @@ export function useFitText({
         };
 
         const scheduleFit = () => {
+            if (isDisposed) return;
+
             cancelAnimationFrame(animationFrameId);
 
             animationFrameId =
