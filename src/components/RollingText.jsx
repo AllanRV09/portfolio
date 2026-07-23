@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     animate,
     motion,
@@ -9,6 +9,7 @@ const EASE_OUT = [0.22, 1, 0.36, 1];
 
 const ROLLING_GAP = 0.14;
 const ROLLING_DURATION = 0.9;
+const RESET_DELAY = 100;
 
 function RollingLetter({ character, disabled = false }) {
     const letterRef = useRef(null);
@@ -20,10 +21,13 @@ function RollingLetter({ character, disabled = false }) {
     useEffect(() => {
         return () => {
             animationRunRef.current += 1;
+
             animationControlsRef.current?.stop();
             animationControlsRef.current = null;
+
+            x.jump(0);
         };
-    }, []);
+    }, [x]);
 
     const startAnimation = () => {
         const letter = letterRef.current;
@@ -35,6 +39,7 @@ function RollingLetter({ character, disabled = false }) {
 
         animationControlsRef.current?.stop();
         animationControlsRef.current = null;
+
         x.jump(0);
 
         const letterWidth =
@@ -55,16 +60,26 @@ function RollingLetter({ character, disabled = false }) {
         const rollingDistance =
             letterWidth + fontSize * ROLLING_GAP;
 
-        animationControlsRef.current = animate(x, -rollingDistance, {
-            duration: ROLLING_DURATION,
-            ease: EASE_OUT,
-            onComplete: () => {
-                if (currentRun !== animationRunRef.current) return;
+        animationControlsRef.current = animate(
+            x,
+            -rollingDistance,
+            {
+                duration: ROLLING_DURATION,
+                ease: EASE_OUT,
+                onComplete: () => {
+                    if (
+                        currentRun !==
+                        animationRunRef.current
+                    ) {
+                        return;
+                    }
 
-                animationControlsRef.current = null;
-                x.jump(0);
+                    animationControlsRef.current = null;
+
+                    x.jump(0);
+                },
             },
-        });
+        );
     };
 
     return (
@@ -93,10 +108,7 @@ function RollingLetter({ character, disabled = false }) {
             >
                 <motion.span
                     style={{ x }}
-                    className="
-                        relative block
-                        [will-change:transform]
-                    "
+                    className="relative block"
                 >
                     <span className="block">
                         {character}
@@ -125,31 +137,110 @@ export function RollingText({
     text,
     disabled = false,
 }) {
-    return (
-        <span aria-hidden="true">
-            {Array.from(text).map((character, index) => {
-                if (character === " ") {
-                    return (
-                        <span
-                            key={`space-${index}`}
-                            aria-hidden="true"
-                            className="
-                                inline-block whitespace-pre
-                            "
-                        >
-                            {"\u00A0"}
-                        </span>
-                    );
-                }
+    const [resetVersion, setResetVersion] = useState(0);
 
-                return (
-                    <RollingLetter
-                        key={`${character}-${index}`}
-                        character={character}
-                        disabled={disabled}
-                    />
+    useEffect(() => {
+        if (disabled) {
+            return undefined;
+        }
+
+        let resetTimeoutId;
+        let resolutionMediaQuery;
+
+        const rebuildLetters = () => {
+            window.clearTimeout(resetTimeoutId);
+
+            resetTimeoutId = window.setTimeout(() => {
+                setResetVersion(
+                    (currentVersion) =>
+                        currentVersion + 1,
                 );
-            })}
+            }, RESET_DELAY);
+        };
+
+        const watchCurrentResolution = () => {
+            resolutionMediaQuery?.removeEventListener(
+                "change",
+                handleResolutionChange,
+            );
+
+            resolutionMediaQuery = window.matchMedia(
+                `(resolution: ${window.devicePixelRatio}dppx)`,
+            );
+
+            resolutionMediaQuery.addEventListener(
+                "change",
+                handleResolutionChange,
+            );
+        };
+
+        function handleResolutionChange() {
+            watchCurrentResolution();
+            rebuildLetters();
+        }
+
+        watchCurrentResolution();
+
+        window.addEventListener(
+            "resize",
+            rebuildLetters,
+        );
+
+        window.visualViewport?.addEventListener(
+            "resize",
+            rebuildLetters,
+        );
+
+        return () => {
+            window.clearTimeout(resetTimeoutId);
+
+            window.removeEventListener(
+                "resize",
+                rebuildLetters,
+            );
+
+            window.visualViewport?.removeEventListener(
+                "resize",
+                rebuildLetters,
+            );
+
+            resolutionMediaQuery?.removeEventListener(
+                "change",
+                handleResolutionChange,
+            );
+        };
+    }, [disabled]);
+
+    return (
+        <span
+            key={resetVersion}
+            aria-hidden="true"
+        >
+            {Array.from(text).map(
+                (character, index) => {
+                    if (character === " ") {
+                        return (
+                            <span
+                                key={`space-${index}`}
+                                aria-hidden="true"
+                                className="
+                                    inline-block whitespace-pre
+                                "
+                            >
+                                {"\u00A0"}
+                            </span>
+                        );
+                    }
+
+                    return (
+                        <RollingLetter
+                            key={`${character}-${index}`}
+                            character={character}
+                            disabled={disabled}
+                        />
+                    );
+                },
+            )}
         </span>
     );
 }
