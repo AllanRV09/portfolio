@@ -7,19 +7,18 @@ import { RollingText } from "./RollingText";
 const HERO_NAME = "Allan Rodriguez";
 const MEASUREMENT_FONT_SIZE = 100;
 
-const EASE_OUT = [0.22, 1, 0.36, 1];
+const SMOOTH_EASE = [0.16, 1, 0.3, 1];
 
-const titleVariants = {
+const titleRiseVariants = {
     hidden: {
-        opacity: 0,
-        y: 80,
+        y: "132%",
     },
     visible: {
-        opacity: 1,
-        y: 0,
+        y: "0%",
         transition: {
-            duration: 1,
-            ease: EASE_OUT,
+            delay: 0.3,
+            duration: 1.3,
+            ease: SMOOTH_EASE,
         },
     },
 };
@@ -41,9 +40,9 @@ export function HeroTitle() {
 
     return (
         <>
-            <motion.h1
-                variants={titleVariants}
+            <h1
                 className="
+                    flex flex-col gap-[0.08em]
                     font-hero
                     text-[clamp(5.75rem,24vw,7.5rem)]
                     font-extrabold uppercase
@@ -55,18 +54,37 @@ export function HeroTitle() {
                     md:hidden
                 "
             >
-                <span className="block">
-                    Allan
+                <span
+                    className="
+                        -my-[0.18em] block
+                        overflow-y-clip py-[0.18em]
+                    "
+                >
+                    <motion.span
+                        variants={titleRiseVariants}
+                        className="block"
+                    >
+                        Allan
+                    </motion.span>
                 </span>
 
-                <span className="mt-[0.08em] block">
-                    Rodriguez
+                <span
+                    className="
+                        -my-[0.18em] block
+                        overflow-y-clip py-[0.18em]
+                    "
+                >
+                    <motion.span
+                        variants={titleRiseVariants}
+                        className="block"
+                    >
+                        Rodriguez
+                    </motion.span>
                 </span>
-            </motion.h1>
+            </h1>
 
-            <motion.div
+            <div
                 ref={nameFrameRef}
-                variants={titleVariants}
                 className="
                     hidden
                     w-full min-w-0
@@ -87,11 +105,18 @@ export function HeroTitle() {
                     <span
                         ref={nameRef}
                         className="
+                            -my-[0.18em] py-[0.18em]
                             inline-block flex-none
+                            overflow-y-clip
                             text-[18vw]
                         "
                     >
-                        <RollingText text={HERO_NAME} />
+                        <motion.span
+                            variants={titleRiseVariants}
+                            className="block"
+                        >
+                            <RollingText text={HERO_NAME} />
+                        </motion.span>
                     </span>
 
                     <span
@@ -111,7 +136,7 @@ export function HeroTitle() {
                         />
                     </span>
                 </h1>
-            </motion.div>
+            </div>
         </>
     );
 }

@@ -10,31 +10,63 @@ import {
 import { HeroBackground } from "../components/HeroBackground";
 import { HeroTitle } from "../components/HeroTitle";
 
-const EASE_OUT = [0.22, 1, 0.36, 1];
+const SMOOTH_EASE = [0.16, 1, 0.3, 1];
+const REST_REVEAL_DELAY = 0.6;
+const REVEAL_STEP_DELAY = 0.12;
 
-const containerVariants = {
-    hidden: {},
-    visible: {
-        transition: {
-            delayChildren: 0.15,
-            staggerChildren: 0.12,
-        },
-    },
+const REVEAL_DELAYS = {
+    eyebrow: REST_REVEAL_DELAY,
+    description: REST_REVEAL_DELAY + REVEAL_STEP_DELAY,
+    scrollHint: REST_REVEAL_DELAY + REVEAL_STEP_DELAY * 2,
+    status: REST_REVEAL_DELAY + REVEAL_STEP_DELAY * 3,
 };
 
-const itemVariants = {
+const getSmoothTransition = (delay, duration) => ({
+    delay,
+    duration,
+    ease: SMOOTH_EASE,
+});
+
+const revealRiseVariants = {
+    hidden: {
+        y: "115%",
+    },
+    visible: (delay = REST_REVEAL_DELAY) => ({
+        y: "0%",
+        transition: getSmoothTransition(delay, 1.1),
+    }),
+};
+
+const fadeVariants = {
     hidden: {
         opacity: 0,
-        y: 48,
     },
-    visible: {
+    visible: (delay = REST_REVEAL_DELAY) => ({
+        opacity: 1,
+        transition: getSmoothTransition(delay, 0.8),
+    }),
+};
+
+const curtainRevealVariants = {
+    hidden: {
+        clipPath: "inset(0 100% 0 0 round 9999px)",
+    },
+    visible: (delay = REST_REVEAL_DELAY) => ({
+        clipPath: "inset(0 0% 0 0 round 9999px)",
+        transition: getSmoothTransition(delay, 0.95),
+    }),
+};
+
+const mobilePillVariants = {
+    hidden: {
+        opacity: 0,
+        y: 10,
+    },
+    visible: (delay = REST_REVEAL_DELAY) => ({
         opacity: 1,
         y: 0,
-        transition: {
-            duration: 0.8,
-            ease: EASE_OUT,
-        },
-    },
+        transition: getSmoothTransition(delay, 0.8),
+    }),
 };
 
 const STATUS_ITEMS = [
@@ -67,10 +99,44 @@ function StatusPill({ icon: Icon, lines }) {
     );
 }
 
-function ScrollHint({ className = "" }) {
+function Reveal({
+    children,
+    delay = REST_REVEAL_DELAY,
+    className = "",
+}) {
+    return (
+        <div className={`overflow-y-clip ${className}`}>
+            <motion.div
+                variants={revealRiseVariants}
+                custom={delay}
+            >
+                {children}
+            </motion.div>
+        </div>
+    );
+}
+
+function StatusPillGroup({ variants, className }) {
+    return (
+        <div className={className}>
+            {STATUS_ITEMS.map((item) => (
+                <motion.div
+                    key={item.lines.join("-")}
+                    variants={variants}
+                    custom={REVEAL_DELAYS.status}
+                >
+                    <StatusPill {...item} />
+                </motion.div>
+            ))}
+        </div>
+    );
+}
+
+function ScrollHint({ delay = REST_REVEAL_DELAY, className = "" }) {
     return (
         <motion.a
-            variants={itemVariants}
+            variants={fadeVariants}
+            custom={delay}
             href="#about"
             aria-label="Scroll down to the about section"
             className={`flex flex-col items-center gap-1 text-text transition-opacity hover:opacity-60 ${className}`}
@@ -112,25 +178,29 @@ export function Hero() {
             <motion.div
                 initial="hidden"
                 animate="visible"
-                variants={containerVariants}
                 className="relative z-10 w-full min-w-0"
             >
-                <motion.p
-                    variants={itemVariants}
+                <Reveal
+                    delay={REVEAL_DELAYS.eyebrow}
                     className="
                         mb-3
-                        font-sans
-                        text-[0.625rem]
-                        font-semibold uppercase
-                        leading-none
-                        tracking-[0.18em]
-
                         md:mb-[clamp(1rem,2vw,2rem)]
-                        md:text-[clamp(0.625rem,0.85vw,0.8rem)]
                     "
                 >
-                    Full-Stack Developer
-                </motion.p>
+                    <p
+                        className="
+                            font-sans
+                            text-[0.625rem]
+                            font-semibold uppercase
+                            leading-none
+                            tracking-[0.18em]
+
+                            md:text-[clamp(0.625rem,0.85vw,0.8rem)]
+                        "
+                    >
+                        Full-Stack Developer
+                    </p>
+                </Reveal>
 
                 <HeroTitle />
 
@@ -149,53 +219,71 @@ export function Hero() {
                         md:gap-10
                     "
                 >
-                    <motion.div
-                        variants={itemVariants}
+                    <div
                         className="
                             max-w-[22rem]
                             sm:max-md:col-span-2
                         "
                     >
-                        <LuArrowDownRight
-                            aria-hidden="true"
+                        <motion.div
+                            variants={fadeVariants}
+                            custom={REVEAL_DELAYS.description}
                             className="
-                                hidden opacity-40
-                                md:mb-8 md:block md:size-10
-                                lg:size-12
-                            "
-                        />
-
-                        <p
-                            className="
-                                font-sans
-                                text-base
-                                leading-[1.35]
-                                tracking-[-0.025em]
-
-                                md:text-[clamp(1rem,1.35vw,1.35rem)]
+                                hidden
+                                md:mb-8 md:block
                             "
                         >
-                            Hi! I'm Allan. A Full-Stack Developer who
-                            loves turning complex problems into simple,
-                            well-crafted web experiences.
-                        </p>
-                    </motion.div>
-
-                    <ScrollHint className="hidden justify-self-center md:flex" />
-
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex w-full flex-col gap-3 sm:w-[26rem] sm:max-w-full sm:max-md:col-start-1 sm:max-md:row-start-2 md:w-[20rem] md:justify-self-end md:translate-x-[calc(var(--hero-x)+2rem)] lg:w-[22rem]"
-                    >
-                        {STATUS_ITEMS.map((item) => (
-                            <StatusPill
-                                key={item.lines.join("-")}
-                                {...item}
+                            <LuArrowDownRight
+                                aria-hidden="true"
+                                className="
+                                    opacity-40
+                                    md:size-10
+                                    lg:size-12
+                                "
                             />
-                        ))}
-                    </motion.div>
+                        </motion.div>
 
-                    <ScrollHint className="mt-2 sm:max-md:col-start-2 sm:max-md:row-start-2 sm:max-md:mt-0 sm:max-md:self-end sm:max-md:justify-self-end sm:max-md:pb-1 md:hidden" />
+                        <Reveal
+                            delay={REVEAL_DELAYS.description}
+                        >
+                            <p
+                                className="
+                                    font-sans
+                                    text-base
+                                    leading-[1.35]
+                                    tracking-[-0.025em]
+
+                                    md:text-[clamp(1rem,1.35vw,1.35rem)]
+                                "
+                            >
+                                Hi! I'm Allan. A Full-Stack Developer who
+                                loves turning complex problems into simple,
+                                well-crafted web experiences.
+                            </p>
+                        </Reveal>
+                    </div>
+
+                    <ScrollHint
+                        delay={REVEAL_DELAYS.scrollHint}
+                        className="hidden justify-self-center md:flex"
+                    />
+
+                    <div className="w-full sm:w-[26rem] sm:max-w-full sm:max-md:col-start-1 sm:max-md:row-start-2 md:w-[20rem] md:justify-self-end md:translate-x-[calc(var(--hero-x)+2rem)] lg:w-[22rem]">
+                        <StatusPillGroup
+                            variants={mobilePillVariants}
+                            className="flex flex-col gap-3 md:hidden"
+                        />
+
+                        <StatusPillGroup
+                            variants={curtainRevealVariants}
+                            className="hidden flex-col gap-3 md:flex"
+                        />
+                    </div>
+
+                    <ScrollHint
+                        delay={REVEAL_DELAYS.scrollHint}
+                        className="mt-2 sm:max-md:col-start-2 sm:max-md:row-start-2 sm:max-md:mt-0 sm:max-md:self-end sm:max-md:justify-self-end sm:max-md:pb-1 md:hidden"
+                    />
                 </div>
             </motion.div>
         </section>
