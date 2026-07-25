@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 import {
     LuArrowDownRight,
@@ -13,6 +14,7 @@ import { HeroTitle } from "../components/HeroTitle";
 const SMOOTH_EASE = [0.16, 1, 0.3, 1];
 const REST_REVEAL_DELAY = 0.6;
 const REVEAL_STEP_DELAY = 0.12;
+const EXIT_END = 0.65;
 
 const REVEAL_DELAYS = {
     eyebrow: REST_REVEAL_DELAY,
@@ -154,8 +156,41 @@ function ScrollHint({ delay = REST_REVEAL_DELAY, className = "" }) {
 }
 
 export function Hero() {
+    const sectionRef = useRef(null);
+
+    const { scrollY } = useScroll();
+    const exitProgress = useTransform(scrollY, (currentScroll) => {
+        const sectionHeight =
+            sectionRef.current?.offsetHeight ?? window.innerHeight;
+
+        return Math.min(Math.max(currentScroll / sectionHeight, 0), 1);
+    });
+
+    const exitY = useTransform(
+        exitProgress,
+        [0, EXIT_END],
+        [0, 56],
+    );
+    const exitOpacity = useTransform(
+        exitProgress,
+        [0, EXIT_END],
+        [1, 0],
+    );
+    const exitScale = useTransform(
+        exitProgress,
+        [0, EXIT_END],
+        [1, 0.96],
+    );
+
+    const exitStyles = {
+        y: exitY,
+        opacity: exitOpacity,
+        scale: exitScale,
+    };
+
     return (
         <section
+            ref={sectionRef}
             id="hero"
             className="
                 relative sticky top-0 z-0
@@ -178,6 +213,7 @@ export function Hero() {
             <motion.div
                 initial="hidden"
                 animate="visible"
+                style={exitStyles}
                 className="relative z-10 w-full min-w-0"
             >
                 <Reveal
