@@ -1,43 +1,96 @@
-import { IoLogoJavascript } from "react-icons/io5";
-import { FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
-import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
-import { TbBrandFramerMotion } from "react-icons/tb";
-import { SiBlazor, SiDotnet, SiMongodb } from "react-icons/si";
-import { DiMsqlServer, DiPostgresql } from "react-icons/di";
-import { GrMysql } from "react-icons/gr";
-import { VscVscode } from "react-icons/vsc";
+import { FaDatabase } from "react-icons/fa6"
+import {
+    SiBlazor,
+    SiDotnet,
+    SiFramer,
+    SiGit,
+    SiJavascript,
+    SiMongodb,
+    SiMysql,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiPostgresql,
+    SiReact,
+    SiTailwindcss,
+} from "react-icons/si"
+import { VscVscode } from "react-icons/vsc"
 
 const FRONTEND_TECHS = [
-    { name: "JavaScript", icon: IoLogoJavascript },
-    { name: "React", icon: FaReact },
-    { name: "Tailwind CSS", icon: RiTailwindCssFill },
-    { name: "Next.js", icon: RiNextjsFill },
-    { name: "Framer Motion", icon: TbBrandFramerMotion },
+    { name: "JavaScript", icon: SiJavascript },
+    { name: "React", icon: SiReact },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "Tailwind CSS", icon: SiTailwindcss },
+    { name: "Framer Motion", icon: SiFramer },
     { name: "Blazor", icon: SiBlazor },
-];
+]
+
 const BACKEND_TECHS = [
-    { name: ".Net Core", icon: SiDotnet },
-    { name: "Node.js", icon: FaNodeJs },
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: ".NET Core", icon: SiDotnet },
 ]
+
 const DATABASE_TECHS = [
-    { name: "SQL Server", icon: DiMsqlServer },
-    { name: "PostgreSQL", icon: DiPostgresql },
+    { name: "SQL Server", icon: FaDatabase },
+    { name: "PostgreSQL", icon: SiPostgresql },
     { name: "MongoDB", icon: SiMongodb },
-    { name: "MySQL", icon: GrMysql },
+    { name: "MySQL", icon: SiMysql },
 ]
+
 const TOOLS_TECHS = [
-    { name: "Git", icon: FaGitAlt },
+    { name: "Git", icon: SiGit },
     { name: "VS Code", icon: VscVscode },
-];
+]
 
 export const STACK = [
-    { title: "FRONTEND", techs: FRONTEND_TECHS },
-    { title: "BACKEND", techs: BACKEND_TECHS },
-    { title: "DATABASE", techs: DATABASE_TECHS },
-    { title: "TOOLS", techs: TOOLS_TECHS },
+    {
+        id: "01",
+        title: "FRONTEND",
+        displayTitle: "Frontend",
+        category: "UI system",
+        meta: [
+            "Client-side · UI development",
+            "Interfaces · responsive · interaction",
+        ],
+        techs: FRONTEND_TECHS,
+    },
+    {
+        id: "02",
+        title: "BACKEND",
+        displayTitle: "Backend",
+        category: "Application layer",
+        meta: [
+            "Server-side · application logic",
+            "REST APIs · authentication · business logic",
+        ],
+        techs: BACKEND_TECHS,
+    },
+    {
+        id: "03",
+        title: "DATABASE",
+        displayTitle: "Database",
+        category: "Data layer",
+        meta: ["Data layer · persistence", "Relational · document · data modeling"],
+        techs: DATABASE_TECHS,
+    },
+    {
+        id: "04",
+        title: "TOOLS",
+        displayTitle: "Tools",
+        category: "Workflow",
+        meta: [
+            "Development · workflow",
+            "Version control · editor · API testing",
+        ],
+        techs: TOOLS_TECHS,
+    },
 ]
 
 export const STACK_DATA = {
-    index: "03", label: "STACK", title: "TOOLS I USE",
-    description: "My toolkit is built around technologies I trust to develop modern web applications. Each one has been carefully chosen to help me create fast, scalable, and maintainable solutions while keeping the development process efficient."
+    index: "03",
+    label: "STACK",
+    displayLabel: "Stack",
+    title: "SELECTED TOOLS, BUILT FOR MODERN SYSTEMS.",
+    motionTitle: ["Selected tools,", "built for modern systems."],
+    description:
+        "A focused toolkit for building interfaces, APIs, databases and complete web applications.",
 }

@@ -3,8 +3,8 @@ import { LuUser, LuBriefcaseBusiness, LuCodeXml, LuFolderCode, LuLayers } from "
 import { MdEmail } from 'react-icons/md';
 
 export const NAV_LINKS = [
-    { href: "services", icon: LuCodeXml, name: "Services" },
     { href: "about", icon: LuUser, name: "About" },
+    { href: "services", icon: LuCodeXml, name: "Services" },
     { href: "stack", icon: LuLayers, name: "Stack" },
     { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
     { href: "projects", icon: LuFolderCode, name: "Projects" },
@@ -18,8 +18,28 @@ export const SOCIAL_LINKS = [
 ]
 
 export const SERVICES_DATA = {
-    index: "01", label: "SERVICES", title: "WHAT I DO",
-    description: "I build modern, high-performance web applications with a focus on clean architecture, scalability, and seamless user experiences. Working across the entire stack, I deliver solutions that are reliable, maintainable, and built to last."
+    index: "03",
+    label: "SERVICES",
+    displayLabel: "Services",
+    title: "FROM INTERFACE TO SYSTEM. EVERYTHING WORKS TOGETHER.",
+    motionTitle: [
+        "From interface to system.",
+        "Everything works together.",
+    ],
+    description:
+        "I build both the visible experience and the technical foundation behind it.",
+    summary: {
+        interface: {
+            title: "Interface",
+            description:
+                "Responsive layouts, interaction, accessibility and visual consistency.",
+        },
+        system: {
+            title: "System",
+            description:
+                "APIs, authentication, database and maintainable application logic.",
+        },
+    },
 }
 
 export const ABOUT_DATA = {
@@ -41,15 +61,35 @@ export const EASE_OUT = [0.33, 1, 0.68, 1];
 
 export const SERVICES = [
     {
-        title: "Full-Stack Development",
-        description: "I build web applications end-to-end, connecting interfaces, APIs, and databases into systems that actually feel complete. I enjoy shaping how data flows through an app just as much as how it looks on screen, making sure everything works as one solid product.",
-        features: ["React, Node.js, .NET Core, Express.js", "REST APIs, SQL Server, PostgreSQL, MongoDB", "Git, GitHub, Postman", "Authentication, Roles & Database Design"]
+        title: "Frontend Development",
+        description:
+            "Building responsive, accessible and interactive interfaces.",
+        features: [
+            "Responsive Layouts",
+            "Accessible Interfaces",
+            "Interaction & Visual Consistency",
+        ],
     },
     {
-        title: "Frontend Development",
-        description: "I turn interfaces into interactive experiences that feel intentional, not just functional. I care about how every detail behaves on different devices, making sure layouts, animations, and interactions feel natural, consistent, and fast.",
-        features: ["NextJs, TailwindCSS", "Figma", "HTML, CSS, JavaScript", "Accessible & Optimized Interfaces"]
-    }
+        title: "Full-Stack Web Applications",
+        description:
+            "Connecting interfaces, APIs and databases into complete digital products.",
+        features: [
+            "Frontend & Backend Integration",
+            "APIs & Databases",
+            "Complete Digital Products",
+        ],
+    },
+    {
+        title: "API & Backend Integration",
+        description:
+            "Developing APIs and data structures that keep applications connected.",
+        features: [
+            "REST APIs",
+            "Authentication",
+            "Data Structures & Application Logic",
+        ],
+    },
 ];
 
 export const STACK_ITEMS = ["React", "Tailwind CSS", "Framer Motion", "Lenis Scroll", "Figma"];
