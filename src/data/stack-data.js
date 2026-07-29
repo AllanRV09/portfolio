@@ -87,10 +87,8 @@ export const STACK = [
 
 export const STACK_DATA = {
     index: "03",
-    label: "STACK",
-    displayLabel: "Stack",
-    title: "SELECTED TOOLS, BUILT FOR MODERN SYSTEMS.",
-    motionTitle: ["Selected tools,", "built for modern systems."],
+    label: "Stack",
+    title: ["Selected tools.", "Built to scale."],
     description:
         "A focused toolkit for building interfaces, APIs, databases and complete web applications.",
 }

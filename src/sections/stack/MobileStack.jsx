@@ -24,14 +24,14 @@ export function MobileStack() {
                 <header>
                     <MobileSectionMarker
                         index={STACK_SECTION.index}
-                        label={STACK_SECTION.displayLabel}
+                        label={STACK_SECTION.label}
                         theme={stackTheme}
                     />
                     <h2
                         id="mobile-stack-title"
                         className="mt-5 max-w-[23rem] text-[1.75rem] font-extrabold leading-[1.08] tracking-[-0.045em]"
                     >
-                        {STACK_SECTION.motionTitle.join(" ")}
+                        {STACK_SECTION.title.join(" ")}
                     </h2>
                     <p
                         className="mt-4 max-w-[23rem] text-[0.84rem] leading-[1.55]"

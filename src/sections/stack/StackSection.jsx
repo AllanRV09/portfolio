@@ -21,8 +21,8 @@ export function StackSection({ activeIndex, staticMode = false }) {
             <EditorialHeader
                 headingId="stack-title"
                 index={STACK_SECTION.index}
-                label={STACK_SECTION.displayLabel}
-                title={STACK_SECTION.motionTitle}
+                label={STACK_SECTION.label}
+                title={STACK_SECTION.title}
                 description={STACK_SECTION.description}
                 activeIndex={activeIndex}
                 total={STACK_ITEMS.length}
