@@ -9,4 +9,4 @@ export const PROJECTS = [
     },
 ]
 
-export const PROJECTS_DATA = { index: "05", label: "PROJECTS", title: "MY WORK" }
+export const PROJECTS_DATA = { index: "05", label: "Projects", title: "My work" }

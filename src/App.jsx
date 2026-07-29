@@ -2,7 +2,6 @@ import { Header } from "./sections/Header"
 import { Hero } from "./sections/Hero"
 import { ServicesStack } from "./sections/services-stack/ServicesStack"
 import { About } from "./sections/About"
-import { Experience } from "./sections/Experience"
 import { Projects } from "./sections/Projects"
 import { ContactSection } from "./sections/ContactSection"
 import { Footer } from "./sections/Footer"
@@ -17,7 +16,6 @@ function App() {
           <Hero />
           <About />
           <ServicesStack />
-          <Experience />
 
           <div className="relative overflow-hidden">
             <Projects />

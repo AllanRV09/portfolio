@@ -41,8 +41,8 @@ export function ServicesSection({
             <EditorialHeader
                 headingId="services-title"
                 index={SERVICES_SECTION.index}
-                label={SERVICES_SECTION.displayLabel}
-                title={SERVICES_SECTION.motionTitle}
+                label={SERVICES_SECTION.label}
+                title={SERVICES_SECTION.title}
                 description={SERVICES_SECTION.description}
                 activeIndex={activeIndex}
                 total={SERVICES_ITEMS.length}

@@ -233,7 +233,7 @@ export function LayerShell({
             className={`${staticMode ? "relative" : "absolute inset-0 h-full overflow-hidden"} ${layerClassName}`}
         >
             <div
-                className={`mx-auto flex w-full flex-col px-[clamp(1.25rem,2.9vw,3.5rem)] pb-[clamp(1.25rem,2.4vw,2.85rem)] pt-[clamp(2rem,5vh,3rem)] ${
+                className={`container-main flex flex-col pb-[clamp(1.25rem,2.4vw,2.85rem)] pt-[clamp(2rem,5vh,3rem)] ${
                     staticMode ? "h-svh min-h-svh" : "h-full"
                 }`}
             >

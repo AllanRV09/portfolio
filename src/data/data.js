@@ -1,30 +1,26 @@
-import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
-import { LuUser, LuBriefcaseBusiness, LuCodeXml, LuFolderCode, LuLayers } from "react-icons/lu";
-import { MdEmail } from 'react-icons/md';
-
 export const NAV_LINKS = [
-    { href: "about", icon: LuUser, name: "About" },
-    { href: "services", icon: LuCodeXml, name: "Services" },
-    { href: "stack", icon: LuLayers, name: "Stack" },
-    { href: "experience", icon: LuBriefcaseBusiness, name: "Experience" },
-    { href: "projects", icon: LuFolderCode, name: "Projects" },
+    { href: "about", name: "About" },
+    { href: "experience", name: "Experience" },
+    { href: "services", name: "Services" },
+    { href: "stack", name: "Stack" },
+    { href: "projects", name: "Projects" },
 ]
 
+export const CONTACT_EMAIL = "allanrod0908@gmail.com";
+
 export const SOCIAL_LINKS = [
-    { href: "https://www.linkedin.com/in/allanrodriguezv", icon: FaLinkedin, name: "LinkedIn" },
-    { href: "https://github.com/AllanRV09", icon: FaGithub, name: "GitHub" },
-    { href: "mailto:allanrod0908@gmail.com", icon: MdEmail, name: "Email" },
-    { href: "https://www.instagram.com/allanrodv_", icon: FaInstagram, name: "Instagram" },
+    { href: "https://www.linkedin.com/in/allanrodriguezv", name: "LinkedIn" },
+    { href: "https://github.com/AllanRV09", name: "GitHub" },
+    { href: `mailto:${CONTACT_EMAIL}`, name: "Email" },
+    { href: "https://www.instagram.com/allanrodv_", name: "Instagram" },
 ]
 
 export const SERVICES_DATA = {
     index: "03",
-    label: "SERVICES",
-    displayLabel: "Services",
-    title: "FROM INTERFACE TO SYSTEM. EVERYTHING WORKS TOGETHER.",
-    motionTitle: [
-        "From interface to system.",
-        "Everything works together.",
+    label: "Services",
+    title: [
+        "Interface + system.",
+        "Built together.",
     ],
     description:
         "I build both the visible experience and the technical foundation behind it.",
@@ -43,7 +39,7 @@ export const SERVICES_DATA = {
 }
 
 export const ABOUT_DATA = {
-    index: "02", label: "ABOUT", title: "WHO I AM",
+    index: "02", label: "About", title: "Who I am",
     paragraphs: [
         "I'm a full-stack developer who builds fast, scalable web applications with technologies like Next.js, TailwindCSS, .NET, and SQL. I enjoy working across the entire stack — from designing databases and APIs to crafting smooth, polished user interfaces.",
         "I like creating products that don't just work, but feel intuitive and well thought out. Performance, clean architecture, and attention to detail matter a lot to me, especially the small things users don't consciously notice but definitely feel.",

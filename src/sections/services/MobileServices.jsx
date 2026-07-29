@@ -64,14 +64,14 @@ export function MobileServices() {
                 <header>
                     <MobileSectionMarker
                         index={SERVICES_SECTION.index}
-                        label={SERVICES_SECTION.displayLabel}
+                        label={SERVICES_SECTION.label}
                         theme={servicesTheme}
                     />
                     <h2
                         id="mobile-services-title"
                         className="mt-7 max-w-[23rem] text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.045em]"
                     >
-                        {SERVICES_SECTION.motionTitle.join(" ")}
+                        {SERVICES_SECTION.title.join(" ")}
                     </h2>
                     <p
                         className="mt-4 max-w-[20rem] text-[0.84rem] leading-[1.55]"

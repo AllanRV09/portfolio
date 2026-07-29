@@ -1,63 +1,28 @@
-import { motion } from "framer-motion";
-import { SectionDescription } from "./SectionDescription";
-
 export function ExperienceItem({ experience }) {
-    const { role, type, company, year, description, tags } = experience;
+    const { role, type, company, year } = experience;
 
     return (
-        <motion.li
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.15 }}
-            className="py-12 border-t border-surface/10"
-        >
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
-                <div className="md:col-span-3 lg:col-span-2 self-start">
-                    <span className="text-xs font-semibold uppercase tracking-[0.08em] text-surface/20 whitespace-nowrap pt-2 block">
-                        {year}
-                    </span>
+        <li className="border-b border-surface/12 py-5 first:pt-3">
+            <div className="flex items-start justify-between gap-6">
+                <div className="min-w-0">
+                    <h3 className="text-base font-semibold tracking-[-0.02em] text-surface md:text-lg">
+                        {company}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-text/75 md:text-base">
+                        {role}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-text/60 md:text-sm">
+                        {type}
+                    </p>
                 </div>
 
-                <div className="md:col-span-9 lg:col-span-10">
-                    <div className="flex flex-col">
-                        <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface leading-[0.9]">
-                            {role}
-                        </h3>
-
-                        {(type || company) && (
-                            <p className="text-xs text-surface/30 mt-2 font-semibold uppercase tracking-[0.2em]">
-                                {[type, company].filter(Boolean).join(" · ")}
-                            </p>
-                        )}
-                    </div>
-
-                    <SectionDescription
-                        delay={0.15}
-                        amount={0.15}
-                        className="mt-6 text-base md:text-lg"
-                    >
-                        {description}
-                    </SectionDescription>
-
-                    <motion.ul
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        className="flex flex-wrap gap-1.5 mt-8"
-                    >
-                        {tags.map((tag) => (
-                            <li
-                                key={tag}
-                                className="text-xs font-semibold uppercase tracking-[0.2em] px-2.5 py-1 border border-surface/10 text-surface/30 rounded-none transition-all duration-500"
-                            >
-                                {tag}
-                            </li>
-                        ))}
-                    </motion.ul>
-                </div>
+                <time
+                    dateTime={year}
+                    className="shrink-0 whitespace-nowrap pt-0.5 font-mono text-xs uppercase tracking-wide text-surface/65"
+                >
+                    {year}
+                </time>
             </div>
-        </motion.li>
+        </li>
     );
 }
