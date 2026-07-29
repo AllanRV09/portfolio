@@ -15,7 +15,7 @@ export const stackTheme = createSectionTheme({
     separatorOpacity: 0.25,
     secondaryOpacity: 0.65,
     guideOpacity: 0.15,
-    chipIdleOpacity: 0.9,
+    chipIdleOpacity: 1,
 })
 
 export const STACK_ITEMS = STACK.map(

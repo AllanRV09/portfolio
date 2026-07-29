@@ -8,10 +8,11 @@ export function ExperienceItem({ experience }) {
                     <h3 className="text-base font-semibold tracking-[-0.02em] text-surface md:text-lg">
                         {company}
                     </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-text/75 md:text-base">
+                    <p className="mt-1 text-sm leading-relaxed text-text md:text-base">
                         {role}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-text/60 md:text-sm">
+
+                    <p className="mt-1 text-xs leading-relaxed text-text md:text-sm">
                         {type}
                     </p>
                 </div>
