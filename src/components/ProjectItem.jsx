@@ -16,7 +16,7 @@ export function ProjectItem({ project }) {
             className="my-8 grid gap-6 sm:grid-cols-8 sm:gap-8"
         >
             <div className="sm:order-2 sm:col-span-6">
-                <a href={project.link} className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tighter uppercase text-surface group leading-[0.9]">
+                <a href={project.link} className="type-item-title group uppercase text-surface">
                     {words.length > 0 && remainingTitle + " "}
                     <span className="whitespace-nowrap">
                         {lastWord}
@@ -27,7 +27,7 @@ export function ProjectItem({ project }) {
                 <SectionDescription
                     delay={0.15}
                     amount={0.15}
-                    className="mt-6 text-base md:text-lg mb-8"
+                    className="type-editorial-copy mb-8 mt-6"
                 >
                     {project.description}
                 </SectionDescription>

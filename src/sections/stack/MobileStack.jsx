@@ -29,12 +29,12 @@ export function MobileStack() {
                     />
                     <h2
                         id="mobile-stack-title"
-                        className="mt-5 max-w-[23rem] text-[1.75rem] font-extrabold leading-[1.08] tracking-[-0.045em]"
+                        className="type-section-title mt-5 max-w-[23rem]"
                     >
                         {STACK_SECTION.title.join(" ")}
                     </h2>
                     <p
-                        className="mt-4 max-w-[23rem] text-[0.84rem] leading-[1.55]"
+                        className="type-section-lead mt-4 max-w-[23rem]"
                         style={{ color: stackTheme.bodyStrong }}
                     >
                         {STACK_SECTION.description}
@@ -62,7 +62,7 @@ export function MobileStack() {
                                     theme={stackTheme}
                                 />
 
-                                <h3 className="pr-6 text-xl font-bold leading-[1.2] tracking-[-0.035em]">
+                                <h3 className="type-item-title pr-6">
                                     {item.title}
                                 </h3>
                                 <p

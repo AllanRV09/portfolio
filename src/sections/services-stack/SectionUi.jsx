@@ -10,7 +10,7 @@ import {
 function SectionMarker({ index, label, theme }) {
     return (
         <p
-            className="flex items-center gap-3 font-mono text-xs tracking-wide"
+            className="type-section-marker flex items-center gap-3"
             style={{ color: theme.marker }}
         >
             <span style={{ color: theme.accent }}>{index}</span>
@@ -28,7 +28,7 @@ function SectionMarker({ index, label, theme }) {
 export function MobileSectionMarker({ index, label, theme }) {
     return (
         <p
-            className="flex items-center gap-3 font-mono text-[0.68rem] tracking-wide"
+            className="type-section-marker flex items-center gap-3"
             style={{ color: theme.marker }}
         >
             <span style={{ color: theme.accent }}>{index}</span>
@@ -104,7 +104,7 @@ export function EditorialHeader({
 
                 <h2
                     id={headingId}
-                    className="absolute bottom-7 left-0 text-[clamp(2.35rem,2.9vw,3.7rem)] font-extrabold leading-[0.98] tracking-[-0.055em]"
+                    className="type-section-title absolute bottom-7 left-0"
                     style={{ color: theme.text }}
                 >
                     {title.map((line) => (
@@ -142,7 +142,7 @@ export function EditorialHeader({
                 </p>
 
                 <p
-                    className="absolute bottom-7 right-0 max-w-[32rem] pl-12 text-right text-base leading-relaxed"
+                    className="type-section-lead absolute bottom-7 right-0 max-w-[32rem] pl-12 text-right"
                     style={{ color: theme.secondary }}
                 >
                     {description}

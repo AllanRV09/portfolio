@@ -40,6 +40,71 @@
     @apply w-full max-w-[76rem] mx-auto px-[clamp(1.25rem,4vw,2.5rem)];
 }
 
+@layer components {
+    .type-section-marker {
+        @apply font-mono text-[0.68rem] tracking-wide;
+    }
+
+    .type-section-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.045em;
+    }
+
+    .type-section-lead {
+        font-size: 0.84rem;
+        line-height: 1.55;
+    }
+
+    .type-editorial-copy {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .type-item-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.035em;
+    }
+
+    .type-item-copy {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    @media (min-width: 48rem) {
+        .type-section-marker {
+            font-size: 0.75rem;
+        }
+
+        .type-section-title {
+            font-size: clamp(2.35rem, 2.9vw, 3.7rem);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+        }
+
+        .type-section-lead,
+        .type-editorial-copy {
+            font-size: 1rem;
+            line-height: 1.625;
+        }
+
+        .type-item-title {
+            font-size: clamp(1.55rem, 2vw, 2.4rem);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .type-item-copy {
+            font-size: 0.875rem;
+            line-height: 1.625;
+        }
+    }
+}
+
 html.lenis,
 html.lenis body {
     height: auto;

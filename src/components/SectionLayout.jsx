@@ -1,6 +1,6 @@
 export function SectionMarker({ index, label }) {
   return (
-    <p className="group flex cursor-default items-center gap-3 font-mono text-xs tracking-wide text-surface/90">
+    <p className="type-section-marker group flex cursor-default items-center gap-3 text-surface/90">
       <span className="text-surface transition-colors group-hover:text-surface/80">
         {index}
       </span>

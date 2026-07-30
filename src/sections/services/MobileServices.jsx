@@ -24,7 +24,7 @@ function MobileServicesSummary() {
                     {SERVICES_SECTION.summary.interface.title}
                 </p>
                 <p
-                    className="mt-2 max-w-[29rem] text-[0.9rem] leading-[1.6]"
+                    className="type-item-copy mt-2 max-w-[29rem]"
                     style={{ color: servicesTheme.bodyStrong }}
                 >
                     {SERVICES_SECTION.summary.interface.description}
@@ -39,7 +39,7 @@ function MobileServicesSummary() {
                     {SERVICES_SECTION.summary.system.title}
                 </p>
                 <p
-                    className="mt-2 max-w-[29rem] text-[0.9rem] leading-[1.6]"
+                    className="type-item-copy mt-2 max-w-[29rem]"
                     style={{ color: servicesTheme.bodyStrong }}
                 >
                     {SERVICES_SECTION.summary.system.description}
@@ -69,12 +69,12 @@ export function MobileServices() {
                     />
                     <h2
                         id="mobile-services-title"
-                        className="mt-7 max-w-[23rem] text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.045em]"
+                        className="type-section-title mt-7 max-w-[23rem]"
                     >
                         {SERVICES_SECTION.title.join(" ")}
                     </h2>
                     <p
-                        className="mt-4 max-w-[20rem] text-[0.84rem] leading-[1.55]"
+                        className="type-section-lead mt-4 max-w-[20rem]"
                         style={{ color: servicesTheme.bodyStrong }}
                     >
                         {SERVICES_SECTION.description}
@@ -101,11 +101,11 @@ export function MobileServices() {
                                     id={item.id}
                                     theme={servicesTheme}
                                 />
-                                <h3 className="text-xl font-bold leading-[1.2] tracking-[-0.035em]">
+                                <h3 className="type-item-title">
                                     {item.title}
                                 </h3>
                                 <p
-                                    className="mt-3 max-w-[29rem] text-[0.9rem] leading-[1.6]"
+                                    className="type-item-copy mt-3 max-w-[29rem]"
                                     style={{ color: servicesTheme.bodyStrong }}
                                 >
                                     {item.description}

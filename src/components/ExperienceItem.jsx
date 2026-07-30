@@ -5,10 +5,10 @@ export function ExperienceItem({ experience }) {
         <li className="border-b border-surface/12 py-5 first:pt-3">
             <div className="flex items-start justify-between gap-6">
                 <div className="min-w-0">
-                    <h3 className="text-base font-semibold tracking-[-0.02em] text-surface md:text-lg">
+                    <h3 className="type-item-title text-surface">
                         {company}
                     </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-text md:text-base">
+                    <p className="type-item-copy mt-2 text-text">
                         {role}
                     </p>
 

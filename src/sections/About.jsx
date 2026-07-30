@@ -19,7 +19,7 @@ export function About() {
                             <SectionDescription
                                 key={text}
                                 delay={0.3 + index * 0.08}
-                                className="text-lg md:text-xl"
+                                className="type-editorial-copy"
                             >
                                 {text}
                             </SectionDescription>

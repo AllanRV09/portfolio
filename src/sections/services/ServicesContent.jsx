@@ -73,7 +73,7 @@ function ServicesList({ activeIndex, staticMode, rowRefs, theme }) {
                                     className="ml-auto"
                                 >
                                     <h3
-                                        className="text-right text-[clamp(1.55rem,2vw,2.4rem)] font-semibold leading-none tracking-[-0.04em] transition-colors duration-[100ms]"
+                                        className="type-item-title text-right transition-colors duration-[100ms]"
                                         style={{
                                             color: isReached
                                                 ? theme.text
@@ -91,7 +91,7 @@ function ServicesList({ activeIndex, staticMode, rowRefs, theme }) {
                                     className="max-w-[34rem]"
                                 >
                                     <p
-                                        className="text-sm leading-relaxed transition-colors duration-300"
+                                        className="type-item-copy transition-colors duration-300"
                                         style={{
                                             color: isReached
                                                 ? theme.bodyStrong
