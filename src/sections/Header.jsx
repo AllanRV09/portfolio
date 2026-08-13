@@ -7,12 +7,32 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useLenis } from "../hooks/useLenis";
 import { useScrollToTop } from "../hooks/useScrollToTop";
 
-const DesktopNav = ({ scrollToTop }) => {
+const AUTO_HIDE_QUERY = "(min-width: 768px)";
+const NAV_HIDE_SCROLL_THRESHOLD = 24;
+const ABOUT_REVEAL_OFFSET = 96;
+const NAV_SLIDE_EASE = [0.16, 1, 0.3, 1];
+
+const DesktopNav = ({ scrollToTop, isHidden }) => {
     return (
         <motion.header
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: ENTRY_DELAY }}
+            animate={{
+                opacity: isHidden ? 0 : 1,
+                y: isHidden ? "-150%" : "0%",
+            }}
+            transition={{
+                opacity: {
+                    duration: isHidden ? 0.3 : 0.55,
+                    delay: isHidden ? 0 : ENTRY_DELAY,
+                    ease: "easeOut",
+                },
+                y: {
+                    duration: isHidden ? 0.45 : 0.65,
+                    ease: NAV_SLIDE_EASE,
+                },
+            }}
+            aria-hidden={isHidden}
+            inert={isHidden}
             className='hidden sm:flex fixed top-4 left-1/2 -translate-x-1/2 z-50'
         >
             <nav
@@ -128,6 +148,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isDesktopNavHidden, setIsDesktopNavHidden] = useState(false)
     const lenisRef = useLenis();
     const scrollToTop = useScrollToTop();
 
@@ -147,9 +168,61 @@ export function Header() {
         };
     }, [isMenuOpen, lenisRef]);
 
+    useEffect(() => {
+        const autoHideQuery = window.matchMedia(AUTO_HIDE_QUERY);
+        let frameId = null;
+
+        const updateDesktopNavVisibility = () => {
+            frameId = null;
+
+            if (!autoHideQuery.matches) {
+                setIsDesktopNavHidden(false);
+                return;
+            }
+
+            const aboutSection = document.getElementById("about");
+            const hasStartedScrolling =
+                window.scrollY > NAV_HIDE_SCROLL_THRESHOLD;
+            const hasReachedAbout =
+                aboutSection?.getBoundingClientRect().top <= ABOUT_REVEAL_OFFSET;
+
+            setIsDesktopNavHidden(
+                hasStartedScrolling && !hasReachedAbout,
+            );
+        };
+
+        const requestVisibilityUpdate = () => {
+            if (frameId === null) {
+                frameId = window.requestAnimationFrame(
+                    updateDesktopNavVisibility,
+                );
+            }
+        };
+
+        updateDesktopNavVisibility();
+        window.addEventListener("scroll", requestVisibilityUpdate, {
+            passive: true,
+        });
+        window.addEventListener("resize", requestVisibilityUpdate);
+        autoHideQuery.addEventListener("change", requestVisibilityUpdate);
+
+        return () => {
+            window.removeEventListener("scroll", requestVisibilityUpdate);
+            window.removeEventListener("resize", requestVisibilityUpdate);
+            autoHideQuery.removeEventListener("change", requestVisibilityUpdate);
+
+            if (frameId !== null) {
+                window.cancelAnimationFrame(frameId);
+            }
+        };
+    }, []);
+
     return (
         <>
-            <DesktopNav scrollToTop={scrollToTop} />
+            <DesktopNav
+                scrollToTop={scrollToTop}
+                isHidden={isDesktopNavHidden}
+            />
             <MobileNav toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} scrollToTop={scrollToTop} />
             <MobileMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
         </>
