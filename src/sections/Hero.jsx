@@ -136,12 +136,11 @@ function StatusPillGroup({ variants, className }) {
 
 function ScrollHint({ delay = REST_REVEAL_DELAY, className = "" }) {
     return (
-        <motion.a
+        <motion.div
             variants={fadeVariants}
             custom={delay}
-            href="#about"
-            aria-label="Scroll down to the about section"
-            className={`flex flex-col items-center gap-1 text-text transition-opacity hover:opacity-60 ${className}`}
+            aria-hidden="true"
+            className={`pointer-events-none flex select-none flex-col items-center gap-1 text-text ${className}`}
         >
             <LuChevronsDown
                 aria-hidden="true"
@@ -151,7 +150,7 @@ function ScrollHint({ delay = REST_REVEAL_DELAY, className = "" }) {
             <span className="text-[0.65rem] uppercase tracking-wide">
                 Scroll down
             </span>
-        </motion.a>
+        </motion.div>
     );
 }
 
