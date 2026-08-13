@@ -86,7 +86,7 @@ export const STACK = [
 ]
 
 export const STACK_DATA = {
-    index: "03",
+    index: "02",
     label: "Stack",
     title: ["Selected tools.", "Built to scale."],
     description:

@@ -1,8 +1,8 @@
 export const NAV_LINKS = [
-    { href: "about", name: "About" },
-    { href: "experience", name: "Experience" },
     { href: "services", name: "Services" },
     { href: "stack", name: "Stack" },
+    { href: "about", name: "About" },
+    { href: "experience", name: "Experience" },
     { href: "projects", name: "Projects" },
 ]
 
@@ -16,7 +16,7 @@ export const SOCIAL_LINKS = [
 ]
 
 export const SERVICES_DATA = {
-    index: "03",
+    index: "01",
     label: "Services",
     title: [
         "Interface + system.",
@@ -39,7 +39,7 @@ export const SERVICES_DATA = {
 }
 
 export const ABOUT_DATA = {
-    index: "02", label: "About", title: "Who I am",
+    index: "03", label: "About", title: "Who I am",
     paragraphs: [
         "I'm a full-stack developer who builds fast, scalable web applications with technologies like Next.js, TailwindCSS, .NET, and SQL. I enjoy working across the entire stack — from designing databases and APIs to crafting smooth, polished user interfaces.",
         "I like creating products that don't just work, but feel intuitive and well thought out. Performance, clean architecture, and attention to detail matter a lot to me, especially the small things users don't consciously notice but definitely feel.",

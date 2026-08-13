@@ -14,8 +14,8 @@ function App() {
         <Header />
         <main>
           <Hero />
-          <About />
           <ServicesStack />
+          <About />
 
           <div className="relative overflow-hidden">
             <Projects />
