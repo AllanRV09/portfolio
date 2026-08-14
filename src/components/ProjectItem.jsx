@@ -6,6 +6,17 @@ export function ProjectItem({ project }) {
     const words = project.title.split(" ");
     const lastWord = words.pop();
     const remainingTitle = words.join(" ");
+    const titleContent = (
+        <>
+            {words.length > 0 && remainingTitle + " "}
+            <span className="whitespace-nowrap">
+                {lastWord}
+                {project.link && (
+                    <GoArrowUpRight className="inline-block ml-1 w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                )}
+            </span>
+        </>
+    );
 
     return (
         <motion.li
@@ -16,13 +27,18 @@ export function ProjectItem({ project }) {
             className="my-8 grid gap-6 sm:grid-cols-8 sm:gap-8"
         >
             <div className="sm:order-2 sm:col-span-6">
-                <a href={project.link} className="type-item-title group uppercase text-surface">
-                    {words.length > 0 && remainingTitle + " "}
-                    <span className="whitespace-nowrap">
-                        {lastWord}
-                        <GoArrowUpRight className="inline-block ml-1 w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                {project.link ? (
+                    <a
+                        href={project.link}
+                        className="type-item-title group uppercase text-surface"
+                    >
+                        {titleContent}
+                    </a>
+                ) : (
+                    <span className="type-item-title uppercase text-surface">
+                        {titleContent}
                     </span>
-                </a>
+                )}
 
                 <SectionDescription
                     delay={0.15}
