@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import {
@@ -10,11 +10,13 @@ import {
 
 import { HeroBackground } from "../components/HeroBackground";
 import { HeroTitle } from "../components/HeroTitle";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const SMOOTH_EASE = [0.16, 1, 0.3, 1];
 const REST_REVEAL_DELAY = 0.6;
 const REVEAL_STEP_DELAY = 0.12;
 const EXIT_END = 0.65;
+const HERO_DESKTOP_QUERY = "(min-width: 768px)";
 
 const REVEAL_DELAYS = {
     eyebrow: REST_REVEAL_DELAY,
@@ -118,12 +120,13 @@ function Reveal({
     );
 }
 
-function StatusPillGroup({ variants, className }) {
+function StatusPillGroup({ variants, className, animateEntry }) {
     return (
         <div className={className}>
             {STATUS_ITEMS.map((item) => (
                 <motion.div
                     key={item.lines.join("-")}
+                    initial={animateEntry ? undefined : false}
                     variants={variants}
                     custom={REVEAL_DELAYS.status}
                 >
@@ -134,9 +137,14 @@ function StatusPillGroup({ variants, className }) {
     );
 }
 
-function ScrollHint({ delay = REST_REVEAL_DELAY, className = "" }) {
+function ScrollHint({
+    delay = REST_REVEAL_DELAY,
+    className = "",
+    animateEntry,
+}) {
     return (
         <motion.div
+            initial={animateEntry ? undefined : false}
             variants={fadeVariants}
             custom={delay}
             aria-hidden="true"
@@ -156,6 +164,15 @@ function ScrollHint({ delay = REST_REVEAL_DELAY, className = "" }) {
 
 export function Hero() {
     const sectionRef = useRef(null);
+    const [animateResponsiveEntry, setAnimateResponsiveEntry] =
+        useState(true);
+    const handleResponsiveChange = useCallback(() => {
+        setAnimateResponsiveEntry(false);
+    }, []);
+    const isDesktop = useMediaQuery(
+        HERO_DESKTOP_QUERY,
+        handleResponsiveChange,
+    );
 
     const { scrollY } = useScroll();
     const exitProgress = useTransform(scrollY, (currentScroll) => {
@@ -237,7 +254,10 @@ export function Hero() {
                     </p>
                 </Reveal>
 
-                <HeroTitle />
+                <HeroTitle
+                    isDesktop={isDesktop}
+                    animateEntry={animateResponsiveEntry}
+                />
 
                 <div
                     className="
@@ -260,23 +280,30 @@ export function Hero() {
                             sm:max-md:col-span-2
                         "
                     >
-                        <motion.div
-                            variants={fadeVariants}
-                            custom={REVEAL_DELAYS.description}
-                            className="
-                                hidden
-                                md:mb-8 md:block
-                            "
-                        >
-                            <LuArrowDownRight
-                                aria-hidden="true"
+                        {isDesktop && (
+                            <motion.div
+                                initial={
+                                    animateResponsiveEntry
+                                        ? undefined
+                                        : false
+                                }
+                                variants={fadeVariants}
+                                custom={REVEAL_DELAYS.description}
                                 className="
-                                    opacity-40
-                                    md:size-10
-                                    lg:size-12
+                                    hidden
+                                    md:mb-8 md:block
                                 "
-                            />
-                        </motion.div>
+                            >
+                                <LuArrowDownRight
+                                    aria-hidden="true"
+                                    className="
+                                        opacity-40
+                                        md:size-10
+                                        lg:size-12
+                                    "
+                                />
+                            </motion.div>
+                        )}
 
                         <Reveal
                             delay={REVEAL_DELAYS.description}
@@ -298,27 +325,39 @@ export function Hero() {
                         </Reveal>
                     </div>
 
-                    <ScrollHint
-                        delay={REVEAL_DELAYS.scrollHint}
-                        className="hidden justify-self-center md:flex"
-                    />
+                    {isDesktop && (
+                        <ScrollHint
+                            delay={REVEAL_DELAYS.scrollHint}
+                            className="hidden justify-self-center md:flex"
+                            animateEntry={animateResponsiveEntry}
+                        />
+                    )}
 
                     <div className="w-full sm:w-[26rem] sm:max-w-full sm:max-md:col-start-1 sm:max-md:row-start-2 md:w-[20rem] md:justify-self-end md:translate-x-[calc(var(--hero-x)+2rem)] lg:w-[22rem]">
-                        <StatusPillGroup
-                            variants={mobilePillVariants}
-                            className="flex flex-col gap-3 md:hidden"
-                        />
-
-                        <StatusPillGroup
-                            variants={curtainRevealVariants}
-                            className="hidden flex-col gap-3 md:flex"
-                        />
+                        {isDesktop ? (
+                            <StatusPillGroup
+                                key="desktop"
+                                variants={curtainRevealVariants}
+                                className="hidden flex-col gap-3 md:flex"
+                                animateEntry={animateResponsiveEntry}
+                            />
+                        ) : (
+                            <StatusPillGroup
+                                key="mobile"
+                                variants={mobilePillVariants}
+                                className="flex flex-col gap-3 md:hidden"
+                                animateEntry={animateResponsiveEntry}
+                            />
+                        )}
                     </div>
 
-                    <ScrollHint
-                        delay={REVEAL_DELAYS.scrollHint}
-                        className="mt-2 sm:max-md:col-start-2 sm:max-md:row-start-2 sm:max-md:mt-0 sm:max-md:self-end sm:max-md:justify-self-end sm:max-md:pb-1 md:hidden"
-                    />
+                    {!isDesktop && (
+                        <ScrollHint
+                            delay={REVEAL_DELAYS.scrollHint}
+                            className="mt-2 sm:max-md:col-start-2 sm:max-md:row-start-2 sm:max-md:mt-0 sm:max-md:self-end sm:max-md:justify-self-end sm:max-md:pb-1 md:hidden"
+                            animateEntry={animateResponsiveEntry}
+                        />
+                    )}
                 </div>
             </motion.div>
         </section>

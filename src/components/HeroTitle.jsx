@@ -23,7 +23,56 @@ const titleRiseVariants = {
     },
 };
 
-export function HeroTitle() {
+function MobileHeroTitle({ animateEntry }) {
+    return (
+        <h1
+            className="
+                flex flex-col gap-[0.08em]
+                font-hero
+                text-[clamp(5.75rem,24vw,7.5rem)]
+                font-extrabold uppercase
+                leading-[0.80]
+                tracking-[-0.015em]
+                [font-synthesis:none]
+
+                sm:text-[clamp(8rem,22vw,10.5rem)]
+                md:hidden
+            "
+        >
+            <span
+                className="
+                    -my-[0.18em] block
+                    overflow-y-clip py-[0.18em]
+                "
+            >
+                <motion.span
+                    initial={animateEntry ? undefined : false}
+                    variants={titleRiseVariants}
+                    className="block"
+                >
+                    Allan
+                </motion.span>
+            </span>
+
+            <span
+                className="
+                    -my-[0.18em] block
+                    overflow-y-clip py-[0.18em]
+                "
+            >
+                <motion.span
+                    initial={animateEntry ? undefined : false}
+                    variants={titleRiseVariants}
+                    className="block"
+                >
+                    Rodriguez
+                </motion.span>
+            </span>
+        </h1>
+    );
+}
+
+function DesktopHeroTitle({ animateEntry }) {
     const nameFrameRef = useRef(null);
     const nameRef = useRef(null);
     const nameMeasureRef = useRef(null);
@@ -39,104 +88,68 @@ export function HeroTitle() {
     });
 
     return (
-        <>
+        <div
+            ref={nameFrameRef}
+            className="
+                hidden
+                w-full min-w-0
+                overflow-x-clip
+                md:block
+            "
+        >
             <h1
+                aria-label={HERO_NAME}
                 className="
-                    flex flex-col gap-[0.08em]
-                    font-hero
-                    text-[clamp(5.75rem,24vw,7.5rem)]
-                    font-extrabold uppercase
-                    leading-[0.80]
-                    tracking-[-0.015em]
+                    relative flex w-full justify-center
+                    whitespace-nowrap
+                    font-hero font-extrabold uppercase
+                    leading-[0.78]
                     [font-synthesis:none]
-
-                    sm:text-[clamp(8rem,22vw,10.5rem)]
-                    md:hidden
                 "
             >
                 <span
+                    ref={nameRef}
                     className="
-                        -my-[0.18em] block
-                        overflow-y-clip py-[0.18em]
+                        -my-[0.18em] py-[0.18em]
+                        inline-block flex-none
+                        overflow-y-clip
+                        text-[18vw]
                     "
                 >
                     <motion.span
+                        initial={animateEntry ? undefined : false}
                         variants={titleRiseVariants}
                         className="block"
                     >
-                        Allan
+                        <RollingText text={HERO_NAME} />
                     </motion.span>
                 </span>
 
                 <span
+                    ref={nameMeasureRef}
+                    aria-hidden="true"
                     className="
-                        -my-[0.18em] block
-                        overflow-y-clip py-[0.18em]
+                        pointer-events-none
+                        invisible absolute
+                        inline-block flex-none
+                        whitespace-nowrap
+                        text-[100px]
                     "
                 >
-                    <motion.span
-                        variants={titleRiseVariants}
-                        className="block"
-                    >
-                        Rodriguez
-                    </motion.span>
+                    <RollingText
+                        text={HERO_NAME}
+                        disabled
+                    />
                 </span>
             </h1>
+        </div>
+    );
+}
 
-            <div
-                ref={nameFrameRef}
-                className="
-                    hidden
-                    w-full min-w-0
-                    overflow-x-clip
-                    md:block
-                "
-            >
-                <h1
-                    aria-label={HERO_NAME}
-                    className="
-                        relative flex w-full justify-center
-                        whitespace-nowrap
-                        font-hero font-extrabold uppercase
-                        leading-[0.78]
-                        [font-synthesis:none]
-                    "
-                >
-                    <span
-                        ref={nameRef}
-                        className="
-                            -my-[0.18em] py-[0.18em]
-                            inline-block flex-none
-                            overflow-y-clip
-                            text-[18vw]
-                        "
-                    >
-                        <motion.span
-                            variants={titleRiseVariants}
-                            className="block"
-                        >
-                            <RollingText text={HERO_NAME} />
-                        </motion.span>
-                    </span>
-
-                    <span
-                        ref={nameMeasureRef}
-                        aria-hidden="true"
-                        className="
-                            pointer-events-none
-                            invisible absolute
-                            inline-block flex-none
-                            whitespace-nowrap
-                            text-[100px]
-                        "
-                    >
-                        <RollingText
-                            text={HERO_NAME}
-                            disabled
-                        />
-                    </span>
-                </h1>
-            </div>
-        </>
+export function HeroTitle({ isDesktop, animateEntry }) {
+    return isDesktop ? (
+        <DesktopHeroTitle animateEntry={animateEntry} />
+    ) : (
+        <MobileHeroTitle animateEntry={animateEntry} />
     );
 }
