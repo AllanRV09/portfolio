@@ -1,6 +1,6 @@
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { NavButton } from '../components/NavButton';
 import { NAV_LINKS, ENTRY_DELAY } from "../data/data";
 import { motion, AnimatePresence } from "framer-motion"
@@ -11,6 +11,20 @@ const AUTO_HIDE_QUERY = "(min-width: 768px)";
 const NAV_HIDE_SCROLL_THRESHOLD = 24;
 const ABOUT_REVEAL_OFFSET = 96;
 const NAV_SLIDE_EASE = [0.16, 1, 0.3, 1];
+const MOBILE_MENU_ID = "mobile-navigation";
+const MOBILE_MENU_DESKTOP_QUERY = "(min-width: 640px)";
+const FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+].join(', ');
+
+const getFocusableElements = (container) =>
+    Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter(
+        (element) =>
+            element.tabIndex >= 0 &&
+            element.getAttribute('aria-hidden') !== 'true',
+    );
 
 const DesktopNav = ({ scrollToTop, isHidden }) => {
     return (
@@ -58,9 +72,16 @@ const DesktopNav = ({ scrollToTop, isHidden }) => {
     );
 }
 
-const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
+const MobileNav = ({
+    toggleMenu,
+    isMenuOpen,
+    scrollToTop,
+    headerRef,
+    menuButtonRef,
+}) => {
     return (
         <motion.header
+            ref={headerRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: ENTRY_DELAY }}
@@ -72,10 +93,13 @@ const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
                 </button>
 
                 <button
+                    ref={menuButtonRef}
                     onClick={toggleMenu}
                     className="hover:text-accent transition-colors relative w-6 h-6"
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                     aria-expanded={isMenuOpen}
+                    aria-controls={MOBILE_MENU_ID}
+                    aria-haspopup="dialog"
                 >
                     <RxHamburgerMenu className={`w-6 h-6 absolute inset-0 transition-transform duration-300 ${isMenuOpen ? 'opacity-0 scale-50 rotate-90' : 'opacity-100 scale-100 rotate-0'
                         }`} />
@@ -87,11 +111,17 @@ const MobileNav = ({ toggleMenu, isMenuOpen, scrollToTop }) => {
     );
 };
 
-const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
+const MobileMenu = ({ isMenuOpen, closeMenu, menuRef, closeButtonRef }) => {
     return (
         <AnimatePresence>
             {isMenuOpen && (
                 <motion.div
+                    ref={menuRef}
+                    id={MOBILE_MENU_ID}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Mobile navigation"
+                    tabIndex={-1}
                     initial={{ clipPath: `circle(0% at calc(100% - 3.25rem) 2.75rem)` }}
                     animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
                     exit={{ clipPath: `circle(0% at calc(100% - 3.25rem) 2.75rem)` }}
@@ -99,7 +129,8 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
                     className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-background text-surface"
                 >
                     <button
-                        onClick={toggleMenu}
+                        ref={closeButtonRef}
+                        onClick={closeMenu}
                         className="absolute top-7 right-8 w-10 h-10 flex items-center justify-center text-surface hover:text-accent transition-colors"
                         aria-label="Close menu"
                     >
@@ -111,7 +142,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
                             <motion.a
                                 key={link.name}
                                 href={`#${link.href}`}
-                                onClick={toggleMenu}
+                                onClick={closeMenu}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 30 }}
@@ -149,24 +180,141 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }) => {
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isDesktopNavHidden, setIsDesktopNavHidden] = useState(false)
+    const mobileHeaderRef = useRef(null)
+    const menuButtonRef = useRef(null)
+    const menuRef = useRef(null)
+    const closeButtonRef = useRef(null)
+    const wasMenuOpenRef = useRef(false)
+    const shouldRestoreFocusRef = useRef(true)
     const lenisRef = useLenis();
     const scrollToTop = useScrollToTop();
 
-    const toggleMenu = () => setIsMenuOpen(prev => !prev)
+    const closeMenu = useCallback(() => {
+        shouldRestoreFocusRef.current = true
+        setIsMenuOpen(false)
+    }, [])
+
+    const toggleMenu = useCallback(() => {
+        shouldRestoreFocusRef.current = true
+        setIsMenuOpen(prev => !prev)
+    }, [])
 
     useEffect(() => {
-        const lenis = lenisRef?.current;
+        if (!isMenuOpen) return undefined
 
-        if (isMenuOpen) {
-            lenis?.stop();
-        } else {
-            lenis?.start();
+        const menu = menuRef.current
+        if (!menu) return undefined
+
+        const body = document.body
+        const lenis = lenisRef?.current;
+        const previousBodyOverflow = body.style.overflow
+        const elementsToMakeInert = [
+            mobileHeaderRef.current,
+            document.querySelector('main'),
+        ].filter(Boolean)
+        const inertStates = elementsToMakeInert.map((element) => ({
+            element,
+            wasInert: element.hasAttribute('inert'),
+        }))
+
+        inertStates.forEach(({ element }) => {
+            element.setAttribute('inert', '')
+        })
+
+        body.style.overflow = 'hidden'
+        lenis?.stop();
+
+        const focusFrameId = window.requestAnimationFrame(() => {
+            const initialFocus =
+                closeButtonRef.current ??
+                getFocusableElements(menu)[0] ??
+                menu
+
+            initialFocus?.focus({ preventScroll: true })
+        })
+
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                event.preventDefault()
+                closeMenu()
+                return
+            }
+
+            if (event.key !== 'Tab' || !menu) return
+
+            const focusableElements = getFocusableElements(menu)
+
+            if (focusableElements.length === 0) {
+                event.preventDefault()
+                menu.focus({ preventScroll: true })
+                return
+            }
+
+            const firstElement = focusableElements[0]
+            const lastElement = focusableElements[focusableElements.length - 1]
+            const activeElement = document.activeElement
+            const focusIsOutsideMenu =
+                activeElement === menu || !menu.contains(activeElement)
+
+            if (event.shiftKey && (activeElement === firstElement || focusIsOutsideMenu)) {
+                event.preventDefault()
+                lastElement.focus()
+            } else if (!event.shiftKey && (activeElement === lastElement || focusIsOutsideMenu)) {
+                event.preventDefault()
+                firstElement.focus()
+            }
         }
 
+        document.addEventListener('keydown', handleKeyDown)
+
         return () => {
+            window.cancelAnimationFrame(focusFrameId)
+            document.removeEventListener('keydown', handleKeyDown)
+
+            inertStates.forEach(({ element, wasInert }) => {
+                if (!wasInert) element.removeAttribute('inert')
+            })
+
+            body.style.overflow = previousBodyOverflow
             lenis?.start();
         };
-    }, [isMenuOpen, lenisRef]);
+    }, [closeMenu, isMenuOpen, lenisRef]);
+
+    useEffect(() => {
+        if (isMenuOpen) {
+            wasMenuOpenRef.current = true
+            return undefined
+        }
+
+        if (!wasMenuOpenRef.current) return undefined
+
+        wasMenuOpenRef.current = false
+
+        if (!shouldRestoreFocusRef.current) return undefined
+
+        const focusFrameId = window.requestAnimationFrame(() => {
+            menuButtonRef.current?.focus({ preventScroll: true })
+        })
+
+        return () => window.cancelAnimationFrame(focusFrameId)
+    }, [isMenuOpen])
+
+    useEffect(() => {
+        const desktopQuery = window.matchMedia(MOBILE_MENU_DESKTOP_QUERY)
+
+        const closeMenuAtDesktop = (event) => {
+            if (!event.matches) return
+
+            shouldRestoreFocusRef.current = false
+            setIsMenuOpen(false)
+        }
+
+        desktopQuery.addEventListener('change', closeMenuAtDesktop)
+
+        return () => {
+            desktopQuery.removeEventListener('change', closeMenuAtDesktop)
+        }
+    }, [])
 
     useEffect(() => {
         const autoHideQuery = window.matchMedia(AUTO_HIDE_QUERY);
@@ -223,8 +371,19 @@ export function Header() {
                 scrollToTop={scrollToTop}
                 isHidden={isDesktopNavHidden}
             />
-            <MobileNav toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} scrollToTop={scrollToTop} />
-            <MobileMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+            <MobileNav
+                toggleMenu={toggleMenu}
+                isMenuOpen={isMenuOpen}
+                scrollToTop={scrollToTop}
+                headerRef={mobileHeaderRef}
+                menuButtonRef={menuButtonRef}
+            />
+            <MobileMenu
+                closeMenu={closeMenu}
+                isMenuOpen={isMenuOpen}
+                menuRef={menuRef}
+                closeButtonRef={closeButtonRef}
+            />
         </>
     )
 }
