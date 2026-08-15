@@ -44,7 +44,6 @@ const TOOLS_TECHS = [
 export const STACK = [
     {
         id: "01",
-        title: "FRONTEND",
         displayTitle: "Frontend",
         category: "UI system",
         meta: [
@@ -55,7 +54,6 @@ export const STACK = [
     },
     {
         id: "02",
-        title: "BACKEND",
         displayTitle: "Backend",
         category: "Application layer",
         meta: [
@@ -66,7 +64,6 @@ export const STACK = [
     },
     {
         id: "03",
-        title: "DATABASE",
         displayTitle: "Database",
         category: "Data layer",
         meta: ["Data layer · persistence", "Relational · document · data modeling"],
@@ -74,7 +71,6 @@ export const STACK = [
     },
     {
         id: "04",
-        title: "TOOLS",
         displayTitle: "Tools",
         category: "Workflow",
         meta: [

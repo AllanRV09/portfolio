@@ -50,41 +50,24 @@ export const ABOUT_DATA = {
 export const ENTRY_DELAY = 0.1;
 
 export const HERO_TIMING = {
-    background: 0, nav: 0.02, badge: 0.05, title: 0.12, globe: 0, status: 0.3, description: 0.35, socials: 0.45,
+    background: 0,
 };
-
-export const EASE_OUT = [0.33, 1, 0.68, 1];
 
 export const SERVICES = [
     {
         title: "Frontend Development",
         description:
             "Building responsive, accessible and interactive interfaces.",
-        features: [
-            "Responsive Layouts",
-            "Accessible Interfaces",
-            "Interaction & Visual Consistency",
-        ],
     },
     {
         title: "Full-Stack Web Applications",
         description:
             "Connecting interfaces, APIs and databases into complete digital products.",
-        features: [
-            "Frontend & Backend Integration",
-            "APIs & Databases",
-            "Complete Digital Products",
-        ],
     },
     {
         title: "API & Backend Integration",
         description:
             "Developing APIs and data structures that keep applications connected.",
-        features: [
-            "REST APIs",
-            "Authentication",
-            "Data Structures & Application Logic",
-        ],
     },
 ];
 
