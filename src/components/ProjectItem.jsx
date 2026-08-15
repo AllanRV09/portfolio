@@ -2,6 +2,13 @@ import { GoArrowUpRight } from "react-icons/go";
 import { motion } from "framer-motion";
 import { SectionDescription } from "./SectionDescription";
 
+const PROJECT_IMAGE_SIZES = [
+    "(max-width: 639px) 188px",
+    "(max-width: 999px) calc(23vw - 28px)",
+    "(max-width: 1215px) calc(25vw - 48px)",
+    "256px",
+].join(", ");
+
 export function ProjectItem({ project }) {
     const words = project.title.split(" ");
     const lastWord = words.pop();
@@ -59,10 +66,12 @@ export function ProjectItem({ project }) {
                 <div className="aspect-video rounded border-2 border-surface/15 overflow-hidden">
                     <img
                         loading="lazy"
-                        width="300"
-                        height="200"
+                        width="640"
+                        height="312"
                         src={project.image}
-                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                        srcSet={project.imageSrcSet}
+                        sizes={PROJECT_IMAGE_SIZES}
+                        className="w-full h-full object-cover"
                         alt={`Screenshot of ${project.title}`}
                     />
                 </div>
