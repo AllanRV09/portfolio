@@ -1,6 +1,5 @@
 import { useRef } from "react"
 import {
-    useReducedMotion,
     useScroll,
     useTransform,
 } from "framer-motion"
@@ -33,8 +32,6 @@ function MobileServicesStack() {
 
 function DesktopServicesStack() {
     const containerRef = useRef(null)
-    const prefersReducedMotion = useReducedMotion()
-    const useStaticLayout = prefersReducedMotion
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -63,7 +60,7 @@ function DesktopServicesStack() {
         0,
         TIMELINE.servicesEnd,
         SERVICES_SCROLL_STEP_COUNT,
-        !useStaticLayout,
+        true,
         { finalStepRatio: TIMELINE.servicesResolvedShare },
     )
     const stackIndex = useScrollIndex(
@@ -71,23 +68,8 @@ function DesktopServicesStack() {
         TIMELINE.curtainEnd,
         TIMELINE.stackEnd,
         STACK_ITEMS.length,
-        !useStaticLayout,
+        true,
     )
-
-    if (useStaticLayout) {
-        return (
-            <section
-                ref={containerRef}
-                id="services-stack"
-                data-theme="dark"
-                style={{ backgroundColor: stackTheme.surface }}
-                className="relative z-20"
-            >
-                <ServicesSection activeIndex={0} staticMode />
-                <StackSection activeIndex={0} staticMode />
-            </section>
-        )
-    }
 
     return (
         <section
