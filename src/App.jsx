@@ -17,7 +17,7 @@ function App() {
           <ServicesStack />
           <About />
 
-          <div className="relative overflow-hidden">
+          <div className="relative z-[1] isolate overflow-hidden bg-surface">
             <Projects />
             <ContactSection />
             <Footer />
