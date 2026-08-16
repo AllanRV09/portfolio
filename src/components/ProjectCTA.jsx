@@ -8,7 +8,7 @@ export function ProjectCTA() {
 
                 <a
                     href="#contact"
-                    className="group text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] mb-6"
+                    className="group mb-6 inline-block rounded-sm text-4xl font-bold uppercase leading-[0.9] tracking-tighter focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background md:text-6xl lg:text-7xl"
                 >
                     <span className="text-surface/45">Yours could</span>
                     <br />
