@@ -75,7 +75,7 @@ export function ContactSection() {
     };
 
     return (
-        <section id="contact" data-theme="light" className="relative z-10 -mt-30 flex flex-col items-center text-center p-[1.5rem] sm:p-[3rem] text-surface bg-surface">
+        <section id="contact" data-theme="light" className="relative z-10 -mt-30 flex flex-col items-center text-center p-[1.5rem] scroll-mt-20 sm:scroll-mt-0 sm:p-[3rem] text-surface bg-surface">
             <div className="p-[1.5rem] sm:p-[3rem] pb-16 sm:pb-24 rounded-lg h-full w-full bg-[linear-gradient(0deg,_#4E4A44,_#0E0E0E)] z-30">
                 <h2 className="uppercase m-auto text-[clamp(3.3rem,8vw,6rem)] max-w-[12ch] font-semibold leading-[0.9] tracking-tighter text-surface">Let's Make It Happen</h2>
 
