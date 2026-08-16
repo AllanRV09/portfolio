@@ -1,6 +1,6 @@
 export function ProjectCTA() {
     return (
-        <li className="list-none">
+        <li className="mt-8 list-none lg:col-span-2">
             <div className="flex flex-col items-center text-center py-16 border-t border-surface/10">
                 <p className="text-xs font-bold tracking-[0.18em] uppercase text-text mb-5">
                     next project?

@@ -30,10 +30,14 @@ export function Projects() {
                 <SectionTitle>{title}</SectionTitle>
             </SectionLayout>
 
-            <div className="container-main flex flex-col">
-                <ul>
-                    {PROJECTS.map((project) => (
-                        <ProjectItem key={project.title} project={project} />
+            <div className="container-main">
+                <ul className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+                    {PROJECTS.map((project, index) => (
+                        <ProjectItem
+                            key={project.title}
+                            project={project}
+                            index={index}
+                        />
                     ))}
                     <ProjectCTA />
                 </ul>

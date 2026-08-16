@@ -1,12 +1,20 @@
-import racsaProjectImage640 from "../assets/images/projects/racsa-elearning-platform-640.webp"
-import racsaProjectImage960 from "../assets/images/projects/racsa-elearning-platform-960.webp"
+import racsaProjectImage from "../assets/images/projects/racsa-elearning-platform.webp"
+import portfolioProjectImage from "../assets/images/projects/allan-rodriguez-portfolio.webp"
 
 export const PROJECTS = [
     {
         title: "Self-Managed E-Learning Platform",
-        description: "Full-stack development of a self-managed e-learning platform for RACSA using Blazor, .NET Core 9, SQL Server and Tailwind CSS, including database modeling, backend APIs and frontend interfaces. Implemented authentication and authorization flows with role-based access control, email verification and credential recovery, alongside user, course and enrollment management, reporting and audit modules. The platform was later adopted as the technological foundation for a solution launched to the Costa Rican market.",
-        image: racsaProjectImage640,
-        imageSrcSet: `${racsaProjectImage640} 640w, ${racsaProjectImage960} 960w`,
+        description: "Full-stack e-learning platform for RACSA built with Blazor, .NET Core 9, SQL Server and Tailwind CSS, including authentication, course management, reporting and audit modules.",
+        technologies: [".NET Core", "Blazor", "SQL Server", "Tailwind"],
+        image: racsaProjectImage,
+        link: null
+    },
+    {
+        title: "Allan Rodriguez Portfolio",
+        description: "Personal portfolio built with React, Vite, Tailwind CSS and Framer Motion, featuring responsive editorial design, custom interactions, optimized media and a serverless contact flow.",
+        technologies: ["React", "Vite", "Tailwind", "Motion"],
+        image: portfolioProjectImage,
+        imageContained: true,
         link: null
     },
 ]
